@@ -6,7 +6,7 @@
 https://api.kite.ly
 ```
 
-The Kite API is organized around [REST](http://en.wikipedia.org/wiki/Representational_state_transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which can be understood by off-the-shelf HTTP clients. [JSON](http://www.json.org/) will be returned in all responses from the API, including errors (though if you're using API bindings, we will convert the response to the appropriate language-specific object). 
+The Kite API is organized around [REST](http://en.wikipedia.org/wiki/Representational_state_transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which can be understood by off-the-shelf HTTP clients. [JSON](http://www.json.org/) will be returned in all responses from the API, including errors (though if you're using API bindings, we will convert the response to the appropriate language-specific object).
 
 To make the Kite API as explorable as possible, accounts have test-mode API keys as well as live-mode API keys. These keys can be active at the same time. Data created with test-mode credentials will never result in real products being created and shipped to addresses, will never hit the credit card networks and will never cost anyone money.
 
@@ -56,12 +56,12 @@ To authenticate you include the HTTP `Authorization` header in your request. All
 In some scenarios it's also desirable to include your secret key in the `Authorization` header. If you're building a mobile application this is not normally needed, but if you're placing orders from your own server it usually makes sense. See [payment workflows](#payment-workflows) for more details.
 
 # Payment Workflows
-Your customers can either pay you directly when they place an order for a product or we can take payment on your behalf and automatically transfer your revenue into an account of your choosing. 
+Your customers can either pay you directly when they place an order for a product or we can take payment on your behalf and automatically transfer your revenue into an account of your choosing.
 
 ## Kite takes payment
 In this scenario we take payment from customers on your behalf. This will occur entirely within your app or website in a way that's totally branded to you, your customers don't even need to know we were involved. We then automatically transfer funds we owe you directly into a bank or a PayPal account of your choosing. You can setup the account into which you want to receive payments in the [billing](https://www.kite.ly/accounts/billing/) section of the dashboard.
 
-This is the easiest approach to using the Kite platform as it means you don't need to run your own server and it's baked into several of our SDKs. 
+This is the easiest approach to using the Kite platform as it means you don't need to run your own server and it's baked into several of our SDKs.
 
 ## You take payment
 
@@ -82,11 +82,11 @@ curl "https://api.kite.ly/v1.4/address/search/?country_code=USA&search_term=1+In
 
 > Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/accounts/credentials) section of the dashboard.
 
-In this scenario you take payment directly from your customer in any manner of your choosing. You'll need your own server infrastructure in order to take care of the payment processing, payment validation and to submit [product order requests](#ordering-a-product) to the Kite platform. 
+In this scenario you take payment directly from your customer in any manner of your choosing. You'll need your own server infrastructure in order to take care of the payment processing, payment validation and to submit [product order requests](#ordering-a-product) to the Kite platform.
 
 You'll need to add a card to be charged for any orders you place with Kite. This can be done in the [billing](https://www.kite.ly/accounts/billing/) section of the dashboard.
 
-Any request you make to Kite that would result in you incurring a charge (i.e. [product order requests](#ordering-a-product)) will need to include both your API key and your secret key in the HTTP `Authorization` header. Your secret key can be found alongside your API key in the [credentials](https://www.kite.ly/accounts/credentials) section of the dashboard. 
+Any request you make to Kite that would result in you incurring a charge (i.e. [product order requests](#ordering-a-product)) will need to include both your API key and your secret key in the HTTP `Authorization` header. Your secret key can be found alongside your API key in the [credentials](https://www.kite.ly/accounts/credentials) section of the dashboard.
 
 The presence of your secret key in charge incurring requests (i.e. product order requests) removes the need for the `proof_of_payment` argument to be provided as the card associated with your account can be charged directly.
 
@@ -165,7 +165,7 @@ curl "https://api.kite.ly/v1.4/order/?offset=30&limit=5" \
 
 > Example Paginated Response
 
-```shell 
+```shell
 {
   "meta": {
     "limit": 5,
@@ -303,10 +303,10 @@ public void onError(AssetUploadRequest req, Exception error) {
 }
 
 @Override
-public void onProgress(AssetUploadRequest req, int totalAssetsUploaded, 
-                       int totalAssetsToUpload,  long bytesWritten, 
+public void onProgress(AssetUploadRequest req, int totalAssetsUploaded,
+                       int totalAssetsToUpload,  long bytesWritten,
                        long totalAssetBytesWritten, long totalAssetBytesExpectedToWrite) {
-                
+
 }
 
 ```
@@ -370,7 +370,7 @@ We have a global product fulfilment and distribution network to get orders into 
 {
   "template_id": "magnets",
   "assets": [
-    "http://psps.s3.amazonaws.com/sdk_static/1.jpg", 
+    "http://psps.s3.amazonaws.com/sdk_static/1.jpg",
     "http://psps.s3.amazonaws.com/sdk_static/2.jpg",
     "http://psps.s3.amazonaws.com/sdk_static/3.jpg",
     "http://psps.s3.amazonaws.com/sdk_static/4.jpg"
@@ -467,41 +467,45 @@ curl "https://api.kite.ly/v1.4/print/" \
 #import <Kite-Print-SDK/OLKitePrintSDK.h>
 
 NSArray *assets = @[
-    [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]]
-];
+                        [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]]
+                        ];
+[OLProductTemplate syncWithCompletionHandler:^(NSArray *templates, NSError *error){
+    id<OLPrintJob> iPhone6Case = [OLPrintJob printJobWithTemplateId:@"i6_case" OLAssets:assets];
+    id<OLPrintJob> poster = [OLPrintJob printJobWithTemplateId:@"a1_poster" OLAssets:assets];
 
-id<OLPrintJob> iPhone6Case = [OLPrintJob printJobWithTemplateId:@"i6_case" OLAssets:assets];
-id<OLPrintJob> poster = [OLPrintJob printJobWithTemplateId:@"a1_poster" OLAssets:assets];
+    OLPrintOrder *order = [[OLPrintOrder alloc] init];
+    [order addPrintJob:iPhone6Case];
+    [order addPrintJob:poster];
 
-OLPrintOrder *order = [[OLPrintOrder alloc] init];
-[order addPrintJob:iPhone6Case];
-[order addPrintJob:poster];
+    OLAddress *a    = [[OLAddress alloc] init];
+    a.recipientFirstName = @"Deon";
+    a.recipientLastName = @"Botha";
+    a.line1         = @"27-28 Eastcastle House";
+    a.line2         = @"Eastcastle Street";
+    a.city          = @"London";
+    a.stateOrCounty = @"Greater London";
+    a.zipOrPostcode = @"W1W 8DH";
+    a.country       = [OLCountry countryForCode:@"GBR"];
 
-OLAddress *a    = [[OLAddress alloc] init];
-a.recipientName = @"Deon Botha";
-a.line1         = @"27-28 Eastcastle House";
-a.line2         = @"Eastcastle Street";
-a.city          = @"London";
-a.stateOrCounty = @"Greater London";
-a.zipOrPostcode = @"W1W 8DH";
-a.country       = [OLCountry countryForCode:@"GBR"];
+    order.shippingAddress = a;
 
-order.shippingAddress = a;
+    OLPayPalCard *card = [[OLPayPalCard alloc] init];
+    card.type = kOLPayPalCardTypeVisa;
+    card.number = @"4121212121212127";
+    card.expireMonth = 12;
+    card.expireYear = 2020;
+    card.cvv2 = @"123";
 
-OLPayPalCard *card = [[OLPayPalCard alloc] init];
-card.type = kOLPayPalCardTypeVisa;
-card.number = @"4121212121212127";
-card.expireMonth = 12;
-card.expireYear = 2020;
-card.cvv2 = @"123";
-
-[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
-  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
-  order.proofOfPayment = proofOfPayment;
-  [self.printOrder submitForPrintingWithProgressHandler:nil
-                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
-    // If there is no error then you can display a success outcome to the user
-  }];
+    [order costWithCompletionHandler:^(OLPrintOrderCost *cost, NSError *error){
+        [card chargeCard:[cost totalCostInCurrency:order.currencyCode] currencyCode:order.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+            // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+            order.proofOfPayment = proofOfPayment;
+            [order submitForPrintingWithProgressHandler:nil
+                                      completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+                                          // If there is no error then you can display a success outcome to the user
+                                      }];
+        }];
+    }];
 }];
 
 ```
@@ -587,7 +591,7 @@ public void onError(PrintOrder printOrder, Exception error) {
 ```
 
 
-With a single API request to Kite you can have personalised products created, packaged and shipped anywhere in the world. Packaging will carry your branding, not ours – your customers never need to know we were involved! 
+With a single API request to Kite you can have personalised products created, packaged and shipped anywhere in the world. Packaging will carry your branding, not ours – your customers never need to know we were involved!
 
 For example the request on the right would result in an iPhone 6 Case and an A1 Poster being created and shipped to the specified address.
 
@@ -751,7 +755,7 @@ card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard
 }
 ```
 
-If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders. 
+If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders.
 
 The example request on the right would result in a square prints being created and shipped to the specified address.
 
@@ -912,7 +916,7 @@ card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard
 }
 ```
 
-If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders. 
+If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders.
 
 The example request on the right would result in iPad Air & Samsung Galaxy 5 cases being created and shipped to the specified address.
 
@@ -1093,7 +1097,7 @@ card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard
 ```
 
 
-If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders. 
+If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders.
 
 The example request on the right would result in a t-shirt being created (with an photo on the front and back) and shipped to the specified address.
 
@@ -1135,8 +1139,8 @@ garment_color<span class="required-argument">required</span> | The base material
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>30cm</td>
 		</tr>
-		
-		
+
+
 		<tr>
 			<td>top_chest<span class="optional-argument">optional</span></td>
 			<td class="img-tshirt"><img alt="T-Shirt Print API Top Chest" src="{% static "docs/images/top_chest.jpg" %}"></td>
@@ -1149,7 +1153,7 @@ garment_color<span class="required-argument">required</span> | The base material
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>30cm</td>
 		</tr>
-		
+
 		<tr>
 			<td>right_sleeve<span class="optional-argument">optional</span></td>
 			<td class="img-tshirt"><img alt="T-Shirt Print API Right Sleeve" src="{% static "docs/images/right_sleeve.jpg" %}"></td>
@@ -1162,7 +1166,7 @@ garment_color<span class="required-argument">required</span> | The base material
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>10cm</td>
 		</tr>
-		
+
 		<tr>
 			<td>right_chest<span class="optional-argument">optional</span></td>
 			<td class="img-tshirt"><img alt="T-Shirt Print API Right Chest" src="{% static "docs/images/right_chest.jpg" %}"></td>
@@ -1175,7 +1179,7 @@ garment_color<span class="required-argument">required</span> | The base material
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>12cm</td>
 		</tr>
-		
+
 		<tr>
 			<td>bottom_right<span class="optional-argument">optional</span></td>
 			<td class="img-tshirt"><img alt="T-Shirt Print API Bottom Right" src="{% static "docs/images/bottom_right.jpg" %}"></td>
@@ -1188,7 +1192,7 @@ garment_color<span class="required-argument">required</span> | The base material
 			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
 			<td>12cm</td>
 		</tr>
-		
+
 	</tbody>
 </table>
 
@@ -1329,7 +1333,7 @@ card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard
 ```
 
 
-If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders. 
+If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders.
 
 The example request on the right would result in a portrait photobook being created and shipped to the specified address.
 
@@ -1376,7 +1380,7 @@ curl "https://api.kite.ly/v1.4/print/" \
       "assets": {
         "front_image": "http://psps.s3.amazonaws.com/sdk_static/4.jpg"
       },
-      "template_id": "postcard", 
+      "template_id": "postcard",
       "message": "Hello World!"
     }]
   }'
@@ -1467,7 +1471,7 @@ card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard
 ```
 
 
-If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders. 
+If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders.
 
 The example request on the right would result in a postcard being created and shipped to the specified address.
 
@@ -1612,8 +1616,8 @@ Address.search("1 Infinite Loop", Country.getInstance("USA"), /*AddressSearchReq
 
 @Override
 public void onMultipleChoices(AddressSearchRequest req, List<Address> options) {
-  // present choice of Address' to the user, then 
-  // perform further search if address.isSearchRequiredForFullDetails() 
+  // present choice of Address' to the user, then
+  // perform further search if address.isSearchRequiredForFullDetails()
 }
 
 @Override
@@ -1687,10 +1691,10 @@ You can perform a search on any part of the address not just the ZIP/Postal code
 --------- | -----------
 country_code<span class="required-argument">required</span> | [Three letter country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) to which the address search will be restricted
 search_term<span class="maybe-argument">optional, either **search_term** or **address_id** is required</span> | A free text value, often encompassing the first line of address or ZIP/Postal code, on which the search is performed
-address_id<span class="maybe-argument">optional, either **search_term** or **address_id** is required</span> | A parameter referencing a previously returned address search results list item that can be used to lookup a unique address 
+address_id<span class="maybe-argument">optional, either **search_term** or **address_id** is required</span> | A parameter referencing a previously returned address search results list item that can be used to lookup a unique address
 
 ### Returns
-Returns either a dictionary with a `unique` property that is a [full address object](#the-address-object), or (if the search is ambiguous) a dictionary with a `choices` property that is a list of [partial address objects](#the-partial-address-object). 
+Returns either a dictionary with a `unique` property that is a [full address object](#the-address-object), or (if the search is ambiguous) a dictionary with a `choices` property that is a list of [partial address objects](#the-partial-address-object).
 
 In the case of a list response, additional calls to the address search endpoint are required to find a unique match. You can use the `address_id`'s from previous responses to narrow down the search until you eventually find a unique address.
 
