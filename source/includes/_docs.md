@@ -652,43 +652,47 @@ curl "https://api.kite.ly/v1.4/print/" \
 #import <Kite-Print-SDK/OLKitePrintSDK.h>
 
 NSArray *assets = @[
-    [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]],
-    [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/2.jpg"]],
-    [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/3.jpg"]],
-    [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/4.jpg"]]
-];
+                        [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]],
+                        [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/2.jpg"]],
+                        [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/3.jpg"]],
+                        [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/4.jpg"]]
+                        ];
+    [OLProductTemplate syncWithCompletionHandler:^(NSArray* templates, NSError *error){
+        id<OLPrintJob> squarePrints = [OLPrintJob printJobWithTemplateId:@"squares" OLAssets:assets];
 
-id<OLPrintJob> squarePrints = [OLPrintJob printJobWithTemplateId:@"squares" OLAssets:assets];
+        OLPrintOrder *order = [[OLPrintOrder alloc] init];
+        [order addPrintJob:squarePrints];
 
-OLPrintOrder *order = [[OLPrintOrder alloc] init];
-[order addPrintJob:squarePrints];
+        OLAddress *a    = [[OLAddress alloc] init];
+        a.recipientFirstName = @"Deon";
+        a.recipientLastName = @"Botha";
+        a.line1         = @"27-28 Eastcastle House";
+        a.line2         = @"Eastcastle Street";
+        a.city          = @"London";
+        a.stateOrCounty = @"Greater London";
+        a.zipOrPostcode = @"W1W 8DH";
+        a.country       = [OLCountry countryForCode:@"GBR"];
 
-OLAddress *a    = [[OLAddress alloc] init];
-a.recipientName = @"Deon Botha";
-a.line1         = @"27-28 Eastcastle House";
-a.line2         = @"Eastcastle Street";
-a.city          = @"London";
-a.stateOrCounty = @"Greater London";
-a.zipOrPostcode = @"W1W 8DH";
-a.country       = [OLCountry countryForCode:@"GBR"];
+        order.shippingAddress = a;
 
-order.shippingAddress = a;
+        OLPayPalCard *card = [[OLPayPalCard alloc] init];
+        card.type = kOLPayPalCardTypeVisa;
+        card.number = @"4121212121212127";
+        card.expireMonth = 12;
+        card.expireYear = 2020;
+        card.cvv2 = @"123";
 
-OLPayPalCard *card = [[OLPayPalCard alloc] init];
-card.type = kOLPayPalCardTypeVisa;
-card.number = @"4121212121212127";
-card.expireMonth = 12;
-card.expireYear = 2020;
-card.cvv2 = @"123";
-
-[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
-  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
-  order.proofOfPayment = proofOfPayment;
-  [self.printOrder submitForPrintingWithProgressHandler:nil
-                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
-    // If there is no error then you can display a success outcome to the user
-  }];
-}];
+        [order costWithCompletionHandler:^(OLPrintOrderCost *cost, NSError *error){
+            [card chargeCard:[cost totalCostInCurrency:order.currencyCode] currencyCode:order.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+                // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+                order.proofOfPayment = proofOfPayment;
+                [order submitForPrintingWithProgressHandler:nil
+                                          completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+                                              // If there is no error then you can display a success outcome to the user
+                                          }];
+            }];
+        }];
+    }];
 
 ```
 
@@ -813,43 +817,47 @@ curl "https://api.kite.ly/v1.4/print/" \
 #import <Kite-Print-SDK/OLKitePrintSDK.h>
 
 NSArray *assets = @[
-    [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]]
-];
+                        [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]]
+                        ];
+    [OLProductTemplate syncWithCompletionHandler:^(NSArray* templates, NSError *error){
+      id<OLPrintJob> ipadAirCase = [OLPrintJob printJobWithTemplateId:@"ipad_air_case" OLAssets:assets];
+      id<OLPrintJob> galaxyS5Case = [OLPrintJob printJobWithTemplateId:@"samsung_s5_case" OLAssets:assets];
+      [galaxyS5Case setValue:@"matte" forOption:@"case_style"];
 
-id<OLPrintJob> ipadAirCase = [OLPrintJob printJobWithTemplateId:@"ipad_air_case" OLAssets:assets];
-id<OLPrintJob> galaxyS5Case = [OLPrintJob printJobWithTemplateId:@"samsung_s5_case" OLAssets:assets];
-[galaxyS5Case setValue:@"matte" forOption:@"case_style"];
+      OLPrintOrder *order = [[OLPrintOrder alloc] init];
+        [order addPrintJob:ipadAirCase];
+        [order addPrintJob:galaxyS5Case];
 
-OLPrintOrder *order = [[OLPrintOrder alloc] init];
-[order addPrintJob:ipadAirCase];
-[order addPrintJob:galaxyS5Case];
+        OLAddress *a    = [[OLAddress alloc] init];
+        a.recipientFirstName = @"Deon";
+        a.recipientLastName = @"Botha";
+        a.line1         = @"27-28 Eastcastle House";
+        a.line2         = @"Eastcastle Street";
+        a.city          = @"London";
+        a.stateOrCounty = @"Greater London";
+        a.zipOrPostcode = @"W1W 8DH";
+        a.country       = [OLCountry countryForCode:@"GBR"];
 
-OLAddress *a    = [[OLAddress alloc] init];
-a.recipientName = @"Deon Botha";
-a.line1         = @"27-28 Eastcastle House";
-a.line2         = @"Eastcastle Street";
-a.city          = @"London";
-a.stateOrCounty = @"Greater London";
-a.zipOrPostcode = @"W1W 8DH";
-a.country       = [OLCountry countryForCode:@"GBR"];
+        order.shippingAddress = a;
 
-order.shippingAddress = a;
+        OLPayPalCard *card = [[OLPayPalCard alloc] init];
+        card.type = kOLPayPalCardTypeVisa;
+        card.number = @"4121212121212127";
+        card.expireMonth = 12;
+        card.expireYear = 2020;
+        card.cvv2 = @"123";
 
-OLPayPalCard *card = [[OLPayPalCard alloc] init];
-card.type = kOLPayPalCardTypeVisa;
-card.number = @"4121212121212127";
-card.expireMonth = 12;
-card.expireYear = 2020;
-card.cvv2 = @"123";
-
-[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
-  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
-  order.proofOfPayment = proofOfPayment;
-  [self.printOrder submitForPrintingWithProgressHandler:nil
-                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
-    // If there is no error then you can display a success outcome to the user
-  }];
-}];
+        [order costWithCompletionHandler:^(OLPrintOrderCost *cost, NSError *error){
+            [card chargeCard:[cost totalCostInCurrency:order.currencyCode] currencyCode:order.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+                // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+                order.proofOfPayment = proofOfPayment;
+                [order submitForPrintingWithProgressHandler:nil
+                                          completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+                                              // If there is no error then you can display a success outcome to the user
+                                          }];
+            }];
+        }];
+    }];
 
 ```
 
@@ -992,43 +1000,47 @@ curl "https://api.kite.ly/v1.4/print/" \
 // See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
 #import <Kite-Print-SDK/OLKitePrintSDK.h>
 
-NSArray *assets = @{
-    @"center_chest": [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]],
-    @"center_back":[OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/2.jpg"]]
-};
+NSDictionary *assets = @{
+                         @"center_chest": [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]],
+                         @"center_back":[OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/2.jpg"]]
+                         };
+[OLProductTemplate syncWithCompletionHandler:^(NSArray* templates, NSError *error){
+    id<OLPrintJob> tshirt = [OLPrintJob apparelWithTemplateId:@"gildan_tshirt" OLAssets:assets];
+    [tshirt setValue:@"M" forOption:@"garment_size"];
+    [tshirt setValue:@"white" forOption:@"garment_color"];
 
-id<OLPrintJob> tshirt = [OLPrintJob printJobWithTemplateId:@"gildan_tshirt" OLAssets:assets];
-[tshirt setValue:@"M" forOption:@"garment_size"];
-[tshirt setValue:@"white" forOption:@"garment_color"];
+    OLPrintOrder *order = [[OLPrintOrder alloc] init];
+    [order addPrintJob:tshirt];
 
-OLPrintOrder *order = [[OLPrintOrder alloc] init];
-[order addPrintJob:tshirt];
+    OLAddress *a    = [[OLAddress alloc] init];
+    a.recipientFirstName = @"Deon";
+    a.recipientLastName = @"Botha";
+    a.line1         = @"27-28 Eastcastle House";
+    a.line2         = @"Eastcastle Street";
+    a.city          = @"London";
+    a.stateOrCounty = @"Greater London";
+    a.zipOrPostcode = @"W1W 8DH";
+    a.country       = [OLCountry countryForCode:@"GBR"];
 
-OLAddress *a    = [[OLAddress alloc] init];
-a.recipientName = @"Deon Botha";
-a.line1         = @"27-28 Eastcastle House";
-a.line2         = @"Eastcastle Street";
-a.city          = @"London";
-a.stateOrCounty = @"Greater London";
-a.zipOrPostcode = @"W1W 8DH";
-a.country       = [OLCountry countryForCode:@"GBR"];
+    order.shippingAddress = a;
 
-order.shippingAddress = a;
+    OLPayPalCard *card = [[OLPayPalCard alloc] init];
+    card.type = kOLPayPalCardTypeVisa;
+    card.number = @"4121212121212127";
+    card.expireMonth = 12;
+    card.expireYear = 2020;
+    card.cvv2 = @"123";
 
-OLPayPalCard *card = [[OLPayPalCard alloc] init];
-card.type = kOLPayPalCardTypeVisa;
-card.number = @"4121212121212127";
-card.expireMonth = 12;
-card.expireYear = 2020;
-card.cvv2 = @"123";
-
-[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
-  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
-  order.proofOfPayment = proofOfPayment;
-  [self.printOrder submitForPrintingWithProgressHandler:nil
-                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
-    // If there is no error then you can display a success outcome to the user
-  }];
+    [order costWithCompletionHandler:^(OLPrintOrderCost *cost, NSError *error){
+        [card chargeCard:[cost totalCostInCurrency:order.currencyCode] currencyCode:order.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+            // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+            order.proofOfPayment = proofOfPayment;
+            [order submitForPrintingWithProgressHandler:nil
+                                      completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+                                          // If there is no error then you can display a success outcome to the user
+                                      }];
+        }];
+    }];
 }];
 
 ```
@@ -1232,41 +1244,46 @@ curl "https://api.kite.ly/v1.4/print/" \
 #import <Kite-Print-SDK/OLKitePrintSDK.h>
 
 NSArray *assets = @[
-    [OLAsset assetWithURL:[NSURL URLWithString:@"https://s3.amazonaws.com/sdk-static/portrait_photobook.pdf"]]
-];
+                        [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]], [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/2.jpg"]], [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/3.jpg"]]
+                        ];
+    OLAsset *frontCoverAsset = [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/4.jpg"]];
+    [OLProductTemplate syncWithCompletionHandler:^(NSArray* templates, NSError *error){
+        id<OLPrintJob> photobook = [OLPrintJob photobookWithTemplateId:@"photobook_small_portrait" OLAssets:assets frontCoverOLAsset:frontCoverAsset backCoverOLAsset:nil];
+        [photobook setValue:@"#FFFFFF" forOption:@"spine_color"];
 
-id<OLPrintJob> photobook = [OLPrintJob printJobWithTemplateId:@"photobook_small_portrait" OLAssets:assets];
-[photobook setValue:@"#FFFFFF" forOption:@"spine_color"];
+        OLPrintOrder *order = [[OLPrintOrder alloc] init];
+        [order addPrintJob:photobook];
 
-OLPrintOrder *order = [[OLPrintOrder alloc] init];
-[order addPrintJob:photobook];
+        OLAddress *a    = [[OLAddress alloc] init];
+        a.recipientFirstName = @"Deon";
+        a.recipientLastName = @"Botha";
+        a.line1         = @"27-28 Eastcastle House";
+        a.line2         = @"Eastcastle Street";
+        a.city          = @"London";
+        a.stateOrCounty = @"Greater London";
+        a.zipOrPostcode = @"W1W 8DH";
+        a.country       = [OLCountry countryForCode:@"GBR"];
 
-OLAddress *a    = [[OLAddress alloc] init];
-a.recipientName = @"Deon Botha";
-a.line1         = @"27-28 Eastcastle House";
-a.line2         = @"Eastcastle Street";
-a.city          = @"London";
-a.stateOrCounty = @"Greater London";
-a.zipOrPostcode = @"W1W 8DH";
-a.country       = [OLCountry countryForCode:@"GBR"];
+        order.shippingAddress = a;
 
-order.shippingAddress = a;
+        OLPayPalCard *card = [[OLPayPalCard alloc] init];
+        card.type = kOLPayPalCardTypeVisa;
+        card.number = @"4121212121212127";
+        card.expireMonth = 12;
+        card.expireYear = 2020;
+        card.cvv2 = @"123";
 
-OLPayPalCard *card = [[OLPayPalCard alloc] init];
-card.type = kOLPayPalCardTypeVisa;
-card.number = @"4121212121212127";
-card.expireMonth = 12;
-card.expireYear = 2020;
-card.cvv2 = @"123";
-
-[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
-  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
-  order.proofOfPayment = proofOfPayment;
-  [self.printOrder submitForPrintingWithProgressHandler:nil
-                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
-    // If there is no error then you can display a success outcome to the user
-  }];
-}];
+        [order costWithCompletionHandler:^(OLPrintOrderCost *cost, NSError *error){
+            [card chargeCard:[cost totalCostInCurrency:order.currencyCode] currencyCode:order.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+                // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+                order.proofOfPayment = proofOfPayment;
+                [order submitForPrintingWithProgressHandler:nil
+                                          completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+                                              // If there is no error then you can display a success outcome to the user
+                                          }];
+            }];
+        }];
+    }];
 
 ```
 
@@ -1391,26 +1408,43 @@ curl "https://api.kite.ly/v1.4/print/" \
 #import <Kite-Print-SDK/OLKitePrintSDK.h>
 
 OLAsset *frontImage = [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/4.jpg"]];
-id<OLPrintJob> postcard = [OLPrintJob postcardWithTemplateId:@"postcard" frontImageOLAsset:frontImage message:@"Hello World!" address:/*Address*/];
 
-OLPrintOrder *order = [[OLPrintOrder alloc] init];
-[order addPrintJob:postcard];
+    [OLProductTemplate syncWithCompletionHandler:^(NSArray* templates, NSError *error){
+      id<OLPrintJob> postcard = [OLPrintJob postcardWithTemplateId:@"postcard" frontImageOLAsset:frontImage message:@"Hello World!" address:/*Address*/];
 
-OLPayPalCard *card = [[OLPayPalCard alloc] init];
-card.type = kOLPayPalCardTypeVisa;
-card.number = @"4121212121212127";
-card.expireMonth = 12;
-card.expireYear = 2020;
-card.cvv2 = @"123";
+      OLPrintOrder *order = [[OLPrintOrder alloc] init];
+      [order addPrintJob:postcard];
 
-[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
-  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
-  order.proofOfPayment = proofOfPayment;
-  [self.printOrder submitForPrintingWithProgressHandler:nil
-                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
-    // If there is no error then you can display a success outcome to the user
-  }];
-}];
+        OLAddress *a    = [[OLAddress alloc] init];
+        a.recipientFirstName = @"Deon";
+        a.recipientLastName = @"Botha";
+        a.line1         = @"27-28 Eastcastle House";
+        a.line2         = @"Eastcastle Street";
+        a.city          = @"London";
+        a.stateOrCounty = @"Greater London";
+        a.zipOrPostcode = @"W1W 8DH";
+        a.country       = [OLCountry countryForCode:@"GBR"];
+
+        order.shippingAddress = a;
+
+        OLPayPalCard *card = [[OLPayPalCard alloc] init];
+        card.type = kOLPayPalCardTypeVisa;
+        card.number = @"4121212121212127";
+        card.expireMonth = 12;
+        card.expireYear = 2020;
+        card.cvv2 = @"123";
+
+        [order costWithCompletionHandler:^(OLPrintOrderCost *cost, NSError *error){
+            [card chargeCard:[cost totalCostInCurrency:order.currencyCode] currencyCode:order.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+                // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+                order.proofOfPayment = proofOfPayment;
+                [order submitForPrintingWithProgressHandler:nil
+                                          completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+                                              // If there is no error then you can display a success outcome to the user
+                                          }];
+            }];
+        }];
+    }];
 
 ```
 
