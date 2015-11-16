@@ -920,8 +920,12 @@ The example request on the right would result in iPad Air & Samsung Galaxy 5 cas
 
           | |
 --------- | -----------
+iPhone 6s+ Case<span class="attribute-type">i6splus_case</span> | iPhone 6s snap case constructed to the highest quality design, material & coating
+iPhone 6s+ Tough Case<span class="attribute-type">i6splus_tough_case</span> | iPhone 6s + tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
 iPhone 6+ Case<span class="attribute-type">i6plus_case</span> | iPhone 6+ snap case constructed to the highest quality design, material & coating
 iPhone 6+ Tough Case<span class="attribute-type">i6plus_tough_case</span> | iPhone 6+ tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
+iPhone 6s Case<span class="attribute-type">i6s_case</span> | iPhone 6s snap case constructed to the highest quality design, material & coating
+iPhone 6s Tough Case<span class="attribute-type">i6s_tough_case</span> | iPhone 6s tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
 iPhone 6 Case<span class="attribute-type">i6_case</span> | iPhone 6 snap case constructed to the highest quality design, material & coating
 iPhone 6 Tough Case<span class="attribute-type">i6_tough_case</span> | iPhone 6 tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
 iPhone 5/5S Case<span class="attribute-type">i5_case</span> | iPhone 5 snap case constructed to the highest quality design, material & coating
@@ -932,18 +936,22 @@ iPhone 4/4S Case<span class="attribute-type">i4_case</span> | iPhone 4 snap case
 iPhone 4/4S Tough Case<span class="attribute-type">i4_tough_case</span> | iPhone 4 tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
 iPad Mini Case<span class="attribute-type">ipad_mini_case</span> | iPad Mini snap case constructed to the highest quality design, material & coating
 iPad Air Case<span class="attribute-type">ipad_air_case</span> | iPad Air snap case constructed to the highest quality design, material & coating
-iPad Case<span class="attribute-type">ipad_case</span> | iPad 2,3,4 snap case constructed to the highest quality design, material & coating
+iPad 2,3,4 Case<span class="attribute-type">ipad_case</span> | iPad 2,3,4 snap case constructed to the highest quality design, material & coating
+Samsung Galaxy S6 Edge Case<span class="attribute-type">samsung_s6e_case</span> | Samsung Galaxy S6 Edge snap case constructed to the highest quality design, material & coating
+Samsung Galaxy S6 Case<span class="attribute-type">samsung_s6_case</span> | Samsung Galaxy S6 snap case constructed to the highest quality design, material & coating
 Samsung Galaxy S5 Case<span class="attribute-type">samsung_s5_case</span> | Samsung Galaxy S5 snap case constructed to the highest quality design, material & coating
 Samsung Galaxy S5 Mini Case<span class="attribute-type">samsung_s5_mini_case</span> | Samsung Galaxy S5 Mini snap case constructed to the highest quality design, material & coating
 Samsung Galaxy S4 Case<span class="attribute-type">samsung_s4_case</span> | Samsung Galaxy S4 snap case constructed to the highest quality design, material & coating
 Samsung Galaxy S4 Mini Case<span class="attribute-type">samsung_s4_mini_case</span> | Samsung Galaxy S4 Mini snap case constructed to the highest quality design, material & coating
 Samsung Galaxy S3 Case<span class="attribute-type">samsung_s3_case</span> | Samsung Galaxy S3 snap case constructed to the highest quality design, material & coating
 Samsung Galaxy S3 Mini Case<span class="attribute-type">samsung_s3_mini_case</span> | Samsung Galaxy S3 Mini snap case constructed to the highest quality design, material & coating
+Samsung Galaxy Note 4 Case<span class="attribute-type">samsung_n4_case</span> | Samsung Galaxy Note 3 snap case constructed to the highest quality design, material & coating
 Samsung Galaxy Note 3 Case<span class="attribute-type">samsung_n3_case</span> | Samsung Galaxy Note 3 snap case constructed to the highest quality design, material & coating
 Sony Xperia Z1 Case<span class="attribute-type">sony_x_z1_case</span> | Sony Xperia Z1 snap case constructed to the highest quality design, material & coating
 Sony Xperia C Case<span class="attribute-type">sony_x_c_case</span> | Sony Xperia Z1 snap case constructed to the highest quality design, material & coating
 LG G2 Case<span class="attribute-type">lg_g2_case</span> | LG G2 snap case constructed to the highest quality design, material & coating
 Nexus 5 Case<span class="attribute-type">nexus_5_case</span> | Nexus 5 snap case constructed to the highest quality design, material & coating
+Nexus 7 Case<span class="attribute-type">nexus_7_case</span> | Nexus 7 snap case constructed to the highest quality design, material & coating
 
 ### Options Arguments
 
