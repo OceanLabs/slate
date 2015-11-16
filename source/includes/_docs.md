@@ -1522,6 +1522,34 @@ curl "https://api.kite.ly/v1.4/print/" \
 
 ```objective_c
 // See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
+// See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
+#import <Kite-Print-SDK/OLKitePrintSDK.h>
+
+OLAsset *frontImage = [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]];
+OLAsset *backImage = [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/2.jpg"]];
+OLAsset *inLeftImage = [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/3.jpg"]];
+OLAsset *inRightImage = [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/4.jpg"]];
+id<OLPrintJob> card = [OLPrintJob greetingCardWithTemplateId:@"greeting_cards_a5" frontImageOLAsset:frontImage backImageOLAsset:backImage insideRightImageAsset:inRightImage insideLeftImageAsset:inLeftImage];
+
+OLPrintOrder *order = [[OLPrintOrder alloc] init];
+[order addPrintJob:card];
+
+OLPayPalCard *card = [[OLPayPalCard alloc] init];
+card.type = kOLPayPalCardTypeVisa;
+card.number = @"4121212121212127";
+card.expireMonth = 12;
+card.expireYear = 2020;
+card.cvv2 = @"123";
+
+[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+  order.proofOfPayment = proofOfPayment;
+  [self.printOrder submitForPrintingWithProgressHandler:nil
+                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+    // If there is no error then you can display a success outcome to the user
+  }];
+}];
+
 
 ```
 
