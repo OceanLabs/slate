@@ -920,8 +920,12 @@ The example request on the right would result in iPad Air & Samsung Galaxy 5 cas
 
           | |
 --------- | -----------
+iPhone 6s+ Case<span class="attribute-type">i6splus_case</span> | iPhone 6s snap case constructed to the highest quality design, material & coating
+iPhone 6s+ Tough Case<span class="attribute-type">i6splus_tough_case</span> | iPhone 6s + tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
 iPhone 6+ Case<span class="attribute-type">i6plus_case</span> | iPhone 6+ snap case constructed to the highest quality design, material & coating
 iPhone 6+ Tough Case<span class="attribute-type">i6plus_tough_case</span> | iPhone 6+ tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
+iPhone 6s Case<span class="attribute-type">i6s_case</span> | iPhone 6s snap case constructed to the highest quality design, material & coating
+iPhone 6s Tough Case<span class="attribute-type">i6s_tough_case</span> | iPhone 6s tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
 iPhone 6 Case<span class="attribute-type">i6_case</span> | iPhone 6 snap case constructed to the highest quality design, material & coating
 iPhone 6 Tough Case<span class="attribute-type">i6_tough_case</span> | iPhone 6 tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
 iPhone 5/5S Case<span class="attribute-type">i5_case</span> | iPhone 5 snap case constructed to the highest quality design, material & coating
@@ -932,18 +936,22 @@ iPhone 4/4S Case<span class="attribute-type">i4_case</span> | iPhone 4 snap case
 iPhone 4/4S Tough Case<span class="attribute-type">i4_tough_case</span> | iPhone 4 tough case constructed to the highest quality design, material & coating.  Durable two layered case that offer the best solution for protecting your phone
 iPad Mini Case<span class="attribute-type">ipad_mini_case</span> | iPad Mini snap case constructed to the highest quality design, material & coating
 iPad Air Case<span class="attribute-type">ipad_air_case</span> | iPad Air snap case constructed to the highest quality design, material & coating
-iPad Case<span class="attribute-type">ipad_case</span> | iPad 2,3,4 snap case constructed to the highest quality design, material & coating
+iPad 2,3,4 Case<span class="attribute-type">ipad_case</span> | iPad 2,3,4 snap case constructed to the highest quality design, material & coating
+Samsung Galaxy S6 Edge Case<span class="attribute-type">samsung_s6e_case</span> | Samsung Galaxy S6 Edge snap case constructed to the highest quality design, material & coating
+Samsung Galaxy S6 Case<span class="attribute-type">samsung_s6_case</span> | Samsung Galaxy S6 snap case constructed to the highest quality design, material & coating
 Samsung Galaxy S5 Case<span class="attribute-type">samsung_s5_case</span> | Samsung Galaxy S5 snap case constructed to the highest quality design, material & coating
 Samsung Galaxy S5 Mini Case<span class="attribute-type">samsung_s5_mini_case</span> | Samsung Galaxy S5 Mini snap case constructed to the highest quality design, material & coating
 Samsung Galaxy S4 Case<span class="attribute-type">samsung_s4_case</span> | Samsung Galaxy S4 snap case constructed to the highest quality design, material & coating
 Samsung Galaxy S4 Mini Case<span class="attribute-type">samsung_s4_mini_case</span> | Samsung Galaxy S4 Mini snap case constructed to the highest quality design, material & coating
 Samsung Galaxy S3 Case<span class="attribute-type">samsung_s3_case</span> | Samsung Galaxy S3 snap case constructed to the highest quality design, material & coating
 Samsung Galaxy S3 Mini Case<span class="attribute-type">samsung_s3_mini_case</span> | Samsung Galaxy S3 Mini snap case constructed to the highest quality design, material & coating
+Samsung Galaxy Note 4 Case<span class="attribute-type">samsung_n4_case</span> | Samsung Galaxy Note 3 snap case constructed to the highest quality design, material & coating
 Samsung Galaxy Note 3 Case<span class="attribute-type">samsung_n3_case</span> | Samsung Galaxy Note 3 snap case constructed to the highest quality design, material & coating
 Sony Xperia Z1 Case<span class="attribute-type">sony_x_z1_case</span> | Sony Xperia Z1 snap case constructed to the highest quality design, material & coating
 Sony Xperia C Case<span class="attribute-type">sony_x_c_case</span> | Sony Xperia Z1 snap case constructed to the highest quality design, material & coating
 LG G2 Case<span class="attribute-type">lg_g2_case</span> | LG G2 snap case constructed to the highest quality design, material & coating
 Nexus 5 Case<span class="attribute-type">nexus_5_case</span> | Nexus 5 snap case constructed to the highest quality design, material & coating
+Nexus 7 Case<span class="attribute-type">nexus_7_case</span> | Nexus 7 snap case constructed to the highest quality design, material & coating
 
 ### Options Arguments
 
@@ -1522,6 +1530,34 @@ curl "https://api.kite.ly/v1.4/print/" \
 
 ```objective_c
 // See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
+// See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
+#import <Kite-Print-SDK/OLKitePrintSDK.h>
+
+OLAsset *frontImage = [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]];
+OLAsset *backImage = [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/2.jpg"]];
+OLAsset *inLeftImage = [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/3.jpg"]];
+OLAsset *inRightImage = [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/4.jpg"]];
+id<OLPrintJob> card = [OLPrintJob greetingCardWithTemplateId:@"greeting_cards_a5" frontImageOLAsset:frontImage backImageOLAsset:backImage insideRightImageAsset:inRightImage insideLeftImageAsset:inLeftImage];
+
+OLPrintOrder *order = [[OLPrintOrder alloc] init];
+[order addPrintJob:card];
+
+OLPayPalCard *card = [[OLPayPalCard alloc] init];
+card.type = kOLPayPalCardTypeVisa;
+card.number = @"4121212121212127";
+card.expireMonth = 12;
+card.expireYear = 2020;
+card.cvv2 = @"123";
+
+[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+  order.proofOfPayment = proofOfPayment;
+  [self.printOrder submitForPrintingWithProgressHandler:nil
+                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+    // If there is no error then you can display a success outcome to the user
+  }];
+}];
+
 
 ```
 
