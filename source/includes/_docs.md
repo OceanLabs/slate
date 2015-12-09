@@ -1599,6 +1599,168 @@ back_image<span class="optional-argument">optional</span> | A image URL accessib
 inside_left_image<span class="optional-argument">optional</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. Specifying an `inside_left_image` gives you total control of the inside of the greetings card.
 inside_right_image<span class="optional-argument">optional</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. Specifying a `inside_right_image` gives you total control of the inside of the greetings card.
 
+## Dimension Reference
+
+The tables below detail the optimal asset pixel dimensions for products in our range. Whilst assets you provide to Kite can be
+smaller than this, it's recommended you try get as close to these dimensions as possible to guarantee high quality prints.
+
+
+### OPTIMAL PRINT PRODUCT ASSET DIMENSIONS
+<table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th></tr></thead><tbody>
+<tr><td>A1 Poster<span class="optional-argument">a1_poster</span></td><td><code class="prettyprint">7017&times;9933</code></td><td><code class="prettyprint">59.4&times;84.1</code></td></tr>
+<tr><td>A2 Poster<span class="optional-argument">a2_poster</span></td><td><code class="prettyprint">4962&times;7017</code></td><td><code class="prettyprint">42&times;59.4</code></td></tr>
+<tr><td>A3 Poster<span class="optional-argument">a3_poster</span></td><td><code class="prettyprint">3508&times;4961</code></td><td><code class="prettyprint">29.7&times;42</code></td></tr>
+<tr><td>A4 Poster<span class="optional-argument">a4_poster</span></td><td><code class="prettyprint">2481&times;3507</code></td><td><code class="prettyprint">21&times;29.7</code></td></tr>
+<tr><td>Classic prints (4x6)<span class="optional-argument">photos_4x6</span></td><td><code class="prettyprint">1760&times;1276</code></td><td><code class="prettyprint">14.9&times;10.8</code></td></tr>
+<tr><td>Magnets<span class="optional-argument">magnets</span></td><td><code class="prettyprint">815&times;815</code></td><td><code class="prettyprint">6.9&times;6.9</code></td></tr>
+<tr><td>Squares<span class="optional-argument">squares</span></td><td><code class="prettyprint">1152&times;1152</code></td><td><code class="prettyprint">9.8&times;9.8</code></td></tr>
+<tr><td>Mini squares<span class="optional-argument">squares_mini</span></td><td><code class="prettyprint">804&times;804</code></td><td><code class="prettyprint">6.8&times;6.8</code></td></tr>
+<tr><td>Retro style prints<span class="optional-argument">polaroids</span></td><td><code class="prettyprint">1027&times;1192</code></td><td><code class="prettyprint">8.7&times;10.1</code></td></tr>
+<tr><td>Mini retro style<span class="optional-argument">polaroids_mini</span></td><td><code class="prettyprint">739&times;832</code></td><td><code class="prettyprint">6.3&times;7</code></td></tr>
+<tr><td>Greeting Cards<span class="optional-argument">greeting_cards</span></td><td><code class="prettyprint">1069&times;1069</code></td><td><code class="prettyprint">9.1&times;9.1</code></td></tr>
+<tr><td>Greeting Cards A5<span class="optional-argument">greeting_cards_a5</span></td><td><code class="prettyprint">1749&times;2481</code></td><td><code class="prettyprint">14.8&times;21</code></td></tr>
+<tr><td>Greeting Cards 7x5<span class="optional-argument">greeting_cards_7x5</span></td><td><code class="prettyprint">1500&times;2100</code></td><td><code class="prettyprint">12.7&times;17.8</code></td></tr>
+<tr><td>Square Stickers<span class="optional-argument">stickers_square</span></td><td><code class="prettyprint">732&times;732</code></td><td><code class="prettyprint">6.2&times;6.2</code></td></tr>
+<tr><td>Circle Stickers<span class="optional-argument">stickers_circle</span></td><td><code class="prettyprint">779&times;779</code></td><td><code class="prettyprint">6.6&times;6.6</code></td></tr>
+<tr><td>Frames 50cm<span class="optional-argument">frames_50cm</span></td><td><code class="prettyprint">3426&times;3426</code></td><td><code class="prettyprint">29&times;29</code></td></tr>
+<tr><td>Postcard<span class="optional-argument">postcard</span></td><td><code class="prettyprint">1796&times;1288</code></td><td><code class="prettyprint">15.2&times;10.9</code></td></tr>
+</tbody></table>
+
+### OPTIMAL PHONE CASE ASSET DIMENSIONS
+<table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th></tr></thead><tbody>
+<tr><td>iPhone 6s Plus<span class="optional-argument">i6splus_tough_case</span></td><td><code class="prettyprint">1335&times;2132</code></td><td><code class="prettyprint">11.3&times;18.1</code></td></tr>
+<tr><td>iPhone 6s Plus<span class="optional-argument">i6splus_case</span></td><td><code class="prettyprint">1335&times;2132</code></td><td><code class="prettyprint">11.3&times;18.1</code></td></tr>
+<tr><td>iPhone 6s<span class="optional-argument">i6s_case</span></td><td><code class="prettyprint">1086&times;1736</code></td><td><code class="prettyprint">9.2&times;14.7</code></td></tr>
+<tr><td>iPhone 6s<span class="optional-argument">i6s_tough_case</span></td><td><code class="prettyprint">1191&times;1896</code></td><td><code class="prettyprint">10.1&times;16.1</code></td></tr>
+<tr><td>iPhone 6 Plus<span class="optional-argument">i6plus_tough_case</span></td><td><code class="prettyprint">1335&times;2132</code></td><td><code class="prettyprint">11.3&times;18.1</code></td></tr>
+<tr><td>iPhone 6 Plus<span class="optional-argument">i6plus_case</span></td><td><code class="prettyprint">1335&times;2132</code></td><td><code class="prettyprint">11.3&times;18.1</code></td></tr>
+<tr><td>iPhone 6/6s Plus Folio<span class="optional-argument">i6plus_folio_case</span></td><td><code class="prettyprint">2228&times;2015</code></td><td><code class="prettyprint">18.9&times;17.1</code></td></tr>
+<tr><td>iPhone 6<span class="optional-argument">i6_tough_case</span></td><td><code class="prettyprint">1182&times;1896</code></td><td><code class="prettyprint">10&times;16.1</code></td></tr>
+<tr><td>iPhone 6<span class="optional-argument">i6_case</span></td><td><code class="prettyprint">1086&times;1736</code></td><td><code class="prettyprint">9.2&times;14.7</code></td></tr>
+<tr><td>iPhone 6/6s Folio<span class="optional-argument">i6_folio_case</span></td><td><code class="prettyprint">2002&times;1791</code></td><td><code class="prettyprint">17&times;15.2</code></td></tr>
+<tr><td>iPhone 6/6s BakPak 1<span class="optional-argument">i6_bakpak_1_case</span></td><td><code class="prettyprint">889&times;1731</code></td><td><code class="prettyprint">7.5&times;14.7</code></td></tr>
+<tr><td>iPhone 6/6s BakPak 3<span class="optional-argument">i6_bakpak_3_case</span></td><td><code class="prettyprint">972&times;1677</code></td><td><code class="prettyprint">8.2&times;14.2</code></td></tr>
+<tr><td>iPhone 5/5s<span class="optional-argument">i5_tough_case</span></td><td><code class="prettyprint">1086&times;1736</code></td><td><code class="prettyprint">9.2&times;14.7</code></td></tr>
+<tr><td>iPhone 5/5s<span class="optional-argument">i5_case</span></td><td><code class="prettyprint">1032&times;1610</code></td><td><code class="prettyprint">8.7&times;13.6</code></td></tr>
+<tr><td>iPhone 5 Clik Clik<span class="optional-argument">i5_clik_case</span></td><td><code class="prettyprint">770&times;1542</code></td><td><code class="prettyprint">6.5&times;13.1</code></td></tr>
+<tr><td>iPhone 5C<span class="optional-argument">i5c_tough_case</span></td><td><code class="prettyprint">1086&times;1736</code></td><td><code class="prettyprint">9.2&times;14.7</code></td></tr>
+<tr><td>iPhone 5C<span class="optional-argument">i5c_case</span></td><td><code class="prettyprint">1032&times;1610</code></td><td><code class="prettyprint">8.7&times;13.6</code></td></tr>
+<tr><td>iPhone 4/4s<span class="optional-argument">i4_tough_case</span></td><td><code class="prettyprint">1032&times;1610</code></td><td><code class="prettyprint">8.7&times;13.6</code></td></tr>
+<tr><td>iPhone 4/4s<span class="optional-argument">i4_case</span></td><td><code class="prettyprint">1032&times;1542</code></td><td><code class="prettyprint">8.7&times;13.1</code></td></tr>
+<tr><td>Galaxy S6 Edge<span class="optional-argument">samsung_s6e_tough_case</span></td><td><code class="prettyprint">1182&times;1896</code></td><td><code class="prettyprint">10&times;16.1</code></td></tr>
+<tr><td>Galaxy S6 Edge<span class="optional-argument">samsung_s6e_case</span></td><td><code class="prettyprint">1182&times;1896</code></td><td><code class="prettyprint">10&times;16.1</code></td></tr>
+<tr><td>Galaxy S6<span class="optional-argument">samsung_s6_tough_case</span></td><td><code class="prettyprint">1182&times;1896</code></td><td><code class="prettyprint">10&times;16.1</code></td></tr>
+<tr><td>Galaxy S6<span class="optional-argument">samsung_s6_case</span></td><td><code class="prettyprint">1192&times;1896</code></td><td><code class="prettyprint">10.1&times;16.1</code></td></tr>
+<tr><td>Galaxy S5<span class="optional-argument">samsung_s5_tough_case</span></td><td><code class="prettyprint">1182&times;1896</code></td><td><code class="prettyprint">10&times;16.1</code></td></tr>
+<tr><td>Galaxy S5<span class="optional-argument">samsung_s5_case</span></td><td><code class="prettyprint">1182&times;1896</code></td><td><code class="prettyprint">10&times;16.1</code></td></tr>
+<tr><td>Galaxy S5 Mini<span class="optional-argument">samsung_s5_mini_case</span></td><td><code class="prettyprint">1086&times;1736</code></td><td><code class="prettyprint">9.2&times;14.7</code></td></tr>
+<tr><td>Galaxy S4<span class="optional-argument">samsung_s4_tough_case</span></td><td><code class="prettyprint">1086&times;1736</code></td><td><code class="prettyprint">9.2&times;14.7</code></td></tr>
+<tr><td>Galaxy S4<span class="optional-argument">samsung_s4_case</span></td><td><code class="prettyprint">1086&times;1736</code></td><td><code class="prettyprint">9.2&times;14.7</code></td></tr>
+<tr><td>Galaxy S4 Mini<span class="optional-argument">samsung_s4_mini_tough_case</span></td><td><code class="prettyprint">1032&times;1610</code></td><td><code class="prettyprint">8.7&times;13.6</code></td></tr>
+<tr><td>Galaxy S4 Mini<span class="optional-argument">samsung_s4_mini_case</span></td><td><code class="prettyprint">1032&times;1610</code></td><td><code class="prettyprint">8.7&times;13.6</code></td></tr>
+<tr><td>Galaxy S3<span class="optional-argument">samsung_s3_tough_case</span></td><td><code class="prettyprint">1086&times;1736</code></td><td><code class="prettyprint">9.2&times;14.7</code></td></tr>
+<tr><td>Galaxy S3<span class="optional-argument">samsung_s3_case</span></td><td><code class="prettyprint">1086&times;1736</code></td><td><code class="prettyprint">9.2&times;14.7</code></td></tr>
+<tr><td>Galaxy S3 Mini<span class="optional-argument">samsung_s3_mini_case</span></td><td><code class="prettyprint">1844&times;2600</code></td><td><code class="prettyprint">15.6&times;22</code></td></tr>
+<tr><td>Samsung Note 4<span class="optional-argument">samsung_n4_tough_case</span></td><td><code class="prettyprint">1335&times;2132</code></td><td><code class="prettyprint">11.3&times;18.1</code></td></tr>
+<tr><td>Samsung Note 4<span class="optional-argument">samsung_n4_case</span></td><td><code class="prettyprint">1335&times;2132</code></td><td><code class="prettyprint">11.3&times;18.1</code></td></tr>
+<tr><td>Samsung Note 3<span class="optional-argument">samsung_n3_case</span></td><td><code class="prettyprint">1200&times;2040</code></td><td><code class="prettyprint">10.2&times;17.3</code></td></tr>
+<tr><td>Sony Xperia Z1<span class="optional-argument">sony_x_z1_case</span></td><td><code class="prettyprint">1182&times;1896</code></td><td><code class="prettyprint">10&times;16.1</code></td></tr>
+<tr><td>Sony Xperia C<span class="optional-argument">sony_x_c_case</span></td><td><code class="prettyprint">1182&times;1896</code></td><td><code class="prettyprint">10&times;16.1</code></td></tr>
+<tr><td>LG G2<span class="optional-argument">lg_g2_case</span></td><td><code class="prettyprint">1182&times;1896</code></td><td><code class="prettyprint">10&times;16.1</code></td></tr>
+<tr><td>Motorola G<span class="optional-argument">moto_g_case</span></td><td><code class="prettyprint">1086&times;1736</code></td><td><code class="prettyprint">9.2&times;14.7</code></td></tr>
+<tr><td>Nexus 5<span class="optional-argument">nexus_5_case</span></td><td><code class="prettyprint">1182&times;1896</code></td><td><code class="prettyprint">10&times;16.1</code></td></tr>
+</tbody></table>
+
+### OPTIMAL TABLET CASE DIMENSIONS
+<table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th></tr></thead><tbody>
+<tr><td>iPad Mini 1<span class="optional-argument">ipad_mini_case</span></td><td><code class="prettyprint">1844&times;2600</code></td><td><code class="prettyprint">15.6&times;22</code></td></tr>
+<tr><td>iPad 2, 3 and 4<span class="optional-argument">ipad_case</span></td><td><code class="prettyprint">2472&times;3080</code></td><td><code class="prettyprint">20.9&times;26.1</code></td></tr>
+<tr><td>iPad Air<span class="optional-argument">ipad_air_case</span></td><td><code class="prettyprint">2472&times;3080</code></td><td><code class="prettyprint">20.9&times;26.1</code></td></tr>
+<tr><td>Nexus 7<span class="optional-argument">nexus_7_case</span></td><td><code class="prettyprint">1778&times;2841</code></td><td><code class="prettyprint">15.1&times;24.1</code></td></tr>
+</tbody></table>
+
+### OPTIMAL PHOTOBOOK ASSET DIMENSIONS
+<table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th></tr></thead><tbody>
+<tr><td>Large Landscape Hardcover<span class="optional-argument">rpi_wrap_321x270_sm</span></td><td><code class="prettyprint">3792&times;3190</code></td><td><code class="prettyprint">32.1&times;27</code></td></tr>
+<tr><td>Portrait Hardcover<span class="optional-argument">rpi_wrap_210x280_sm</span></td><td><code class="prettyprint">2481&times;3306</code></td><td><code class="prettyprint">21&times;28</code></td></tr>
+<tr><td>Landscape Hardcover<span class="optional-argument">rpi_wrap_280x210_sm_40pg</span></td><td><code class="prettyprint">3308&times;2481</code></td><td><code class="prettyprint">28&times;21</code></td></tr>
+<tr><td>Landscape Hardcover<span class="optional-argument">rpi_wrap_280x210_sm</span></td><td><code class="prettyprint">3308&times;2481</code></td><td><code class="prettyprint">28&times;21</code></td></tr>
+<tr><td>Landscape Hardcover<span class="optional-argument">rpi_wrap_280x210_sm_100pg</span></td><td><code class="prettyprint">3308&times;2481</code></td><td><code class="prettyprint">28&times;21</code></td></tr>
+<tr><td>Large Square Hardcover<span class="optional-argument">rpi_wrap_300x300_sm</span></td><td><code class="prettyprint">3544&times;3544</code></td><td><code class="prettyprint">30&times;30</code></td></tr>
+<tr><td>Medium Square Hardcover<span class="optional-argument">rpi_wrap_210x210_sm</span></td><td><code class="prettyprint">2481&times;2481</code></td><td><code class="prettyprint">21&times;21</code></td></tr>
+<tr><td>Softcover Book 210mm x 210mm<span class="optional-argument">rpi_soft_210x210_s</span></td><td><code class="prettyprint">2481&times;2481</code></td><td><code class="prettyprint">21&times;21</code></td></tr>
+<tr><td>Small Square Hardcover<span class="optional-argument">rpi_wrap_140x140_sm</span></td><td><code class="prettyprint">1654&times;1654</code></td><td><code class="prettyprint">14&times;14</code></td></tr>
+<tr><td>Softcover Book 280mm x 210mm<span class="optional-argument">rpi_soft_280x210_s</span></td><td><code class="prettyprint">3308&times;2481</code></td><td><code class="prettyprint">28&times;21</code></td></tr>
+<tr><td>Softcover Book 210mm x 280mm<span class="optional-argument">rpi_soft_210x280_s</span></td><td><code class="prettyprint">2481&times;3306</code></td><td><code class="prettyprint">21&times;28</code></td></tr>
+</tbody></table>
+
+### OPTIMAL PHOTOBOX ASSET DIMENSIONS
+<table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th></tr></thead><tbody>
+<tr><td>iPhone 6 Plus Case<span class="optional-argument">i6ptc7</span></td><td><code class="prettyprint">1335&times;2320</code></td><td><code class="prettyprint">11.3&times;19.6</code></td></tr>
+<tr><td>iPhone 6 Case<span class="optional-argument">i6cc7</span></td><td><code class="prettyprint">1335&times;2257</code></td><td><code class="prettyprint">11.3&times;19.1</code></td></tr>
+<tr><td>iPhone 5/5S Case<span class="optional-argument">i5c4</span></td><td><code class="prettyprint">1335&times;2199</code></td><td><code class="prettyprint">11.3&times;18.6</code></td></tr>
+<tr><td>iPhone 5C Case<span class="optional-argument">iphone5c1</span></td><td><code class="prettyprint">1335&times;2199</code></td><td><code class="prettyprint">11.3&times;18.6</code></td></tr>
+<tr><td>iPhone 5/5S Clear Case<span class="optional-argument">i5ccc1</span></td><td><code class="prettyprint">1335&times;2734</code></td><td><code class="prettyprint">11.3&times;23.1</code></td></tr>
+<tr><td>iPhone 5 Clear Case Sticker<span class="optional-argument">stickeri5c1</span></td><td><code class="prettyprint">732&times;1500</code></td><td><code class="prettyprint">6.2&times;12.7</code></td></tr>
+<tr><td>iPhone 4/4S Case<span class="optional-argument">i4c9</span></td><td><code class="prettyprint">1335&times;2195</code></td><td><code class="prettyprint">11.3&times;18.6</code></td></tr>
+<tr><td>iPhone 4/4S Clear Case<span class="optional-argument">i4ccc1</span></td><td><code class="prettyprint">1335&times;2582</code></td><td><code class="prettyprint">11.3&times;21.9</code></td></tr>
+<tr><td>iPhone 4 Clear Case Sticker<span class="optional-argument">stickeri4c1</span></td><td><code class="prettyprint">715&times;1382</code></td><td><code class="prettyprint">6.1&times;11.7</code></td></tr>
+<tr><td>Galaxy S5 Case<span class="optional-argument">sgs5c1</span></td><td><code class="prettyprint">1335&times;2403</code></td><td><code class="prettyprint">11.3&times;20.3</code></td></tr>
+<tr><td>Galaxy S4 Case<span class="optional-argument">sgs4c3</span></td><td><code class="prettyprint">1335&times;2299</code></td><td><code class="prettyprint">11.3&times;19.5</code></td></tr>
+<tr><td>Galaxy S3 Case<span class="optional-argument">sgs3c4</span></td><td><code class="prettyprint">1335&times;2200</code></td><td><code class="prettyprint">11.3&times;18.6</code></td></tr>
+<tr><td>Galaxy S2 Case<span class="optional-argument">sgs2c1</span></td><td><code class="prettyprint">1335&times;2050</code></td><td><code class="prettyprint">11.3&times;17.4</code></td></tr>
+<tr><td>iPad 2/3/4 Case<span class="optional-argument">ipad_case_1</span></td><td><code class="prettyprint">1335&times;1588</code></td><td><code class="prettyprint">11.3&times;13.4</code></td></tr>
+<tr><td>iPad Mini Case<span class="optional-argument">ipadminic1</span></td><td><code class="prettyprint">1335&times;1808</code></td><td><code class="prettyprint">11.3&times;15.3</code></td></tr>
+<tr><td>iPad Smart Cover<span class="optional-argument">ipadsmartc6</span></td><td><code class="prettyprint">1335&times;1740</code></td><td><code class="prettyprint">11.3&times;14.7</code></td></tr>
+<tr><td>iPad Mini Smart Cover<span class="optional-argument">ipadminismartc1</span></td><td><code class="prettyprint">1335&times;1981</code></td><td><code class="prettyprint">11.3&times;16.8</code></td></tr>
+<tr><td>Canvas Print 20 cm x 30 cm<span class="optional-argument">pbx_canvas_20x30</span></td><td><code class="prettyprint">2363&times;3544</code></td><td><code class="prettyprint">20&times;30</code></td></tr>
+<tr><td>Canvas Print 30 cm x 20 cm<span class="optional-argument">pbx_canvas_30x20</span></td><td><code class="prettyprint">3544&times;2363</code></td><td><code class="prettyprint">30&times;20</code></td></tr>
+<tr><td>Canvas Print 30 cm x 30 cm<span class="optional-argument">pbx_canvas_30x30</span></td><td><code class="prettyprint">3544&times;3544</code></td><td><code class="prettyprint">30&times;30</code></td></tr>
+<tr><td>Classic Canvas 40 cm x 40 cm<span class="optional-argument">pbx_canvas_40x40</span></td><td><code class="prettyprint">4725&times;4725</code></td><td><code class="prettyprint">40&times;40</code></td></tr>
+<tr><td>12 Prints + Box<span class="optional-argument">pbx_polaroids_12</span></td><td><code class="prettyprint">1540&times;1580</code></td><td><code class="prettyprint">13&times;13.4</code></td></tr>
+<tr><td>24 Prints + Box<span class="optional-argument">pbx_polaroids_24</span></td><td><code class="prettyprint">1540&times;1580</code></td><td><code class="prettyprint">13&times;13.4</code></td></tr>
+<tr><td>36 Prints + Box<span class="optional-argument">pbx_polaroids_36</span></td><td><code class="prettyprint">1540&times;1580</code></td><td><code class="prettyprint">13&times;13.4</code></td></tr>
+<tr><td>A3 Poster<span class="optional-argument">pbx_a3</span></td><td><code class="prettyprint">3508&times;4961</code></td><td><code class="prettyprint">29.7&times;42</code></td></tr>
+<tr><td>Classic Prints<span class="optional-argument">pbx_6x4</span></td><td><code class="prettyprint">1800&times;1200</code></td><td><code class="prettyprint">15.2&times;10.2</code></td></tr>
+<tr><td>Large Classic Prints<span class="optional-argument">pbx_7x5</span></td><td><code class="prettyprint">2100&times;1500</code></td><td><code class="prettyprint">17.8&times;12.7</code></td></tr>
+<tr><td>Square Prints<span class="optional-argument">pbx_squares_5x5</span></td><td><code class="prettyprint">1500&times;1500</code></td><td><code class="prettyprint">12.7&times;12.7</code></td></tr>
+<tr><td>Square Prints<span class="optional-argument">pbx_squares_8x8</span></td><td><code class="prettyprint">2400&times;2400</code></td><td><code class="prettyprint">20.3&times;20.3</code></td></tr>
+<tr><td>Square Magnets<span class="optional-argument">pbx_magnets_8x8</span></td><td><code class="prettyprint">1250&times;1250</code></td><td><code class="prettyprint">10.6&times;10.6</code></td></tr>
+<tr><td>Classic Magnets<span class="optional-argument">pbx_magnets_13x9</span></td><td><code class="prettyprint">1536&times;1062</code></td><td><code class="prettyprint">13&times;9</code></td></tr>
+<tr><td>Classic Magnets<span class="optional-argument">pbx_magnets_15x10</span></td><td><code class="prettyprint">1773&times;1182</code></td><td><code class="prettyprint">15&times;10</code></td></tr>
+<tr><td>Reusable Stickers 13cm x 9cm<span class="optional-argument">pbx_stickers_13x9</span></td><td><code class="prettyprint">1536&times;1062</code></td><td><code class="prettyprint">13&times;9</code></td></tr>
+<tr><td>Pack of 10 Cards<span class="optional-argument">pbx_cards_a6_10pack</span></td><td><code class="prettyprint">1241&times;1749</code></td><td><code class="prettyprint">10.5&times;14.8</code></td></tr>
+<tr><td>Mug<span class="optional-argument">mgth10</span></td><td><code class="prettyprint">4725&times;4725</code></td><td><code class="prettyprint">40&times;40</code></td></tr>
+<tr><td>Bone China Mug<span class="optional-argument">mug_bone_wrap</span></td><td><code class="prettyprint">5850&times;2400</code></td><td><code class="prettyprint">49.5&times;20.3</code></td></tr>
+<tr><td>Timeless Framed Print 30cm x 30cm<span class="optional-argument">pbx_frame_30x30</span></td><td><code class="prettyprint">3544&times;3544</code></td><td><code class="prettyprint">30&times;30</code></td></tr>
+<tr><td>Classic Canvas 30 cm x 40 cm<span class="optional-argument">pbx_canvas_30x40</span></td><td><code class="prettyprint">3544&times;4725</code></td><td><code class="prettyprint">30&times;40</code></td></tr>
+<tr><td>3 Minute Book<span class="optional-argument">23540-3mbook_1</span></td><td><code class="prettyprint">4725&times;4725</code></td><td><code class="prettyprint">40&times;40</code></td></tr>
+</tbody></table>
+
+### OPTIMAL ALBELLI ASSET DIMENSIONS
+<table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th></tr></thead><tbody>
+<tr><td>Aluminium Print<span class="optional-argument">ap_aluminium_400x400</span></td><td><code class="prettyprint">4725&times;4725</code></td><td><code class="prettyprint">40&times;40</code></td></tr>
+<tr><td>Aluminium Print<span class="optional-argument">ap_aluminium_300x400</span></td><td><code class="prettyprint">3544&times;4725</code></td><td><code class="prettyprint">30&times;40</code></td></tr>
+<tr><td>Aluminium Print<span class="optional-argument">ap_aluminium_400x300</span></td><td><code class="prettyprint">4725&times;3543</code></td><td><code class="prettyprint">40&times;30</code></td></tr>
+<tr><td>Mounted Print<span class="optional-argument">ap_mounted_400x400</span></td><td><code class="prettyprint">4725&times;4725</code></td><td><code class="prettyprint">40&times;40</code></td></tr>
+<tr><td>Mounted Print<span class="optional-argument">ap_mounted_400x300</span></td><td><code class="prettyprint">4725&times;3543</code></td><td><code class="prettyprint">40&times;30</code></td></tr>
+<tr><td>Mounted Print<span class="optional-argument">ap_mounted_300x400</span></td><td><code class="prettyprint">3544&times;4725</code></td><td><code class="prettyprint">30&times;40</code></td></tr>
+<tr><td>Canvas Print<span class="optional-argument">ap_canvas_400x300</span></td><td><code class="prettyprint">4725&times;3543</code></td><td><code class="prettyprint">40&times;30</code></td></tr>
+<tr><td>Canvas Print<span class="optional-argument">ap_canvas_300x400</span></td><td><code class="prettyprint">3544&times;4725</code></td><td><code class="prettyprint">30&times;40</code></td></tr>
+<tr><td>Canvas Print<span class="optional-argument">ap_canvas_400x400</span></td><td><code class="prettyprint">4725&times;4725</code></td><td><code class="prettyprint">40&times;40</code></td></tr>
+<tr><td>Wood Print<span class="optional-argument">ap_wood_400x300</span></td><td><code class="prettyprint">4725&times;3543</code></td><td><code class="prettyprint">40&times;30</code></td></tr>
+<tr><td>Wood Print<span class="optional-argument">ap_wood_300x400</span></td><td><code class="prettyprint">3544&times;4725</code></td><td><code class="prettyprint">30&times;40</code></td></tr>
+<tr><td>Wood Print<span class="optional-argument">ap_wood_400x400</span></td><td><code class="prettyprint">4725&times;4725</code></td><td><code class="prettyprint">40&times;40</code></td></tr>
+<tr><td>Acrylic Print<span class="optional-argument">ap_acrylic_300x400</span></td><td><code class="prettyprint">3544&times;4725</code></td><td><code class="prettyprint">30&times;40</code></td></tr>
+<tr><td>Acrylic Print<span class="optional-argument">ap_acrylic_400x300</span></td><td><code class="prettyprint">4725&times;3543</code></td><td><code class="prettyprint">40&times;30</code></td></tr>
+<tr><td>Acrylic Print<span class="optional-argument">ap_acrylic_400x400</span></td><td><code class="prettyprint">4725&times;4725</code></td><td><code class="prettyprint">40&times;40</code></td></tr>
+<tr><td>Square Photo Book<span class="optional-argument">ap_album_210x210</span></td><td><code class="prettyprint">2481&times;2481</code></td><td><code class="prettyprint">21&times;21</code></td></tr>
+<tr><td>Metallic Squares<span class="optional-argument">metallic_8x8</span></td><td><code class="prettyprint">2501&times;2501</code></td><td><code class="prettyprint">21.2&times;21.2</code></td></tr>
+</tbody></table>
+
+
+
+
 
 # Addresses
 Our address lookup services allows you to perform international address searches. You'll benefit from the most up to date and complete address information available as our databases are typically updated daily.
