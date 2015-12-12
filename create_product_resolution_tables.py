@@ -283,7 +283,7 @@ for (group_name, templates) in PRODUCT_ORDER:
         continue
 
     print("### %s" % group_name)
-    print('<table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th></tr></thead><tbody>')
+    print('<table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th><th>inches</th></tr></thead><tbody>')
     for template_id in templates:
         product = find_product_with_template_id(r_json["objects"], template_id)
         name = product["name"]
@@ -292,7 +292,7 @@ for (group_name, templates) in PRODUCT_ORDER:
         size = product["product"]["size"]
         (width_px, height_px, width_cm, height_cm, width_inch, height_inch) = calculate_sensible_sizes(size)
 
-        print('<tr><td>%s<span class="optional-argument">%s</span></td><td><code class="prettyprint">%s&times;%s</code></td><td><code class="prettyprint">%s&times;%s</code></td></tr>' % (name, template_id, fn(width_px), fn(height_px), fn(width_cm), fn(height_cm)))
+        print('<tr><td>%s<span class="optional-argument">%s</span></td><td><code class="prettyprint">%s&times;%s</code></td><td><code class="prettyprint">%s&times;%s</code></td><td><code class="prettyprint">%s&times;%s</code></td></tr>' % (name, template_id, fn(width_px), fn(height_px), fn(width_cm), fn(height_cm), fn(width_inch), fn(height_inch)))
 
     print("</tbody></table>")
     print("")
