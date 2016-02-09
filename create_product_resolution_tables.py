@@ -124,15 +124,15 @@ PRODUCT_ORDER = [
         # "photobook_small_portrait",
         "rpi_wrap_321x270_sm",
         "rpi_wrap_210x280_sm",
-        "rpi_wrap_280x210_sm_40pg",
+        #"rpi_wrap_280x210_sm_40pg",
         "rpi_wrap_280x210_sm",
-        "rpi_wrap_280x210_sm_100pg",
+        #"rpi_wrap_280x210_sm_100pg",
         "rpi_wrap_300x300_sm",
         "rpi_wrap_210x210_sm",
-        "rpi_soft_210x210_s",
+        #"rpi_soft_210x210_s",
         "rpi_wrap_140x140_sm",
-        "rpi_soft_280x210_s",
-        "rpi_soft_210x280_s"
+        #"rpi_soft_280x210_s",
+        #"rpi_soft_210x280_s"
     ]),
 
     # Photobox Products
@@ -215,7 +215,7 @@ PRODUCT_ORDER = [
         "ap_acrylic_300x400",
         "ap_acrylic_400x300",
         "ap_acrylic_400x400",
-        "ap_album_210x210",
+        #"ap_album_210x210",
         "metallic_8x8"
     ])
 ]

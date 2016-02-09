@@ -114,37 +114,52 @@ Where possible an error response will include an `error` object that provides fu
 --------- | -----------
 <span id="error-code-E00">00</span> | Failed to parse JSON from the body of the request. Please ensure you're sending data through as valid JSON and please check it can be decoded as UTF-8
 <span id="error-code-E01">01</span> | The request data does not match the required JSON schema
-<span id="error-code-E02">02</span> | The product you specified is not available for your account
-<span id="error-code-E03">03</span> | The product you specified is not available for your account
-<span id="error-code-E04">04</span> | The product template you specified does not exist
-<span id="error-code-E05">05</span> | You must provide assets to fulfil an order
-<span id="error-code-E06">06</span> | 'assets' must be an array for the product provided
-<span id="error-code-E07">07</span> | 'assets' must be an object for the product provided
-<span id="error-code-E08">08</span> | 'assets' must be an array or object
-<span id="error-code-E09">09</span> | Shipping address is required for this product
-<span id="error-code-E10">10</span> | Asset supplied is not of an acceptable file type
-<span id="error-code-E11">11</span> | PDF supplied with incorrect dimensions or pages
-<span id="error-code-E12">12</span> | Cannot set email in both 'user_data' and 'customer_email'
-<span id="error-code-E13">13</span> | Customer email address is invalid
-<span id="error-code-E14">14</span> | Must specify pdf true for this product
-<span id="error-code-E15">15</span> | PDF supplied does not match required dimensions of template
-<span id="error-code-E16">16</span> | Promo code provided does not exist
-<span id="error-code-E17">17</span> | Assets must be passed as a dictionary for Apparel
-<span id="error-code-E18">18</span> | Invalid [apparel asset position](#assets-position-arguments)
-<span id="error-code-E19">19</span> | Invalid [apparel asset position](#assets-position-arguments) for the specified template
+<span id="error-code-E02">02</span> | Version not supported
+<span id="error-code-E03">03</span> | Failed to add order to the processing queue
+<span id="error-code-E10">10</span> | Cannot set email in both `user_data` and `customer_email`
+<span id="error-code-E11">11</span> | Invalid delivery address
+<span id="error-code-E12">12</span> | Invalid `customer_payment` field provided
+<span id="error-code-E13">13</span> | Promo code provided does not exist
+<span id="error-code-E14">14</span> | Invalid email address
+<span id="error-code-E15">15</span> | Failed to add order to the fulfilment queue
+<span id="error-code-E16">16</span> | No email address provided
+<span id="error-code-E17">17</span> | Invalid email address provided
+<span id="error-code-E18">18</span> | Customer payment required for given payment method
+<span id="error-code-E19">19</span> | Unexpected order rejection
 <span id="error-code-E20">20</span> | Payment confirmation already used on a successful order
-<span id="error-code-E21">21</span> | Payment confirmation already used on a failed order
-<span id="error-code-E22">22</span> | Unknown payment method provided
-<span id="error-code-E23">23</span> | Error looking up payment
-<span id="error-code-E24">24</span> | No proof of payment and no secret key provided
-<span id="error-code-E25">25</span> | Max number of PayPal echeques exceeded
-<span id="error-code-E26">26</span> | Cannot use promo codes without a billing method set up against your account
-<span id="error-code-E27">27</span> | Confirmed payment does not cover order cost
-<span id="error-code-E30">30</span> | Unexpected fulfilment error
-<span id="error-code-E31">31</span> | Asset provided does not exist
-<span id="error-code-E32">32</span> | One or more photos provided were corrupt or unavailable
-<span id="error-code-E33">33</span> | `garment_size` and `garment_color` options are required for apparel orders
-<span id="error-code-E34">34</span> | Required options not specified for product
+<span id="error-code-E30">30</span> | Template does not exist
+<span id="error-code-E31">31</span> | One or more products ordered is unavailable
+<span id="error-code-E32">32</span> | Failed to save address for print job
+<span id="error-code-E33">33</span> | One or more products ordered is missing a shipping address
+<span id="error-code-E40">40</span> | Assets not provided
+<span id="error-code-E41">41</span> | Malformed asset cropping instructions
+<span id="error-code-E42">42</span> | One or more assets provided were neither an asset ID nor valid URL
+<span id="error-code-E43">43</span> | Assets provided in an incorrect format for the product
+<span id="error-code-E44">44</span> | Required named asset field missing
+<span id="error-code-E45">45</span> | Invalid text object
+<span id="error-code-E46">46</span> | Invalid request for Noncustomizable product
+<span id="error-code-E50">50</span> | Product not available in given country
+<span id="error-code-H00">H00</span> | User is blocked from sending orders
+<span id="error-code-H01">H01</span> | User has no valid card on record
+<span id="error-code-F01">F01</span> | Asset does not exist
+<span id="error-code-F02">F02</span> | Supplied image is Corrupt and unprocessable
+<span id="error-code-F03">F03</span> | Missing delivery address
+<span id="error-code-F04">F04</span> | Missing postcode
+<span id="error-code-F05">F05</span> | Missing city
+<span id="error-code-F06">F06</span> | Missing county / state
+<span id="error-code-F07">F07</span> | Missing address line 1
+<span id="error-code-F08">F08</span> | Missing email address
+<span id="error-code-F10">F10</span> | Unexpected fulfilment error
+<span id="error-code-F20">F20</span> | Incorrect apparel asset format
+<span id="error-code-F30">F30</span> | Incorrect Sticky9 affiliate name
+<span id="error-code-P01">P01</span> | Unknown payment method
+<span id="error-code-P02">P02</span> | Error looking up payment
+<span id="error-code-P03">P03</span> | No proof of payment and no secret key provided
+<span id="error-code-P04">P04</span> | Max number of echeques exceeded
+<span id="error-code-P05">P05</span> | Cannot use discount codes without a card on record
+<span id="error-code-P06">P06</span> | Confirmed payment does not cover order cost
+<span id="error-code-P07">P07</span> | Unexpected PayPal intent
+<span id="error-code-P08">P08</span> | Does not recognise modification area provided in request
 
 # Pagination
 
@@ -362,6 +377,13 @@ Packaging will carry your branding, not ours -- your customers never need to kno
 
 We have a global product fulfilment and distribution network to get orders into your customers hands faster.
 
+When you initially create your Kite account, the product template id's listed in this section are immediately available for you to order from.
+
+Additional products SKU's are also available from our exclusive suppliers such as Photobox, please do [get in touch](mailto:hello@kite.ly) for further information about getting access to these product ranges.
+
+Which products you display to your customers within our mobile SDKs and their associated retail prices can be configured within the [products](https://www.kite.ly/dashboard/products) section of the dashboard
+
+
 ## The job object
 
 > Example JSON
@@ -411,6 +433,10 @@ pdf<span class="attribute-type">string</span> | *Optional* object only applicabl
   	"foo": "bar",
   	"pi": 3.14
   },
+  "customer_payment": {
+    "amount": 9.99,
+    "currency": "USD"
+  },
   "jobs": [{
     "assets": ["http://psps.s3.amazonaws.com/sdk_static/1.jpg"],
 	"template_id": "i6_case"
@@ -431,6 +457,7 @@ shipping_address<span class="attribute-type">[address object](#the-address-objec
 customer_email<span class="attribute-type">string</span> | The customer's email address. Automated order status update emails (you can brand these) can optionally be sent to this address i.e. order confirmation email, order dispatched email, etc. You can configure these in the Kite dashboard
 customer_phone<span class="attribute-type">string</span> | The customer's phone number. Certain postage companies require this to be provided e.g. FedEx
 user_data<span class="attribute-type">dictionary</span> | A dictionary containing any application or user specific meta data that you attached to the order.
+customer_payment<span class="attribute-type">dictionary</span> | A dictionary containing the amount paid by the customer. In instances where Kite does not take payment (i.e you are using your secret key in the [Authorization header](#authentication) to validate orders), this field is required to give an accurate representation on the profit made on the sale within the [orders](https://www.kite.ly/settings/credentials) section of the Kite dashboard.
 jobs<span class="attribute-type">list</span> | A list of one or more [job objects](#the-job-object) to be created and delivered to `shipping_address`
 
 ## Placing orders
@@ -606,6 +633,7 @@ shipping_address<span class="required-argument">required</span> | An [address ob
 customer_email<span class="optional-argument">optional</span> | The customer's email address. Automated order status update emails (you can brand these) can optionally be sent to this address i.e. order confirmation email, order dispatched email, etc. You can configure these in the Kite dashboard
 customer_phone<span class="required-argument">required</span> | The customer's phone number. Certain postage companies require this to be provided e.g. FedEx
 user_data<span class="optional-argument">optional</span> | A dictionary containing any application or user specific meta data that you might want associated with the order
+customer_payment<span class="optional-argument">optional</span> | A dictionary containing the amount paid by the customer. In instances where Kite does not take payment (i.e you are using your secret key in the [Authorization header](#authentication) to validate orders), this field is required to give an accurate representation on the profit made on the sale within the [orders](https://www.kite.ly/settings/credentials) section of the Kite dashboard.
 jobs<span class="required-argument">required</span> | A list of one or more [job objects](#the-job-object) to be created and delivered to `shipping_address`
 
 ### Returns
@@ -767,7 +795,7 @@ Classic Photo Prints<span class="attribute-type">photos_4x6</span> | Our classic
 Square Stickers<span class="attribute-type">stickers_square</span> | Fun personalised square stickers. Just peel them off and stick them on
 Circle Stickers<span class="attribute-type">stickers_circle</span> | Fun personalised circle stickers. Just peel them off and stick them on
 Greetings Cards<span class="attribute-type">greeting_cards</span> | Our greetings cards are printed on thick premium card stock and once folded, form a 14.8 cm square
-Frames<span class="attribute-type">frames_50cm frames_50cm_2x2 frames_50cm_3x3 frames_50cm_4x4</span> | The perfect way to show off your most loved photos. They come in various configurations allowing between one and sixteen images to printed and enclosed within a wooden frame
+Frames<span class="attribute-type">frames_50cm frames_50cm_2x2 frames_50cm_3x3 frames_50cm_4x4</span> | The perfect way to show off your most loved photos. They come in various configurations allowing between one and sixteen images to printed and enclosed within a wooden frame (Available UK only).
 A1 Poster<span class="attribute-type">a1_poster<br />a1_poster_35<br />a1_poster_54<br />a1_poster_70</span> | Our large format poster prints are printed on 190 GSM sheets with a satin finish. Various templates are available from single images to photo collages. They are delivered worldwide in sturdy cardboard tubes
 A2 Poster<span class="attribute-type">a2_poster<br />a2_poster_24<br />a2_poster_35<br />a2_poster_54</span> | Our large format poster prints are printed on 190 GSM sheets with a satin finish. Various templates are available from single images to photo collages. They are delivered worldwide in sturdy cardboard tubes
 A3 Poster<span class="attribute-type">a3_poster</span> | Our large format poster prints are printed on 190 GSM sheets with a satin finish. They are delivered worldwide in sturdy cardboard tubes
@@ -985,9 +1013,8 @@ curl "https://api.kite.ly/v2.0/print/" \
       },
       "assets": {
         "center_chest": "http://psps.s3.amazonaws.com/sdk_static/1.jpg",
-        "center_back": "http://psps.s3.amazonaws.com/sdk_static/2.jpg"
       },
-      "template_id": "gildan_tshirt"
+      "template_id": "aa_mens_tshirt"
     }]
   }'
 ```
@@ -997,11 +1024,10 @@ curl "https://api.kite.ly/v2.0/print/" \
 #import <Kite-Print-SDK/OLKitePrintSDK.h>
 
 NSArray *assets = @{
-    @"center_chest": [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]],
-    @"center_back":[OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/2.jpg"]]
+    @"center_chest": [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]]
 };
 
-id<OLPrintJob> tshirt = [OLPrintJob printJobWithTemplateId:@"gildan_tshirt" OLAssets:assets];
+id<OLPrintJob> tshirt = [OLPrintJob printJobWithTemplateId:@"aa_mens_tshirt" OLAssets:assets];
 [tshirt setValue:@"M" forOption:@"garment_size"];
 [tshirt setValue:@"white" forOption:@"garment_color"];
 
@@ -1048,9 +1074,8 @@ import ly.kite.print.PrintOrder;
 
 Map<String, Asset> assets = new HashMap<String, Asset>();
 assets.put("center_chest", new Asset(new URL("http://psps.s3.amazonaws.com/sdk_static/1.jpg"))));
-assets.put("center_back", new Asset(new URL("http://psps.s3.amazonaws.com/sdk_static/2.jpg"))));
 
-PrintJob tshirt = PrintJob.createPrintJob(assets, "gildan_tshirt");
+PrintJob tshirt = PrintJob.createPrintJob(assets, "aa_mens_tshirt");
 tshirt.setOption("garment_size", "M");
 tshirt.setOption("garment_color", "white");
 
@@ -1103,22 +1128,23 @@ card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard
 
 If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders. 
 
-The example request on the right would result in a t-shirt being created (with an photo on the front and back) and shipped to the specified address.
+The example request on the right would result in a t-shirt being created (with an photo on the front) and shipped to the specified address.
+
+Many more products and brands available in the very near future.
 
 ### products & template_ids
 
           | |
 --------- | -----------
-T-Shirt<span class="attribute-type">gildan_tshirt</span> | Our plain t-shirt offering from [Gildan](http://www.gildan.com/), the number one t-shirt brand in America. Manufactured using 100% ringspun cotton with a weight of 155-165 grams
-Hoodie<span class="attribute-type">gildan_hoodie</span> | Our hoodie offering from [Gildan](http://www.gildan.com/). It has been made with air jet spun yarn, giving it a softer feel and ensuring it will last wash after wash without pilling/fraying. For easy washing, it has also been quarter turned to eliminate centre creasing. It includes a front pouch pocket, set-in sleeves, a 1x1 athletic rib with Lycra
-Zipped Hoodie<span class="attribute-type">gildan_hoodie_zipped</span> | Our zipped hoodie offering from [Gildan](http://www.gildan.com/). It has been made with air jet spun yarn, giving it a softer feel and ensuring it will last wash after wash without pilling/fraying. For easy washing, it has also been quarter turned to eliminate centre creasing. It includes a full length covered YKK zip, self coloured drawstring on hood, front pouch pockets, set-in sleeves, a 1x1 athletic rib with Lycra
+T-Shirt<span class="attribute-type">aa_mens_tshirt</span> | The softest, smoothest, best-looking short sleeve tee shirt available anywhere! Fine Jersey (100% Cotton) construction (Heather Grey contains 10% Polyester) • Durable rib neckband
+Hoodie<span class="attribute-type">aa_zip_hoodie</span> | Our hoodie offering from [Apparel](http://store.americanapparel.net/). A fitted, sporty unisex hoody in a unique Flex Fleece 50/50 cotton/poly blend, featuring a zipper closure
 
 ### Options Arguments
 
           | |
 --------- | -----------
 garment_size<span class="required-argument">required</span> | The size of garment you want created. Must be one of the following: `S`, `M`, `L`, `XL`, `XXL` corresponding to small, medium, large, extra large & extra extra large respectively
-garment_color<span class="required-argument">required</span> | The base material/fabric colour of the garment you want created. See the [Gildan color swatch](http://www.mygildan.com/colorSwatch/home) to review fabric colours. Must be one of the following:  `white`, `black`, `red`, `royal`, `navy`, `light blue`, `forest green`, `orange`, `indigo blue`, `purple`, `sand`, `cardinal`, `sapphire`, `charcoal`, `daisy`, `chestnut`, `dark chocolate`, `sports grey`, `dark heather`, `kiwi`, `cherry red`, `irish green`, `military green`, `heliconia`, `cobalt blue`, `heather purple`, `heather royal`, `antique cherry red`, `antique heliconia`, `antique sapphire`, `heather irish green`, `heather military`, `heather navy`, `heather orange`
+garment_color<span class="required-argument">required</span> | The base material/fabric colour of the garment you want created. See the [American Apparel color swatch](http://www.americanapparel.net/wholesaleresources/colors.asp) to review fabric colours. Must be one of the following:  `white`, `black`, `navy`, `heather grey`, `light blue`, `maroon`, `sports grey`, `dark heather`
 
 ### Assets Position Arguments
 <table class="apparel-positions">
@@ -1134,69 +1160,33 @@ garment_color<span class="required-argument">required</span> | The base material
 		<tr>
 			<td>center_chest<span class="optional-argument">optional</span></td>
 			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Chest" src="{% static "docs/images/centre_chest.jpg" %}"></td>
-			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
+			<td><code class="prettyprint">aa_mens_tshirt</code>, <code class="prettyprint">aa_zip_hoodie</code></td>
 			<td>30cm</td>
 		</tr>
 		<tr>
 			<td>center_back<span class="optional-argument">optional</span></td>
 			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Back" src="{% static "docs/images/centre_back.jpg" %}"></td>
-			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
+			<td><code class="prettyprint">aa_mens_tshirt</code>, <code class="prettyprint">aa_zip_hoodie</code></td>
 			<td>30cm</td>
 		</tr>
-		
-		
 		<tr>
 			<td>top_chest<span class="optional-argument">optional</span></td>
 			<td class="img-tshirt"><img alt="T-Shirt Print API Top Chest" src="{% static "docs/images/top_chest.jpg" %}"></td>
-			<td><code class="prettyprint">gildan_tshirt</code></td>
+			<td><code class="prettyprint">aa_mens_tshirt</code>, <code class="prettyprint">aa_zip_hoodie</code></td>
 			<td>30cm</td>
 		</tr>
-		<tr>
-			<td>top_back<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Top Back" src="{% static "docs/images/top_back.jpg" %}"></td>
-			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
-			<td>30cm</td>
-		</tr>
-		
-		<tr>
-			<td>right_sleeve<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Right Sleeve" src="{% static "docs/images/right_sleeve.jpg" %}"></td>
-			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
-			<td>10cm</td>
-		</tr>
-		<tr>
-			<td>left_sleeve<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Left Sleeve" src="{% static "docs/images/left_sleeve.jpg" %}"></td>
-			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
-			<td>10cm</td>
-		</tr>
-		
 		<tr>
 			<td>right_chest<span class="optional-argument">optional</span></td>
 			<td class="img-tshirt"><img alt="T-Shirt Print API Right Chest" src="{% static "docs/images/right_chest.jpg" %}"></td>
-			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
+			<td><code class="prettyprint">aa_mens_tshirt</code>, <code class="prettyprint">aa_zip_hoodie</code></td>
 			<td>12cm</td>
 		</tr>
 		<tr>
 			<td>left_chest<span class="optional-argument">optional</span></td>
 			<td class="img-tshirt"><img alt="T-Shirt Print API Left Chest" src="{% static "docs/images/left_chest.jpg" %}"></td>
-			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
+			<td><code class="prettyprint">aa_mens_tshirt</code>, <code class="prettyprint">aa_zip_hoodie</code></td>
 			<td>12cm</td>
 		</tr>
-		
-		<tr>
-			<td>bottom_right<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Bottom Right" src="{% static "docs/images/bottom_right.jpg" %}"></td>
-			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
-			<td>12cm</td>
-		</tr>
-		<tr>
-			<td>bottom_left<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Bottom Left" src="{% static "docs/images/bottom_left.jpg" %}"></td>
-			<td><code class="prettyprint">gildan_tshirt</code>, <code class="prettyprint">gildan_hoodie</code>, <code class="prettyprint">gildan_hoodie_zipped</code></td>
-			<td>12cm</td>
-		</tr>
-		
 	</tbody>
 </table>
 
@@ -1221,12 +1211,9 @@ curl "https://api.kite.ly/v2.0/print/" \
     },
     "customer_email": "{{ user_email }}",
     "customer_phone": "+44 (0)784297 1234",
-    "jobs": [{
-      "options": {
-      	"spine_color": "#FFFFFF"
-      },
+    "jobs": [
       "pdf": "https://s3.amazonaws.com/sdk-static/portrait_photobook.pdf",
-      "template_id": "photobook_small_portrait"
+      "template_id": "rpi_wrap_280x210_sm"
     }]
   }'
 ```
@@ -1239,8 +1226,7 @@ NSArray *assets = @[
     [OLAsset assetWithURL:[NSURL URLWithString:@"https://s3.amazonaws.com/sdk-static/portrait_photobook.pdf"]]
 ];
 
-id<OLPrintJob> photobook = [OLPrintJob printJobWithTemplateId:@"photobook_small_portrait" OLAssets:assets];
-[photobook setValue:@"#FFFFFF" forOption:@"spine_color"];
+id<OLPrintJob> photobook = [OLPrintJob printJobWithTemplateId:@"rpi_wrap_280x210_sm" OLAssets:assets];
 
 OLPrintOrder *order = [[OLPrintOrder alloc] init];
 [order addPrintJob:photobook];
@@ -1286,8 +1272,7 @@ import ly.kite.print.PrintOrder;
 ArrayList<Asset> assets = new ArrayList<Asset>();
 assets.add(new Asset(new URL("https://s3.amazonaws.com/sdk-static/portrait_photobook.pdf"))));
 
-PrintJob photobook = PrintJob.createPrintJob(assets, "photobook_small_portrait");
-photobook.setOption("spine_color", "#FFFFFF");
+PrintJob photobook = PrintJob.createPrintJob(assets, "rpi_wrap_280x210_sm");
 
 PrintOrder order = new PrintOrder();
 order.addPrintJob(ipadAirCase);
@@ -1339,20 +1324,17 @@ card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard
 
 If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders. 
 
-The example request on the right would result in a portrait photobook being created and shipped to the specified address.
+The example request on the right would result in a hardcover landscape photobook being created and shipped to the specified address.
 
 ### products & template_ids
 
           | |
 --------- | -----------
-Portrait Photobook<span class="attribute-type">photobook_small_portrait</span> | A5 hardcover portrait photobook (148mm x 210mm). Our books are perfectly bound with images printed on glossy 200gsm paper
-Landscape Photobook<span class="attribute-type">photobook_small_landscape</span> | A5 hardcover landscape photobook (210mm x 148mm). Our books are perfectly bound with images printed on glossy 200gsm paper
-
-### Options Arguments
-
-          | |
---------- | -----------
-spine_color<span class="optional-argument">optional</span> | A color hex code indicating the color for the spine of the book. Defaults to `#FFFFFF` if not specified.
+Landscape Hardcover<span class="attribute-type">rpi_wrap_280x210_sm</span> | 28cm x 21cm hardcover landscape photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
+Portrait Hardcover<span class="attribute-type">rpi_wrap_210x280_sm</span> | 21cm x 28cm hardcover portrait photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
+Small Square Hardcover<span class="attribute-type">rpi_wrap_140x140_sm</span> | 14cm x 14cm hardcover square photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
+Medium Square Hardcover<span class="attribute-type">rpi_wrap_210x210_sm</span> | 21cm x 21cm hardcover square photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
+Large Square Hardcover<span class="attribute-type">rpi_wrap_300x300_sm</span> | 30cm x 30cm hardcover square photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
 
 ### Job Arguments
 
@@ -1496,7 +1478,7 @@ message<span class="optional-argument">optional</span> | The text message that y
           | |
 --------- | -----------
 front_image<span class="required-argument">required</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. It will form the front of the postcard
-back_image<span class="optional-argument">optional</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. Specifying a `back_image` gives you near total control of the back of postcard layout. In doing so you are expected to insert the message & recipient address directly into the image according to our guidelines  
+back_image<span class="optional-argument">optional</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. Specifying a `back_image` gives you near total control of the back of postcard layout. In doing so you are expected to insert the message & recipient address directly into the image according to our [guidelines](#postcard-guidelines)
 
 ## Ordering greeting cards
 
@@ -1683,15 +1665,10 @@ smaller than this, it's recommended you try get as close to these dimensions as 
 <table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th><th>inches</th></tr></thead><tbody>
 <tr><td>Large Landscape Hardcover<span class="optional-argument">rpi_wrap_321x270_sm</span></td><td><code class="prettyprint">3792&times;3190</code></td><td><code class="prettyprint">32.1&times;27</code></td><td><code class="prettyprint">12.6&times;10.6</code></td></tr>
 <tr><td>Portrait Hardcover<span class="optional-argument">rpi_wrap_210x280_sm</span></td><td><code class="prettyprint">2481&times;3306</code></td><td><code class="prettyprint">21&times;28</code></td><td><code class="prettyprint">8.3&times;11</code></td></tr>
-<tr><td>Landscape Hardcover<span class="optional-argument">rpi_wrap_280x210_sm_40pg</span></td><td><code class="prettyprint">3308&times;2481</code></td><td><code class="prettyprint">28&times;21</code></td><td><code class="prettyprint">11&times;8.3</code></td></tr>
 <tr><td>Landscape Hardcover<span class="optional-argument">rpi_wrap_280x210_sm</span></td><td><code class="prettyprint">3308&times;2481</code></td><td><code class="prettyprint">28&times;21</code></td><td><code class="prettyprint">11&times;8.3</code></td></tr>
-<tr><td>Landscape Hardcover<span class="optional-argument">rpi_wrap_280x210_sm_100pg</span></td><td><code class="prettyprint">3308&times;2481</code></td><td><code class="prettyprint">28&times;21</code></td><td><code class="prettyprint">11&times;8.3</code></td></tr>
 <tr><td>Large Square Hardcover<span class="optional-argument">rpi_wrap_300x300_sm</span></td><td><code class="prettyprint">3544&times;3544</code></td><td><code class="prettyprint">30&times;30</code></td><td><code class="prettyprint">11.8&times;11.8</code></td></tr>
 <tr><td>Medium Square Hardcover<span class="optional-argument">rpi_wrap_210x210_sm</span></td><td><code class="prettyprint">2481&times;2481</code></td><td><code class="prettyprint">21&times;21</code></td><td><code class="prettyprint">8.3&times;8.3</code></td></tr>
-<tr><td>Softcover Book 210mm x 210mm<span class="optional-argument">rpi_soft_210x210_s</span></td><td><code class="prettyprint">2481&times;2481</code></td><td><code class="prettyprint">21&times;21</code></td><td><code class="prettyprint">8.3&times;8.3</code></td></tr>
 <tr><td>Small Square Hardcover<span class="optional-argument">rpi_wrap_140x140_sm</span></td><td><code class="prettyprint">1654&times;1654</code></td><td><code class="prettyprint">14&times;14</code></td><td><code class="prettyprint">5.5&times;5.5</code></td></tr>
-<tr><td>Softcover Book 280mm x 210mm<span class="optional-argument">rpi_soft_280x210_s</span></td><td><code class="prettyprint">3308&times;2481</code></td><td><code class="prettyprint">28&times;21</code></td><td><code class="prettyprint">11&times;8.3</code></td></tr>
-<tr><td>Softcover Book 210mm x 280mm<span class="optional-argument">rpi_soft_210x280_s</span></td><td><code class="prettyprint">2481&times;3306</code></td><td><code class="prettyprint">21&times;28</code></td><td><code class="prettyprint">8.3&times;11</code></td></tr>
 </tbody></table>
 
 ### OPTIMAL PHOTOBOX ASSET DIMENSIONS
@@ -1965,3 +1942,32 @@ Returns either a dictionary with a `unique` property that is a [full address obj
 In the case of a list response, additional calls to the address search endpoint are required to find a unique match. You can use the `address_id`'s from previous responses to narrow down the search until you eventually find a unique address.
 
 <aside class="notice">Be sure to handle both unique and list responses from the address search endpoint.</aside>
+
+
+# Postcard Guidelines
+When you supply a back_image to Kite when making postcard orders, you gain control of the design on the back of the postcard.
+
+You are able to style your message however you would like, however the back of the card must adhere to certain style guidelines to maximise the chances of accurate dispatch and delivery of your product to your customers.
+
+## Address formatting
+
+Addresses must be formatted on the right hand side of the postcard, be eligible and with the delivery information included with the following structure
+
+### Fields
+
+ | |
+--------- | -----------
+Recipients Name<span class="required-argument">required</span> | Name of receipient
+Address Line 1<span class="required-argument">required</span> | Address Line 1
+Address Line 2<span class="maybe-argument">optional</span> | Address Line 2
+City<span class="required-argument">required</span> | City
+Country<span class="required-argument">required</span> | Country
+Postcode<span class="required-argument">required</span> | Postcode, The postcode should always be on the last line of the address
+
+Avoid positioning any logo underneath the address text.
+
+## Stamp Placement
+
+A blank space must be reserved in the top right of the postcard so that Kite can place a stamp on the postcard.
+
+This is because stamp designs must be pre-approved by the mail carrier before printing can take place. Designs which have not been approved will unfortunately not be accepted by the mail service for delivery.
