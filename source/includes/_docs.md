@@ -1945,9 +1945,9 @@ In the case of a list response, additional calls to the address search endpoint 
 
 
 # Postcard Guidelines
-When you supply a back_image to Kite when making postcard orders, you gain control of the design on the back of the postcard.
+When you supply a back_image to Kite while making postcard orders, you gain control of the design on the back of the postcard.
 
-You are able to style your message however you would like, however the back of the card must adhere to certain style guidelines to maximise the chances of accurate dispatch and delivery of your product to your customers.
+You are able to style your message whichever way you like, however the back of the card must adhere to certain style guidelines to maximise the chances of accurate dispatch and delivery of your product to your customers.
 
 ## Address formatting
 
