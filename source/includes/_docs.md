@@ -100,7 +100,7 @@ The presence of your secret key in charge incurring requests (i.e. product order
 {
   "error": {
   	"code": "01",
-    "message": "JSON schema error: 'jobs' is a required property"
+    "message": "JSON schema error: The request data does not match the required JSON schema"
   }
 }
 ```
