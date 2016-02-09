@@ -32,17 +32,13 @@ under the License.
               return false;
           }
       }
-
-      if (isAuthenticated()) {
-          var elem = document.getElementById("navbar-authenticated");
-          if (elem) {
-              elem.style.display = "inline-block";
-          }
-      } else {
-          var elem = document.getElementById("navbar-unauthenticated");
-          if (elem) {
-              elem.style.display = "inline-block";
-          }
+      
+      function isUserOfType(type) {
+        if (!isAuthenticated()) {
+            return false;
+        }
+        var authUser = JSON.parse(localStorage.getItem("ngStorage-authenticatedUser"));
+        return authUser.user_type.toLowerCase() == type.toLowerCase();
       }
 
       function getTestAPIKey() {
@@ -83,6 +79,9 @@ under the License.
                     $scope.user_email = getUserEmail();
                     $scope.api_endpoint = "https://api.kite.ly";
                     $scope.authenticated = isAuthenticated();
+                    $scope.isAlbelliUser = isUserOfType("ALBUMPRINTER");
+                    $scope.isPhotoboxUser = isUserOfType("PHOTOBOX");
+                    $scope.isSticky9User = isUserOfType("S9");
                 }]);
     </script>
 

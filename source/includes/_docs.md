@@ -1665,6 +1665,7 @@ smaller than this, it's recommended you try get as close to these dimensions as 
 <tr><td>Small Square Hardcover<span class="optional-argument">rpi_wrap_140x140_sm</span></td><td><code class="prettyprint">1654&times;1654</code></td><td><code class="prettyprint">14&times;14</code></td><td><code class="prettyprint">5.5&times;5.5</code></td></tr>
 </tbody></table>
 
+<div ng-if="isPhotoboxUser">
 ### OPTIMAL PHOTOBOX ASSET DIMENSIONS
 <table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th><th>inches</th></tr></thead><tbody>
 <tr><td>iPhone 6 Plus Case<span class="optional-argument">i6ptc7</span></td><td><code class="prettyprint">1335&times;2320</code></td><td><code class="prettyprint">11.3&times;19.6</code></td><td><code class="prettyprint">4.5&times;7.7</code></td></tr>
@@ -1707,7 +1708,9 @@ smaller than this, it's recommended you try get as close to these dimensions as 
 <tr><td>Classic Canvas 30 cm x 40 cm<span class="optional-argument">pbx_canvas_30x40</span></td><td><code class="prettyprint">3544&times;4725</code></td><td><code class="prettyprint">30&times;40</code></td><td><code class="prettyprint">11.8&times;15.8</code></td></tr>
 <tr><td>3 Minute Book<span class="optional-argument">23540-3mbook_1</span></td><td><code class="prettyprint">4725&times;4725</code></td><td><code class="prettyprint">40&times;40</code></td><td><code class="prettyprint">15.8&times;15.8</code></td></tr>
 </tbody></table>
+</div>
 
+<div ng-if="isAlbelliUser">
 ### OPTIMAL ALBELLI ASSET DIMENSIONS
 <table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th><th>inches</th></tr></thead><tbody>
 <tr><td>Aluminium Print<span class="optional-argument">ap_aluminium_400x400</span></td><td><code class="prettyprint">4725&times;4725</code></td><td><code class="prettyprint">40&times;40</code></td><td><code class="prettyprint">15.8&times;15.8</code></td></tr>
@@ -1728,7 +1731,7 @@ smaller than this, it's recommended you try get as close to these dimensions as 
 <tr><td>Square Photo Book<span class="optional-argument">ap_album_210x210</span></td><td><code class="prettyprint">2481&times;2481</code></td><td><code class="prettyprint">21&times;21</code></td><td><code class="prettyprint">8.3&times;8.3</code></td></tr>
 <tr><td>Metallic Squares<span class="optional-argument">metallic_8x8</span></td><td><code class="prettyprint">2501&times;2501</code></td><td><code class="prettyprint">21.2&times;21.2</code></td><td><code class="prettyprint">8.3&times;8.3</code></td></tr>
 </tbody></table>
-
+</div>
 
 
 
