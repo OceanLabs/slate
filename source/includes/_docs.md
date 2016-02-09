@@ -1022,7 +1022,7 @@ curl "[[api_endpoint]]/v2.0/print/" \
         "garment_color": "white"
       },
       "assets": {
-        "center_chest": "http://psps.s3.amazonaws.com/sdk_static/1.jpg",
+        "center_chest": "http://psps.s3.amazonaws.com/sdk_static/1.jpg"
       },
       "template_id": "aa_mens_tshirt"
     }]
@@ -1225,7 +1225,7 @@ curl "[[api_endpoint]]/v2.0/print/" \
       "amount": 29.99,
       "currency": "USD"
     },
-    "jobs": [
+    "jobs": [{
       "pdf": "https://s3.amazonaws.com/sdk-static/portrait_photobook.pdf",
       "template_id": "rpi_wrap_280x210_sm"
     }]

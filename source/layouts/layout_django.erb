@@ -74,7 +74,7 @@ under the License.
                     $interpolateProvider.startSymbol('[[');
                     $interpolateProvider.endSymbol(']]');
                 }])
-                .controller("DocsController", ["$scope", function($scope) {
+                .controller("DocsController", ["$scope", "$location", function($scope, $location) {
                     $scope.public_key = getTestAPIKey();
                     $scope.secret_key = getTestSecretKey();
                     $scope.user_email = getUserEmail();
@@ -83,6 +83,8 @@ under the License.
                     $scope.isAlbelliUser = isUserOfType("ALBUMPRINTER");
                     $scope.isPhotoboxUser = isUserOfType("PHOTOBOX");
                     $scope.isSticky9User = isUserOfType("S9");
+                    $scope.api_endpoint = $location.host() == "localhost" || $location.host() == "127.0.0.1" ? "http://localhost:5000" : "https://api.kite.ly";
+                    $scope.website_endpoint = $location.host() == "localhost" || $location.host() == "127.0.0.1" ? "http://localhost:8000" : "https://www.kite.ly";
                 }]);
     </script>
 
