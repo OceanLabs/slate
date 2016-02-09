@@ -141,78 +141,81 @@ PRODUCT_ORDER = [
         "i6cc7",
         "i5c4",
         "iphone5c1",
+        "i5ccc1",
+        "stickeri5c1",
         "i4c9",
+        "i4ccc1",
+        "stickeri4c1",
         "sgs5c1",
         "sgs4c3",
         "sgs3c4",
         "sgs2c1",
-        "i5ccc1",
-        "i4ccc1",
 
         "ipad_case_1",
         "ipadminic1",
         "ipadsmartc6",
         "ipadminismartc1",
 
-        "stickeri5c1",
-        "stickeri4c1",
-        "pbx_canvas_40x40",
         "pbx_canvas_20x30",
-        "pbx_canvas_30x30",
         "pbx_canvas_30x20",
-        "pbx_cards_a6_10pack",
+        "pbx_canvas_30x30",
+        "pbx_canvas_40x40",
         "pbx_polaroids_12",
         "pbx_polaroids_24",
-        "pbx_frame_30x30",
         "pbx_polaroids_36",
+
         "pbx_a3",
         "pbx_6x4",
-        "pbx_squares_5x5",
         "pbx_7x5",
+        "pbx_squares_5x5",
         "pbx_squares_8x8",
         "pbx_magnets_8x8",
         "pbx_magnets_13x9",
         "pbx_magnets_15x10",
-        "pbx_canvas_30x40",
         "pbx_stickers_13x9",
-        "mug_bone_wrap",
+        "pbx_cards_a6_10pack",
+
         "mgth10",
+        "mug_bone_wrap",
+
+        "pbx_frame_30x30",
+        "pbx_canvas_30x40",
         "23540-3mbook_1"
     ]),
 
     # S9 Products
     ("OPTIMAL STICKY9 ASSET DIMENSIONS", [
-        "s9_polaroids_12",
-        "s9_magnets",
-        "s9_magnets_mini",
-        "s9_squares",
-        "s9_squares_single",
-        "s9_squares_mini_single",
-        "s9_poster",
-        "s9_greetingcard",
-        #"s9_packframe",
-        "s9_jigsaw",
-        "s9_squares_mini"
+        # "s9_polaroids_12",
+        # "s9_magnets",
+        # "s9_magnets_mini",
+        # "s9_squares",
+        # "s9_squares_single",
+        # "s9_squares_mini_single",
+        # "s9_poster",
+        # "s9_greetingcard",
+        # #"s9_packframe",
+        # "s9_jigsaw",
+        # "s9_squares_mini"
     ]),
 
     # Albumprinter Products
     ("OPTIMAL ALBELLI ASSET DIMENSIONS", [
-        "ap_acrylic_400x300",
         "ap_aluminium_400x400",
         "ap_aluminium_300x400",
         "ap_aluminium_400x300",
         "ap_mounted_400x400",
         "ap_mounted_400x300",
         "ap_mounted_300x400",
-        "ap_canvas_400x400",
         "ap_canvas_400x300",
-        "ap_album_210x210",
         "ap_canvas_300x400",
-        "ap_wood_400x400",
+        "ap_canvas_400x400",
         "ap_wood_400x300",
         "ap_wood_300x400",
-        "ap_acrylic_400x400",
+        "ap_wood_400x400",
         "ap_acrylic_300x400",
+        "ap_acrylic_400x300",
+        "ap_acrylic_400x400",
+        "ap_album_210x210",
         "metallic_8x8"
     ])
 ]
@@ -280,7 +283,7 @@ for (group_name, templates) in PRODUCT_ORDER:
         continue
 
     print("### %s" % group_name)
-    print('<table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th></tr></thead><tbody>')
+    print('<table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th><th>inches</th></tr></thead><tbody>')
     for template_id in templates:
         product = find_product_with_template_id(r_json["objects"], template_id)
         name = product["name"]
@@ -289,7 +292,7 @@ for (group_name, templates) in PRODUCT_ORDER:
         size = product["product"]["size"]
         (width_px, height_px, width_cm, height_cm, width_inch, height_inch) = calculate_sensible_sizes(size)
 
-        print('<tr><td>%s<span class="optional-argument">%s</span></td><td><code class="prettyprint">%s&times;%s</code></td><td><code class="prettyprint">%s&times;%s</code></td></tr>' % (name, template_id, fn(width_px), fn(height_px), fn(width_cm), fn(height_cm)))
+        print('<tr><td>%s<span class="optional-argument">%s</span></td><td><code class="prettyprint">%s&times;%s</code></td><td><code class="prettyprint">%s&times;%s</code></td><td><code class="prettyprint">%s&times;%s</code></td></tr>' % (name, template_id, fn(width_px), fn(height_px), fn(width_cm), fn(height_cm), fn(width_inch), fn(height_inch)))
 
     print("</tbody></table>")
     print("")
