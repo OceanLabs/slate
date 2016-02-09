@@ -1665,8 +1665,8 @@ smaller than this, it's recommended you try get as close to these dimensions as 
 <tr><td>Small Square Hardcover<span class="optional-argument">rpi_wrap_140x140_sm</span></td><td><code class="prettyprint">1654&times;1654</code></td><td><code class="prettyprint">14&times;14</code></td><td><code class="prettyprint">5.5&times;5.5</code></td></tr>
 </tbody></table>
 
-<div ng-if="isPhotoboxUser">
-### OPTIMAL PHOTOBOX ASSET DIMENSIONS
+<div class="optional-asset-dimensions" ng-show="isPhotoboxUser">
+<h3 id="optimal-photobox-asset-dimensions">OPTIMAL PHOTOBOX ASSET DIMENSIONS</h3>
 <table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th><th>inches</th></tr></thead><tbody>
 <tr><td>iPhone 6 Plus Case<span class="optional-argument">i6ptc7</span></td><td><code class="prettyprint">1335&times;2320</code></td><td><code class="prettyprint">11.3&times;19.6</code></td><td><code class="prettyprint">4.5&times;7.7</code></td></tr>
 <tr><td>iPhone 6 Case<span class="optional-argument">i6cc7</span></td><td><code class="prettyprint">1335&times;2257</code></td><td><code class="prettyprint">11.3&times;19.1</code></td><td><code class="prettyprint">4.5&times;7.5</code></td></tr>
@@ -1710,8 +1710,8 @@ smaller than this, it's recommended you try get as close to these dimensions as 
 </tbody></table>
 </div>
 
-<div ng-if="isAlbelliUser">
-### OPTIMAL ALBELLI ASSET DIMENSIONS
+<div class="optional-asset-dimensions" ng-show="isAlbelliUser">
+<h3 id="optimal-albelli-asset-dimensions">OPTIMAL ALBELLI ASSET DIMENSIONS</h3>
 <table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th><th>inches</th></tr></thead><tbody>
 <tr><td>Aluminium Print<span class="optional-argument">ap_aluminium_400x400</span></td><td><code class="prettyprint">4725&times;4725</code></td><td><code class="prettyprint">40&times;40</code></td><td><code class="prettyprint">15.8&times;15.8</code></td></tr>
 <tr><td>Aluminium Print<span class="optional-argument">ap_aluminium_300x400</span></td><td><code class="prettyprint">3544&times;4725</code></td><td><code class="prettyprint">30&times;40</code></td><td><code class="prettyprint">11.8&times;15.8</code></td></tr>
