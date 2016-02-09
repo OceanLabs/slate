@@ -38,9 +38,73 @@ under the License.
         });
       </script>
     <% end %>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script>
+        function isAuthenticated() {
+          if(typeof(Storage) !== "undefined" && localStorage) {
+              var authUser = localStorage.getItem("ngStorage-authenticatedUser");
+              return typeof(authUser) !== "undefined" && authUser != null;
+          } else {
+              return false;
+          }
+      }
+
+      if (isAuthenticated()) {
+          var elem = document.getElementById("navbar-authenticated");
+          if (elem) {
+              elem.style.display = "inline-block";
+          }
+      } else {
+          var elem = document.getElementById("navbar-unauthenticated");
+          if (elem) {
+              elem.style.display = "inline-block";
+          }
+      }
+
+      function getTestAPIKey() {
+          if (isAuthenticated()) {
+              var authUser = JSON.parse(localStorage.getItem("ngStorage-authenticatedUser"));
+              return authUser.test_publishable_key;
+          }
+
+          return "a00d942c4d04a4791443e1f8b3236c39330a218f"; // give them the deon users test key, no harm in it and they can experiment with requests out the box
+      }
+
+      function getTestSecretKey() {
+          if (isAuthenticated()) {
+              var authUser = JSON.parse(localStorage.getItem("ngStorage-authenticatedUser"));
+              return authUser.test_secret_key;
+          }
+
+          return "<your_secret_key>"; // give them the deon users test key, no harm in it and they can experiment with requests out the box
+      }
+
+      function getUserEmail() {
+          if (isAuthenticated()) {
+              var authUser = JSON.parse(localStorage.getItem("ngStorage-authenticatedUser"));
+              return authUser.email;
+          }
+
+          return "deon@kite.ly";
+      }
+
+        angular.module("docs", [])
+                .config(["$interpolateProvider", function ($interpolateProvider) {
+                    $interpolateProvider.startSymbol('[[');
+                    $interpolateProvider.endSymbol(']]');
+                }])
+                .controller("DocsController", ["$scope", function($scope) {
+                    $scope.public_key = getTestAPIKey();
+                    $scope.secret_key = getTestSecretKey();
+                    $scope.user_email = getUserEmail();
+                    $scope.api_endpoint = "https://api.kite.ly";
+                    $scope.authenticated = isAuthenticated();
+                }]);
+    </script>
   </head>
 
-  <body class="<%= page_classes %>">
+  <body class="<%= page_classes %>" ng-app="docs" ng-controller="DocsController" ng-cloak>
     <a href="#" id="nav-button">
       <span>
         NAV

@@ -6,13 +6,13 @@
 https://api.kite.ly
 ```
 
-The Kite API is organized around [REST](http://en.wikipedia.org/wiki/Representational_state_transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which can be understood by off-the-shelf HTTP clients. [JSON](http://www.json.org/) will be returned in all responses from the API, including errors (though if you're using API bindings, we will convert the response to the appropriate language-specific object). 
+The Kite API is organized around [REST](http://en.wikipedia.org/wiki/Representational_state_transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which can be understood by off-the-shelf HTTP clients. [JSON](http://www.json.org/) will be returned in all responses from the API, including errors (though if you're using API bindings, we will convert the response to the appropriate language-specific object).
 
 To make the Kite API as explorable as possible, accounts have test-mode API keys as well as live-mode API keys. These keys can be active at the same time. Data created with test-mode credentials will never result in real products being created and shipped to addresses, will never hit the credit card networks and will never cost anyone money.
 
-{% if is_logged_in %}
-**The requests in the sidebar actually work**. We'll perform the requests using your test-mode API key, `{{ test_api_key }}`, which is linked to your account under the email address **{{ user_email }}**.
-{% endif %}
+<span ng-if="authenticated">
+**The requests in the sidebar actually work**. We'll perform the requests using your test-mode API key, `[[public_key]]`, which is linked to your account under the email address **[[user_email]]**.
+</span>
 
 # Libraries
 Kite is built by developers for developers and we have SDKs spanning a range of languages and platforms. It's recommended that you use our SDKs where available as it will greatly simplify and speed up integration. In most cases you can be up an running sending through product orders within minutes.
@@ -28,26 +28,20 @@ Some of our SDKs are also bundled with optional checkout experiences proven to c
 
 ```shell
 curl "https://api.kite.ly/v2.0/address/search/?country_code=USA&search_term=1+Infinite+Loop" \
-  -H "Authorization: ApiKey {{ test_api_key }}:"
+  -H "Authorization: ApiKey [[public_key]]:"
 ```
 
 ```objective_c
-[OLKitePrintSDK setAPIKey:@"{{ test_api_key }}" withEnvironment:kOLKitePrintSDKEnvironmentSandbox];
+[OLKitePrintSDK setAPIKey:@"[[public_key]]" withEnvironment:kOLKitePrintSDKEnvironmentSandbox];
 ```
 
 ```java
-KitePrintSDK.initialize("{{ test_api_key }}", KitePrintSDK.Environment.TEST, getApplicationContext());
+KitePrintSDK.initialize("[[public_key]]", KitePrintSDK.Environment.TEST, getApplicationContext());
 ```
 
-{% if is_logged_in %}
+> <span ng-if="authenticated">One of your test API keys has been filled into all the examples on the page, so you can test out any example right away.</span>
 
-> One of your test API keys has been filled into all the examples on the page, so you can test out any example right away.
-
-{% else %}
-
-> A sample test API key has been provided so you can test out all the examples straight away. You should replace `{{ test_api_key }}` with one of your own found in the [credentials](https://www.kite.ly/settings/credentials) section of the dashboard.
-
-{% endif %}
+> <span ng-if="!authenticated">A sample test API key has been provided so you can test out all the examples straight away. You should replace `[[public_key]]` with one of your own found in the [credentials](https://www.kite.ly/settings/credentials) section of the dashboard.</span>
 
 You authenticate with the Kite API by providing your API key in the request. You can manage your API keys in the [credentials](https://www.kite.ly/settings/credentials) section of the dashboard. You can have multiple API keys active at one time. Your API keys carry many privileges, so be sure to keep them secret!
 
@@ -69,7 +63,7 @@ This is the easiest approach to using the Kite platform as it means you don't ne
 
 ```shell
 curl "https://api.kite.ly/v2.0/address/search/?country_code=USA&search_term=1+Infinite+Loop" \
-  -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>"
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>"
 ```
 
 ```objective_c
@@ -167,7 +161,7 @@ Where possible an error response will include an `error` object that provides fu
 
 ```shell
 curl "https://api.kite.ly/v2.0/order/?offset=30&limit=5" \
-  -H "Authorization: ApiKey {{ test_api_key }}:{{ test_secret_key }}"
+  -H "Authorization: ApiKey [[public_key]]:[[secret_key]]"
 ```
 
 ```objective_c
@@ -258,7 +252,7 @@ url<span class="attribute-type">string</span> | The URL from which the asset can
 
 ```shell
 curl "https://api.kite.ly/v2.0/asset/sign/?mime_types=image/jpeg&client_asset=true" \
-  -H "Authorization: ApiKey {{ test_api_key }}:"
+  -H "Authorization: ApiKey [[public_key]]:"
 ```
 
 ```objective_c
@@ -427,7 +421,7 @@ pdf<span class="attribute-type">string</span> | *Optional* object only applicabl
 	"postcode": "W1W 8DH",
 	"country_code": "GBR"
   },
-  "customer_email": "{{ user_email }}",
+  "customer_email": "[[user_email]]",
   "customer_phone": "+44 (0)784297 1234",
   "user_data": {
   	"foo": "bar",
@@ -466,7 +460,7 @@ jobs<span class="attribute-type">list</span> | A list of one or more [job object
 
 ```shell
 curl "https://api.kite.ly/v2.0/print/" \
-  -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
       "recipient_name": "Deon Botha",
@@ -477,7 +471,7 @@ curl "https://api.kite.ly/v2.0/print/" \
     "postcode": "W1W 8DH",
     "country_code": "GBR"
     },
-    "customer_email": "{{ user_email }}",
+    "customer_email": "[[user_email]]",
     "customer_phone": "+44 (0)784297 1234",
     "jobs": [{
       "assets": ["http://psps.s3.amazonaws.com/sdk_static/1.jpg"],
@@ -646,7 +640,7 @@ Returns a dictionary containing the order id
 
 ```shell
 curl "https://api.kite.ly/v2.0/print/" \
-  -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
       "recipient_name": "Deon Botha",
@@ -657,7 +651,7 @@ curl "https://api.kite.ly/v2.0/print/" \
       "postcode": "W1W 8DH",
       "country_code": "GBR"
     },
-    "customer_email": "{{ user_email }}",
+    "customer_email": "[[user_email]]",
     "customer_phone": "+44 (0)784297 1234",
     "jobs": [{
       "assets": [
@@ -806,7 +800,7 @@ A3 Poster<span class="attribute-type">a3_poster</span> | Our large format poster
 
 ```shell
 curl "https://api.kite.ly/v2.0/print/" \
-  -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
       "recipient_name": "Deon Botha",
@@ -817,7 +811,7 @@ curl "https://api.kite.ly/v2.0/print/" \
       "postcode": "W1W 8DH",
       "country_code": "GBR"
     },
-    "customer_email": "{{ user_email }}",
+    "customer_email": "[[user_email]]",
     "customer_phone": "+44 (0)784297 1234",
     "jobs": [{
       "assets": ["http://psps.s3.amazonaws.com/sdk_static/1.jpg"],
@@ -993,7 +987,7 @@ case_style<span class="optional-argument">optional</span> | Either `matte` or `g
 
 ```shell
 curl "https://api.kite.ly/v2.0/print/" \
-  -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
       "recipient_name": "Deon Botha",
@@ -1004,7 +998,7 @@ curl "https://api.kite.ly/v2.0/print/" \
       "postcode": "W1W 8DH",
       "country_code": "GBR"
     },
-    "customer_email": "{{ user_email }}",
+    "customer_email": "[[user_email]]",
     "customer_phone": "+44 (0)784297 1234",
     "jobs": [{
       "options": {
@@ -1198,7 +1192,7 @@ garment_color<span class="required-argument">required</span> | The base material
 
 ```shell
 curl "https://api.kite.ly/v2.0/print/" \
-  -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
       "recipient_name": "Deon Botha",
@@ -1209,7 +1203,7 @@ curl "https://api.kite.ly/v2.0/print/" \
       "postcode": "W1W 8DH",
       "country_code": "GBR"
     },
-    "customer_email": "{{ user_email }}",
+    "customer_email": "[[user_email]]",
     "customer_phone": "+44 (0)784297 1234",
     "jobs": [
       "pdf": "https://s3.amazonaws.com/sdk-static/portrait_photobook.pdf",
@@ -1349,7 +1343,7 @@ pdf<span class="required-argument">required</span> | A PDF URL accessible to the
 
 ```shell
 curl "https://api.kite.ly/v2.0/print/" \
-  -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
       "recipient_name": "Deon Botha",
@@ -1360,7 +1354,7 @@ curl "https://api.kite.ly/v2.0/print/" \
       "postcode": "W1W 8DH",
       "country_code": "GBR"
     },
-    "customer_email": "{{ user_email }}",
+    "customer_email": "[[user_email]]",
     "customer_phone": "+44 (0)784297 1234",
     "jobs": [{
       "assets": {
@@ -1486,7 +1480,7 @@ back_image<span class="optional-argument">optional</span> | A image URL accessib
 
 ```shell
 curl "https://api.kite.ly/v2.0/print/" \
-  -H "Authorization: ApiKey {{ test_api_key }}:<your_secret_key>" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
       "recipient_name": "Deon Botha",
@@ -1497,7 +1491,7 @@ curl "https://api.kite.ly/v2.0/print/" \
       "postcode": "W1W 8DH",
       "country_code": "GBR"
     },
-    "customer_email": "{{ user_email }}",
+    "customer_email": "[[user_email]]",
     "customer_phone": "+44 (0)784297 1234",
     "jobs": [{
       "assets": {
@@ -1804,7 +1798,7 @@ display_address<span class="attribute-type">string</span> | A partial textual re
 
 ```shell
 curl "https://api.kite.ly/v2.0/address/search/?country_code=GBR&search_term=10+Downing+Street,London" \
-  -H "Authorization: ApiKey {{ test_api_key }}:"
+  -H "Authorization: ApiKey [[public_key]]:"
 ```
 
 ```objective_c
@@ -1878,7 +1872,7 @@ public void onError(AddressSearchRequest req, Exception error) {
 
 ```shell
 curl "https://api.kite.ly/v2.0/address/search/?country_code=GBR&address_id=GBR|PR|23747771|0|0|0||Retrieve" \
-  -H "Authorization: ApiKey {{ test_api_key }}:"
+  -H "Authorization: ApiKey [[public_key]]:"
 ```
 
 ```objective_c
