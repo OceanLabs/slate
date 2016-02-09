@@ -3,7 +3,7 @@
 > API Endpoint
 
 ```html
-https://api.kite.ly
+[[api_endpoint]]
 ```
 
 The Kite API is organized around [REST](http://en.wikipedia.org/wiki/Representational_state_transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which can be understood by off-the-shelf HTTP clients. [JSON](http://www.json.org/) will be returned in all responses from the API, including errors (though if you're using API bindings, we will convert the response to the appropriate language-specific object).
@@ -27,7 +27,7 @@ Some of our SDKs are also bundled with optional checkout experiences proven to c
 > Example Request
 
 ```shell
-curl "https://api.kite.ly/v2.0/address/search/?country_code=USA&search_term=1+Infinite+Loop" \
+curl "[[api_endpoint]]/v2.0/address/search/?country_code=USA&search_term=1+Infinite+Loop" \
   -H "Authorization: ApiKey [[public_key]]:"
 ```
 
@@ -41,9 +41,9 @@ KitePrintSDK.initialize("[[public_key]]", KitePrintSDK.Environment.TEST, getAppl
 
 > <span ng-if="authenticated">One of your test API keys has been filled into all the examples on the page, so you can test out any example right away.</span>
 
-> <span ng-if="!authenticated">A sample test API key has been provided so you can test out all the examples straight away. You should replace `[[public_key]]` with one of your own found in the [credentials](https://www.kite.ly/settings/credentials) section of the dashboard.</span>
+> <span ng-if="!authenticated">A sample test API key has been provided so you can test out all the examples straight away. You should replace `[[public_key]]` with one of your own found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.</span>
 
-You authenticate with the Kite API by providing your API key in the request. You can manage your API keys in the [credentials](https://www.kite.ly/settings/credentials) section of the dashboard. You can have multiple API keys active at one time. Your API keys carry many privileges, so be sure to keep them secret!
+You authenticate with the Kite API by providing your API key in the request. You can manage your API keys in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard. You can have multiple API keys active at one time. Your API keys carry many privileges, so be sure to keep them secret!
 
 To authenticate you include the HTTP `Authorization` header in your request. All API requests must be made over [HTTPS](http://en.wikipedia.org/wiki/HTTPS). Calls made over plain HTTP will fail. You must authenticate for all requests.
 
@@ -53,7 +53,7 @@ In some scenarios it's also desirable to include your secret key in the `Authori
 Your customers can either pay you directly when they place an order for a product or we can take payment on your behalf and automatically transfer your revenue into an account of your choosing. 
 
 ## Kite takes payment
-In this scenario we take payment from customers on your behalf. This will occur entirely within your app or website in a way that's totally branded to you, your customers don't even need to know we were involved. We then automatically transfer funds we owe you directly into a bank or a PayPal account of your choosing. You can setup the account into which you want to receive payments in the [billing](https://www.kite.ly/settings/billing/) section of the dashboard.
+In this scenario we take payment from customers on your behalf. This will occur entirely within your app or website in a way that's totally branded to you, your customers don't even need to know we were involved. We then automatically transfer funds we owe you directly into a bank or a PayPal account of your choosing. You can setup the account into which you want to receive payments in the [billing]([[website_endpoint]]/settings/billing/) section of the dashboard.
 
 This is the easiest approach to using the Kite platform as it means you don't need to run your own server and it's baked into several of our SDKs. 
 
@@ -62,7 +62,7 @@ This is the easiest approach to using the Kite platform as it means you don't ne
 > Example Request
 
 ```shell
-curl "https://api.kite.ly/v2.0/address/search/?country_code=USA&search_term=1+Infinite+Loop" \
+curl "[[api_endpoint]]/v2.0/address/search/?country_code=USA&search_term=1+Infinite+Loop" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>"
 ```
 
@@ -74,13 +74,13 @@ curl "https://api.kite.ly/v2.0/address/search/?country_code=USA&search_term=1+In
 // Our Android SDK does not support this payment workflow directly as it would require embedding your secret key into the app. Instead use our REST API
 ```
 
-> Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/settings/credentials) section of the dashboard.
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.
 
 In this scenario you take payment directly from your customer in any manner of your choosing. You'll need your own server infrastructure in order to take care of the payment processing, payment validation and to submit [product order requests](#placing-orders) to the Kite platform. 
 
-You'll need to add a card to be charged for any orders you place with Kite. This can be done in the [billing](https://www.kite.ly/settings/billing/) section of the dashboard.
+You'll need to add a card to be charged for any orders you place with Kite. This can be done in the [billing]([[website_endpoint]]/settings/billing/) section of the dashboard.
 
-Any request you make to Kite that would result in you incurring a charge (i.e. [product order requests](#placing-orders)) will need to include both your API key and your secret key in the HTTP `Authorization` header. Your secret key can be found alongside your API key in the [credentials](https://www.kite.ly/settings/credentials) section of the dashboard. 
+Any request you make to Kite that would result in you incurring a charge (i.e. [product order requests](#placing-orders)) will need to include both your API key and your secret key in the HTTP `Authorization` header. Your secret key can be found alongside your API key in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard. 
 
 The presence of your secret key in charge incurring requests (i.e. product order requests) removes the need for the `proof_of_payment` argument to be provided as the card associated with your account can be charged directly.
 
@@ -160,7 +160,7 @@ Where possible an error response will include an `error` object that provides fu
 > Example Request
 
 ```shell
-curl "https://api.kite.ly/v2.0/order/?offset=30&limit=5" \
+curl "[[api_endpoint]]/v2.0/order/?offset=30&limit=5" \
   -H "Authorization: ApiKey [[public_key]]:[[secret_key]]"
 ```
 
@@ -251,7 +251,7 @@ url<span class="attribute-type">string</span> | The URL from which the asset can
 > Managed Asset Registration Request
 
 ```shell
-curl "https://api.kite.ly/v2.0/asset/sign/?mime_types=image/jpeg&client_asset=true" \
+curl "[[api_endpoint]]/v2.0/asset/sign/?mime_types=image/jpeg&client_asset=true" \
   -H "Authorization: ApiKey [[public_key]]:"
 ```
 
@@ -344,7 +344,7 @@ Registering and uploading a managed asset is a two step process. First you make 
 
 ### HTTP Request
 
-`GET https://api.kite.ly/v2.0/asset/sign/`
+`GET [[api_endpoint]]/v2.0/asset/sign/`
 
 ### Arguments
 
@@ -375,7 +375,7 @@ When you initially create your Kite account, the product template id's listed in
 
 Additional products SKU's are also available from our exclusive suppliers such as Photobox, please do [get in touch](mailto:hello@kite.ly) for further information about getting access to these product ranges.
 
-Which products you display to your customers within our mobile SDKs and their associated retail prices can be configured within the [products](https://www.kite.ly/dashboard/products) section of the dashboard
+Which products you display to your customers within our mobile SDKs and their associated retail prices can be configured within the [products]([[website_endpoint]]/dashboard/products) section of the dashboard
 
 
 ## The job object
@@ -451,7 +451,7 @@ shipping_address<span class="attribute-type">[address object](#the-address-objec
 customer_email<span class="attribute-type">string</span> | The customer's email address. Automated order status update emails (you can brand these) can optionally be sent to this address i.e. order confirmation email, order dispatched email, etc. You can configure these in the Kite dashboard
 customer_phone<span class="attribute-type">string</span> | The customer's phone number. Certain postage companies require this to be provided e.g. FedEx
 user_data<span class="attribute-type">dictionary</span> | A dictionary containing any application or user specific meta data that you attached to the order.
-customer_payment<span class="attribute-type">dictionary</span> | A dictionary containing the amount paid by the customer. In instances where Kite does not take payment (i.e you are using your secret key in the [Authorization header](#authentication) to validate orders), this field is required to give an accurate representation on the profit made on the sale within the [orders](https://www.kite.ly/settings/credentials) section of the Kite dashboard.
+customer_payment<span class="attribute-type">dictionary</span> | A dictionary containing the amount paid by the customer. In instances where Kite does not take payment (i.e you are using your secret key in the [Authorization header](#authentication) to validate orders), this field is required to give an accurate representation on the profit made on the sale within the [orders]([[website_endpoint]]/settings/credentials) section of the Kite dashboard.
 jobs<span class="attribute-type">list</span> | A list of one or more [job objects](#the-job-object) to be created and delivered to `shipping_address`
 
 ## Placing orders
@@ -459,7 +459,7 @@ jobs<span class="attribute-type">list</span> | A list of one or more [job object
 > Example Order Request
 
 ```shell
-curl "https://api.kite.ly/v2.0/print/" \
+curl "[[api_endpoint]]/v2.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -473,6 +473,10 @@ curl "https://api.kite.ly/v2.0/print/" \
     },
     "customer_email": "[[user_email]]",
     "customer_phone": "+44 (0)784297 1234",
+    "customer_payment": {
+      "amount": 29.99,
+      "currency": "USD"
+    },
     "jobs": [{
       "assets": ["http://psps.s3.amazonaws.com/sdk_static/1.jpg"],
     "template_id": "i6_case"
@@ -579,7 +583,7 @@ card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard
 
 ```
 
-> Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/settings/credentials) section of the dashboard.<br /><br />
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.<br /><br />
 
 > Example Response
 
@@ -616,7 +620,7 @@ Product identifiers and product specific request arguments (if any) are document
 
 ### HTTP Request
 
-`POST https://api.kite.ly/v2.0/print/`
+`POST [[api_endpoint]]/v2.0/print/`
 
 ### Arguments
 
@@ -627,7 +631,7 @@ shipping_address<span class="required-argument">required</span> | An [address ob
 customer_email<span class="optional-argument">optional</span> | The customer's email address. Automated order status update emails (you can brand these) can optionally be sent to this address i.e. order confirmation email, order dispatched email, etc. You can configure these in the Kite dashboard
 customer_phone<span class="required-argument">required</span> | The customer's phone number. Certain postage companies require this to be provided e.g. FedEx
 user_data<span class="optional-argument">optional</span> | A dictionary containing any application or user specific meta data that you might want associated with the order
-customer_payment<span class="optional-argument">optional</span> | A dictionary containing the amount paid by the customer. In instances where Kite does not take payment (i.e you are using your secret key in the [Authorization header](#authentication) to validate orders), this field is required to give an accurate representation on the profit made on the sale within the [orders](https://www.kite.ly/settings/credentials) section of the Kite dashboard.
+customer_payment<span class="optional-argument">optional</span> | A dictionary containing the amount paid by the customer. In instances where Kite does not take payment (i.e you are using your secret key in the [Authorization header](#authentication) to validate orders), this field is required to give an accurate representation on the profit made on the sale within the [orders]([[website_endpoint]]/settings/credentials) section of the Kite dashboard.
 jobs<span class="required-argument">required</span> | A list of one or more [job objects](#the-job-object) to be created and delivered to `shipping_address`
 
 ### Returns
@@ -639,7 +643,7 @@ Returns a dictionary containing the order id
 > Example Order Request
 
 ```shell
-curl "https://api.kite.ly/v2.0/print/" \
+curl "[[api_endpoint]]/v2.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -653,6 +657,10 @@ curl "https://api.kite.ly/v2.0/print/" \
     },
     "customer_email": "[[user_email]]",
     "customer_phone": "+44 (0)784297 1234",
+    "customer_payment": {
+      "amount": 29.99,
+      "currency": "USD"
+    },
     "jobs": [{
       "assets": [
         "http://psps.s3.amazonaws.com/sdk_static/1.jpg",
@@ -763,7 +771,7 @@ card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard
 
 ```
 
-> Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/settings/credentials) section of the dashboard.<br /><br />
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.<br /><br />
 
 > Example Response
 
@@ -799,7 +807,7 @@ A3 Poster<span class="attribute-type">a3_poster</span> | Our large format poster
 > Example Order Request
 
 ```shell
-curl "https://api.kite.ly/v2.0/print/" \
+curl "[[api_endpoint]]/v2.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -813,6 +821,10 @@ curl "https://api.kite.ly/v2.0/print/" \
     },
     "customer_email": "[[user_email]]",
     "customer_phone": "+44 (0)784297 1234",
+    "customer_payment": {
+      "amount": 29.99,
+      "currency": "USD"
+    },
     "jobs": [{
       "assets": ["http://psps.s3.amazonaws.com/sdk_static/1.jpg"],
       "template_id": "ipad_air_case"
@@ -924,7 +936,7 @@ card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard
 
 ```
 
-> Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/settings/credentials) section of the dashboard.<br /><br />
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.<br /><br />
 
 > Example Response
 
@@ -986,7 +998,7 @@ case_style<span class="optional-argument">optional</span> | Either `matte` or `g
 > Example Order Request
 
 ```shell
-curl "https://api.kite.ly/v2.0/print/" \
+curl "[[api_endpoint]]/v2.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -1000,6 +1012,10 @@ curl "https://api.kite.ly/v2.0/print/" \
     },
     "customer_email": "[[user_email]]",
     "customer_phone": "+44 (0)784297 1234",
+    "customer_payment": {
+      "amount": 29.99,
+      "currency": "USD"
+    },
     "jobs": [{
       "options": {
         "garment_size": "M",
@@ -1109,7 +1125,7 @@ card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard
 
 ```
 
-> Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/settings/credentials) section of the dashboard.<br /><br />
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.<br /><br />
 
 > Example Response
 
@@ -1191,7 +1207,7 @@ garment_color<span class="required-argument">required</span> | The base material
 > Example Order Request
 
 ```shell
-curl "https://api.kite.ly/v2.0/print/" \
+curl "[[api_endpoint]]/v2.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -1205,6 +1221,10 @@ curl "https://api.kite.ly/v2.0/print/" \
     },
     "customer_email": "[[user_email]]",
     "customer_phone": "+44 (0)784297 1234",
+    "customer_payment": {
+      "amount": 29.99,
+      "currency": "USD"
+    },
     "jobs": [
       "pdf": "https://s3.amazonaws.com/sdk-static/portrait_photobook.pdf",
       "template_id": "rpi_wrap_280x210_sm"
@@ -1305,7 +1325,7 @@ card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard
 
 ```
 
-> Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/settings/credentials) section of the dashboard.<br /><br />
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.<br /><br />
 
 > Example Response
 
@@ -1342,7 +1362,7 @@ pdf<span class="required-argument">required</span> | A PDF URL accessible to the
 > Example Order Request
 
 ```shell
-curl "https://api.kite.ly/v2.0/print/" \
+curl "[[api_endpoint]]/v2.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -1356,6 +1376,10 @@ curl "https://api.kite.ly/v2.0/print/" \
     },
     "customer_email": "[[user_email]]",
     "customer_phone": "+44 (0)784297 1234",
+    "customer_payment": {
+      "amount": 29.99,
+      "currency": "USD"
+    },
     "jobs": [{
       "assets": {
         "front_image": "http://psps.s3.amazonaws.com/sdk_static/4.jpg"
@@ -1440,7 +1464,7 @@ card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard
 
 ```
 
-> Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/settings/credentials) section of the dashboard.<br /><br />
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.<br /><br />
 
 > Example Response
 
@@ -1479,7 +1503,7 @@ back_image<span class="optional-argument">optional</span> | A image URL accessib
 > Example Order Request
 
 ```shell
-curl "https://api.kite.ly/v2.0/print/" \
+curl "[[api_endpoint]]/v2.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -1493,6 +1517,10 @@ curl "https://api.kite.ly/v2.0/print/" \
     },
     "customer_email": "[[user_email]]",
     "customer_phone": "+44 (0)784297 1234",
+    "customer_payment": {
+      "amount": 29.99,
+      "currency": "USD"
+    },
     "jobs": [{
       "assets": {
         "front_image": "https://s3.amazonaws.com/kite-samples/greetings/front.png",
@@ -1542,7 +1570,7 @@ card.cvv2 = @"123";
 
 ```
 
-> Replace `<your_secret_key>` with the one found in the [credentials](https://www.kite.ly/settings/credentials) section of the dashboard.<br /><br />
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.<br /><br />
 
 > Example Response
 
@@ -1800,7 +1828,7 @@ display_address<span class="attribute-type">string</span> | A partial textual re
 > Example Address Search Request
 
 ```shell
-curl "https://api.kite.ly/v2.0/address/search/?country_code=GBR&search_term=10+Downing+Street,London" \
+curl "[[api_endpoint]]/v2.0/address/search/?country_code=GBR&search_term=10+Downing+Street,London" \
   -H "Authorization: ApiKey [[public_key]]:"
 ```
 
@@ -1874,7 +1902,7 @@ public void onError(AddressSearchRequest req, Exception error) {
 > Example Address Search Request
 
 ```shell
-curl "https://api.kite.ly/v2.0/address/search/?country_code=GBR&address_id=GBR|PR|23747771|0|0|0||Retrieve" \
+curl "[[api_endpoint]]/v2.0/address/search/?country_code=GBR&address_id=GBR|PR|23747771|0|0|0||Retrieve" \
   -H "Authorization: ApiKey [[public_key]]:"
 ```
 
@@ -1923,7 +1951,7 @@ You can perform a search on any part of the address not just the ZIP/Postal code
 
 ### HTTP Request
 
-`GET https://api.kite.ly/v2.0/address/search/`
+`GET [[api_endpoint]]/v2.0/address/search/`
 
 ### Arguments
 
