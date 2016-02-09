@@ -1951,7 +1951,7 @@ You are able to style your message whichever way you like, however the back of t
 
 ## Address formatting
 
-Addresses must be formatted on the right hand side of the postcard, be eligible and with the delivery information included with the following structure
+Addresses must be eligible, be formatted on the right hand side of the postcard and include the delivery information with the following structure
 
 ### Fields
 
@@ -1968,6 +1968,6 @@ Avoid positioning any logo underneath the address text.
 
 ## Stamp Placement
 
-A blank space must be reserved in the top right of the postcard so that Kite can place a stamp on the postcard.
+A blank space must be reserved in the top right corner of the postcard so that Kite can place a stamp there.
 
 This is because stamp designs must be pre-approved by the mail carrier before printing can take place. Designs which have not been approved will unfortunately not be accepted by the mail service for delivery.
