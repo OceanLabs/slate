@@ -1763,6 +1763,315 @@ smaller than this, it's recommended you try get as close to these dimensions as 
 </div>
 
 
+# Orders
+
+It's easy to fetch the list of orders and associated order details that you or your customers are placing against the Kite platform. 
+
+## Getting a list of orders
+
+
+> Example Order List Request
+
+```shell
+curl "[[api_endpoint]]/v2.0/order/?order_by=-time_submitted&test_order=false&error_exclude=true" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>"
+```
+
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.<br /><br />
+
+> Example Order List Response
+
+```shell
+{
+  "meta": {
+    "limit": 20,
+    "next": "/v2.0/order/?offset=20&limit=20",
+    "offset": 0,
+    "previous": null,
+    "total_count": 960914
+  },
+  "objects": [
+    {
+      "attributed_to_notification": null,
+      "customer_email": "deon@kite.ly",
+      "customer_payment": {
+        "amount": "25.59",
+        "currency": "GBP",
+        "formatted": "£25.59"
+      },
+      "jobs": [
+        "/v2.0/job/36819/"
+      ],
+      "order_id": "PS243-825654811",
+      "person_id": 71283,
+      "refund_request": null,
+      "resource_uri": "/v2.0/order/PS243-825654811/",
+      "status": "Processed",
+      "test_order": false,
+      "time_processed": "2015-08-31T13:09:01.670462",
+      "time_submitted": "2015-08-31T13:09:01.670462"
+    },
+    ...
+  ]
+}
+```
+
+### HTTP Request
+
+`GET [[api_endpoint]]/v2.0/order/`
+
+### Arguments
+
+          | |
+--------- | -----------
+order_by<span class="maybe-argument">optional</span> | Controls the ordering of the returned orders, valid options are `time_submitted` & `status`. A `-` can be added to the front of any option i.e. `-time_submitted` to reverse the ordering.
+test_order<span class="maybe-argument">optional</span> | If `true` then the results will be be filtered to only include test orders, if `false` then only live orders will be returned
+error_exclude<span class="maybe-argument">optional</span> | If `true` then results will be filtered to only include successful orders, if `false` then only orders for which an error has occured will be returned
+refund_requested<span class="maybe-argument">optional</span> | If `true` then results will be filtered to only include orders for which the customer has requested a refunded, if `false` then only orders for which there has been no refund request
+time_submitted__lte<span class="maybe-argument">optional</span> | An ISO 8601 UTC formatted date time value i.e. `2016-03-23T11:01:28.710Z`. Orders will be filtered to only include those that were placed _before_ this date & time
+time_submitted__gte<span class="maybe-argument">optional</span> | An ISO 8601 UTC formatted date time value i.e. `2016-03-23T11:01:28.710Z`. Orders will be filtered to only include those that were placed _after_ this date & time
+
+### Returns
+Returns a list of optionally filtered orders
+
+## Getting an order's status
+
+
+> Example Order Detail Request
+
+```shell
+curl "[[api_endpoint]]/v2.0/order/PS320-236374811" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>"
+```
+
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.<br /><br />
+
+> Example Order Detail Response
+
+```shell
+{
+  "jobs": [
+    {
+      "job_id": "PS320-23637481101-S9-MAGNETS-M",
+      "shipped_time": null,
+      "status": "Received by Printer",
+      "template": {
+        "id": "s9_magnets_mini",
+        "name": "Medium Photo Magnets"
+      }
+    }
+  ],
+  "order_id": "PS320-236374811",
+  "status": "Processed",
+  "test_order": false,
+  "time_processed": "2015-11-16T20:04:12.209495",
+  "time_submitted": "2015-11-16T20:04:12.209495"
+}
+```
+
+### HTTP Request
+
+`GET [[api_endpoint]]/v2.0/order/<order_id>`
+
+### Arguments
+
+          | |
+--------- | -----------
+order_id<span class="required-argument">required</span> | The kite order id received in the response of a previous [order submission](#placing-orders)
+
+### Returns
+An order object detailing the order
+
+
+# Customers
+
+Rich customer profiles are built automatically for you when you or your users place an order. Our powerful filtering tools then allow you to segment your user base in all kinds of ways - to the point where you can single out individual users if you want.
+
+## Getting a list of people
+
+
+> Example Customer List Request
+
+```shell
+curl "[[api_endpoint]]/v2.0/person/?customer=true" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>"
+```
+
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.<br /><br />
+
+> Example Customer List Response
+
+```shell
+{
+  "meta": {
+    "limit": 20,
+    "next": "/v2.0/person/?customer=true&limit=20&offset=20",
+    "offset": 0,
+    "previous": null,
+    "total_count": 44737
+  },
+  "objects": [
+    {
+      "address": {
+        "city": "London",
+        "country": "United Kingdom",
+        "country_code": "GBR",
+        "county_state": "Kent",
+        "line1": "27-28 Eastcastle House",
+        "line2": "Eastcastle Street",
+        "line3": "",
+        "line4": "",
+        "postcode": "W1W 8DH",
+        "recipient_name": "Deon Botha"
+      },
+      "country": {
+        "country_code_2": "GB",
+        "country_code_3": "GBR",
+        "id": 13,
+        "name": "United Kingdom",
+        "resource_uri": "/v2.1/country/13/"
+      },
+      "created": "2016-02-27T22:45:28.629607",
+      "email": "deon@kite.ly",
+      "first_name": "Deon",
+      "full_name": "Deon Botha",
+      "id": 530395,
+      "ip": "86.185.46.67",
+      "last_name": "Botha",
+      "last_seen": "2016-02-27T22:45:37.283464",
+      "live_person": true,
+      "meta_data": "{u'environment': u'Live', u'platform': u'iOS', u'Order Count': 1}",
+      "orders": [
+        "PS58-942265811"
+      ],
+      "phone": "",
+      "region": "United Kingdom",
+      "resource_uri": "/v2.1/person/530395/",
+      "revenue": {
+        "amount": "22.99",
+        "currency": "GBP"
+      },
+      "timezone": "Europe/London",
+      "timezone_utc_offset": 0,
+      "uuid": "7EFB2CA8-8EFB-4FC3-88AB-2F02E6003731"
+    },
+    ...
+    ]
+}
+```
+
+### HTTP Request
+
+`GET [[api_endpoint]]/v2.0/person/`
+
+### Arguments
+
+          | |
+--------- | -----------
+customer<span class="maybe-argument">optional</span> | If `true` then the resulting people list will be filtered to only include those who have placed an order, if `false` then the resulting list will only include people who have not placed an order
+country<span class="maybe-argument">optional</span> | A comma separated list of 3 digit country codes i.e. `GBR,USA` that will filter the resulting person list to only include people coming from the specified countries
+order_count__gt<span class="maybe-argument">optional</span> | Filters the resulting list to only include customers who have ordered more than the specified number of times
+order_count__lt<span class="maybe-argument">optional</span> | Filters the resulting list to only include customers who have ordered less than the specified number of times
+last_ordered_date__lt<span class="maybe-argument">optional</span> | Filters the resulting person list to only include people that have ordered more recently that the value. Valid values include `Ndays`, `Nweeks`, `Nmonths` where `N` is a number i.e. `last_ordered_date__lt=1days` will filter the resulting list to only include customers who ordered within the last 1 day
+last_ordered_date__gt<span class="maybe-argument">optional</span> | Filters the resulting person list to only include people that have ordered less recently that the value. Valid values include `Ndays`, `Nweeks`, `Nmonths` where `N` is a number i.e. `last_ordered_date__gt=1days` will filter the resulting list to only include customers who have ordered more than 1 day ago
+push_token__isset<span class="maybe-argument">optional</span> | If `true` filters the resulting list to only include people with push notification tokens, if `false` filters the resulting list to only include people without push notification tokens
+created__lte<span class="maybe-argument">optional</span> | An ISO 8601 UTC formatted date time value i.e. `2016-03-23T11:01:28.710Z`. It filters the resulting list to only include those people created before the specified date time
+live_person<span class="maybe-argument">optional</span> | If `true` filters the resulting person list to only include people created in the live environment, if `false` filters the resulting person list to only include people created in the test environment
+
+
+### Returns
+Returns a list of optionally filtered people
+
+## Getting a person's details
+
+
+> Example Person Detail Request
+
+```shell
+curl "[[api_endpoint]]/v2.0/person/?id=196" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>"
+```
+
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.<br /><br />
+
+> Example Person Detail Response
+
+```shell
+{
+  "meta": {
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total_count": 1
+  },
+  "objects": [
+    {
+      "address": {
+        "city": "London",
+        "country": "United Kingdom",
+        "country_code": "GBR",
+        "county_state": "",
+        "line1": "Eastcastle House",
+        "line2": "27-28 Eastcastle Street",
+        "line3": "",
+        "line4": "",
+        "postcode": "W1W 8DH",
+        "recipient_name": "Deon Botha"
+      },
+      "country": {
+        "country_code_2": "GB",
+        "country_code_3": "GBR",
+        "id": 233,
+        "name": "United Kingdom",
+        "resource_uri": "/v2.1/country/233/"
+      },
+      "created": "2015-06-02T20:24:39.519890",
+      "email": "deon@kite.ly",
+      "first_name": "Deon",
+      "full_name": "Deon Botha",
+      "id": 196,
+      "ip": "10.84.20.98",
+      "last_name": "Botha",
+      "last_seen": "2015-06-02T20:47:25.434205",
+      "live_person": true,
+      "meta_data": "{u'environment': u'Development', u'platform': u'iOS', u'Order Count': 2}",
+      "orders": [
+        "PS153-474134811",
+        "PS153-374134811",
+        "PS153-164134811",
+        "PS153-064134811",
+        "PS153-964134811",
+        "PS153-864134811"
+      ],
+      "phone": "",
+      "region": "London",
+      "resource_uri": "/v2.1/person/196/",
+      "revenue": {
+        "amount": "180.84",
+        "currency": "GBP"
+      },
+      "timezone": "Europe/London",
+      "timezone_utc_offset": 0,
+      "uuid": "DF944EDC-90BE-470B-914E-1250E8DD1585"
+    }
+  ]
+}
+```
+
+### HTTP Request
+
+`GET [[api_endpoint]]/v2.0/person/?id=<person_id>`
+
+### Arguments
+
+          | |
+--------- | -----------
+person_id<span class="required-argument">required</span> | The kite person id
+
+### Returns
+A person object
+
 
 
 # Addresses
