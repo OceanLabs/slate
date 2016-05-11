@@ -2306,3 +2306,65 @@ Avoid positioning any logo underneath the address text.
 A blank space must be reserved in the top right corner of the postcard so that Kite can place a stamp there.
 
 This is because stamp designs must be pre-approved by the mail carrier before printing can take place. Designs which have not been approved will unfortunately not be accepted by the mail service for delivery.
+
+
+# Webhooks
+
+Kite allows partners to specify a remote URL to which they can receive status updates of orders placed by their customers. This allows our partners to maintain their own CRM (confirmation & dispatch e-mails, SMS services etc) or accounting systems that exist outside the Kite platform ecosystem.
+
+When an order is placed and any of it's associated print jobs status is updated, we'll send a HTTP POST request to the partner's configured webhook URL. This request will be sent as a JSON payload that includes a range of information about the customer's order.
+
+
+## Configuring Webhook
+
+A webhook url can be added to your account within the [notifications]([[website_endpoint]]/settings/notifications) section of the dashboard.
+
+Clicking Test Webhook within this section will trigger an example POST request, which will return a success if your endpoint responds with a HTTP 200 response.
+
+Your endpoint should be configured to receive a JSON payload in the format shown on the right.
+
+
+> Example JSON
+
+```json
+{
+    "environment": "TEST",
+    "time_submitted": "2016-5-1 23:12:30",
+    "order_id" : "PS-KITE-WEBHOOK-TEST",
+    "job_id" : "PS-KITE-WEBHOOK-TEST01-MS",
+    "status" : "Shipped",
+    "is_reprint": false,
+    "product" : {
+        "name": "Squares",
+        "id": "squares"
+    },
+    "customer_details" : {
+        "name": "Joe Bloggs",
+        "email": "joe@bloggs.com"
+    },
+    "address": {
+        "shipping_address_1": "123 Kite Avenue",
+        "shipping_address_2": "",
+        "shipping_address_3": "London",
+        "shipping_address_4": "",
+        "shipping_address_5": "",
+        "shipping_postcode": "123 ABD",
+        "shipping_country": "United Kingdom",
+        "shipping_country_code": "GB"
+    }
+}
+```
+
+## Order status updates
+
+A HTTP POST request will be triggered when a print job within an order is updated to one of the following status's :
+
+### Job Status
+
+ | |
+--------- | -----------
+Received by Printer | Your order has been received and is awaiting fulfilment
+Shipped | Your customer's order has been dispatched and is on it's way
+Cancelled | Your customer's order has been cancelled
+On Hold | The fulfilment of your customer's order has been put on hold
+Fulfilment failed | An error has occurred while processing your order. (See [errors](#errors))
