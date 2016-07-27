@@ -1150,53 +1150,62 @@ Many more products and brands available in the very near future.
 T-Shirt<span class="attribute-type">aa_mens_tshirt</span> | The softest, smoothest, best-looking short sleeve tee shirt available anywhere! Fine Jersey (100% Cotton) construction (Heather Grey contains 10% Polyester) • Durable rib neckband
 Hoodie<span class="attribute-type">aa_zip_hoodie</span> | Our hoodie offering from [Apparel](http://store.americanapparel.net/). A fitted, sporty unisex hoody in a unique Flex Fleece 50/50 cotton/poly blend, featuring a zipper closure
 
-### Options Arguments
+### Required Options Arguments
 
           | |
 --------- | -----------
 garment_size<span class="required-argument">required</span> | The size of garment you want created. Must be one of the following: `S`, `M`, `L`, `XL`, `XXL` corresponding to small, medium, large, extra large & extra extra large respectively
 garment_color<span class="required-argument">required</span> | The base material/fabric colour of the garment you want created. See the [American Apparel color swatch](http://www.americanapparel.net/wholesaleresources/colors.asp) to review fabric colours. Must be one of the following:  `white`, `black`, `navy`, `heather grey`, `light blue`, `maroon`, `sports grey`, `dark heather`
 
-### Assets Position Arguments
-<table class="apparel-positions">
-	<thead>
+### Available Product Colours
+
+<table class="apparel-colors">
+    <thead>
+		<tr>
+			<th>Color</th>
+			<th></th>
+			<th>Hex Color</th>
+		</tr>
+	</thead>
+</table>
+
+
+### Available Print Areas
+
+<table class="apparel-printareas">
+    <thead>
 		<tr>
 			<th>Position</th>
 			<th></th>
-			<th>Applicable Products</th>
-			<th>Max Width</th>
+			<th>Dimension</th>
+		</tr>
+	</thead>
+</table>
+
+
+### Assets Position Arguments
+
+All assets should be provided at a size no larger than 2100 x 2400px which corresponds to a size of 30 x 40cm (150 DPI).
+
+<table class="apparel-products">
+	<thead>
+		<tr>
+			<th>Product</th>
+			<th>Applicable Positions </th>
+			<th></th>
+			<th>Available Colors</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td>center_chest<span class="optional-argument">optional</span></td>
+		    <td>
+		        <code class="prettyprint">aa_mens_tshirt</code>
+            </td>
+			<td>center_chest</td>
 			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Chest" src="{% static "docs/images/centre_chest.jpg" %}"></td>
-			<td><code class="prettyprint">aa_mens_tshirt</code>, <code class="prettyprint">aa_zip_hoodie</code></td>
-			<td>30cm</td>
-		</tr>
-		<tr>
-			<td>center_back<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Back" src="{% static "docs/images/centre_back.jpg" %}"></td>
-			<td><code class="prettyprint">aa_mens_tshirt</code>, <code class="prettyprint">aa_zip_hoodie</code></td>
-			<td>30cm</td>
-		</tr>
-		<tr>
-			<td>top_chest<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Top Chest" src="{% static "docs/images/top_chest.jpg" %}"></td>
-			<td><code class="prettyprint">aa_mens_tshirt</code>, <code class="prettyprint">aa_zip_hoodie</code></td>
-			<td>30cm</td>
-		</tr>
-		<tr>
-			<td>right_chest<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Right Chest" src="{% static "docs/images/right_chest.jpg" %}"></td>
-			<td><code class="prettyprint">aa_mens_tshirt</code>, <code class="prettyprint">aa_zip_hoodie</code></td>
-			<td>12cm</td>
-		</tr>
-		<tr>
-			<td>left_chest<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Left Chest" src="{% static "docs/images/left_chest.jpg" %}"></td>
-			<td><code class="prettyprint">aa_mens_tshirt</code>, <code class="prettyprint">aa_zip_hoodie</code></td>
-			<td>12cm</td>
+			<td>
+			  green, black
+			</td>
 		</tr>
 	</tbody>
 </table>
