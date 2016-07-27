@@ -1177,9 +1177,31 @@ garment_color<span class="required-argument">required</span> | The base material
 		<tr>
 			<th>Position</th>
 			<th></th>
-			<th>Dimension</th>
+			<th>Dimensions</th>
 		</tr>
 	</thead>
+	<tbody>
+		<tr>
+			<td>center_chest<span class="optional-argument">optional</span></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Chest" src="{% static "docs/images/centre_chest.jpg" %}"></td>
+			<td>2100 x 2400 px (30x40cm) </td>
+		</tr>
+		<tr>
+			<td>center_back<span class="optional-argument">optional</span></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Back" src="{% static "docs/images/centre_back.jpg" %}"></td>
+			<td>2100 x 2400 px (30x40cm)</td>
+		</tr>
+		<tr>
+			<td>right_chest<span class="optional-argument">optional</span></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Right Chest" src="{% static "docs/images/right_chest.jpg" %}"></td>
+			<td>840 * 2400 px  (12x40cm) </td>
+		</tr>
+		<tr>
+			<td>left_chest<span class="optional-argument">optional</span></td>
+			<td class="img-tshirt"><img alt="T-Shirt Print API Left Chest" src="{% static "docs/images/left_chest.jpg" %}"></td>
+			<td>840 * 2400 px  (12x40cm)</td>
+		</tr>
+	</tbody>
 </table>
 
 
