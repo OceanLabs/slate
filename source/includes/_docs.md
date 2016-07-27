@@ -1147,32 +1147,180 @@ Many more products and brands available in the very near future.
 
           | |
 --------- | -----------
-T-Shirt<span class="attribute-type">aa_mens_tshirt</span> | The softest, smoothest, best-looking short sleeve tee shirt available anywhere! Fine Jersey (100% Cotton) construction (Heather Grey contains 10% Polyester) • Durable rib neckband
-Hoodie<span class="attribute-type">aa_zip_hoodie</span> | Our hoodie offering from [Apparel](http://store.americanapparel.net/). A fitted, sporty unisex hoody in a unique Flex Fleece 50/50 cotton/poly blend, featuring a zipper closure
+American Apparel Mens T-Shirt<span class="attribute-type">aa_mens_tshirt</span> | The softest, smoothest, best-looking short sleeve tee shirt available anywhere! Fine Jersey (100% Cotton) construction (Heather Grey contains 10% Polyester) • Durable rib neckband
+American Apparel Womens T-Shirt<span class="attribute-type">aa_womens_tshirt</span> |  A classic cut ladies t shirt that suits all ages and can be worn in lots of ways. The fabric of this t-shirt is ultra-soft and it is slim fitted with a durable rib neckline. Fabric: 100% Cotton
+American Apparel Zip Fleece Hoodie<span class="attribute-type">aa_zip_hoodie</span> | A bestselling fitted hooded top by this favourite America brand. Features a full white zip, white draw cords and kangaroo pouch pockets. Fabric: 50% Cotton 50% Polyester
+American Apparel Fleece Pullover Hoodie<span class="attribute-type">aa_fleece_pullover_hoodie</span> | The American Apparel Unisex Fleece Pullover Hoody is a unisex hoodie which is both a warm and comfortable piece of clothing. Raglan cut sleeves, ribbed cuffs and hem. Fabric: 100% Cotton
+American Apparel Fine Jersey Zip Hoodie <span class="attribute-type">aa_fine_zip_hoodie</span> | A lightweight fine jersey hoody with a matching nylon zipper closure and a matching finished polyester drawcord. Kangaroo pockets. Fabric : 100% Cotton
+American Apparel Tank Top  <span class="attribute-type">aa_tank_top</span> |  A bright and fashionable jersey tank, which suits customers old and young. It is soft and comfortable to wear. It is sleeveless and hangs loosely; it has contrasting piping round the neck and arm openings. Fabric: 100% Cotton
+AWD Hooded Sweatshirt  <span class="attribute-type">awd_hooded_sweatshirt</span> |  The AWDis College Hoodie boasts twin needle stitching detailing, a double fabric hood, and self coloured cords. Also with a ribbed cuff and hem and a kangaroo pouch pocket containing an opening for earphone cord feed. Fabric: 80% Cotton / 20% Polyester (280gsm).
+Gildan Adult Cotton T-Shirt  <span class="attribute-type">gildan_adult_cotton_tshirt</span> |  High quality Gildan t-shirt which keeps it's shape wash after wash. Taped neck and shoulders with a quarter turn to eliminate centre crease. Fabric 100% Cotton
+Gildan Adult Dryblend Crew Neck Sweatshirt  <span class="attribute-type">gildan_dry_blend_sweatshirt</span> | Air Jet yarn, softer feel and no pilling. DryBlend wicking performance. Heat transfer label. Twin needle stitching. 1x1 athletic rib with Spandex. Quarter turned to eliminate centre crease.
+Gildan Adult Full Zip Hooded Sweatshirt  <span class="attribute-type">gildan_zip_hooded_sweatshirt</span> | The Gildan HeavyBlend Adult Full Zip Hoodie features an unlined hood with matching drawstring, double-needle stitching, and set-in sleeves. Fabric: 50% Cotton, 50% Polyester
+Gildan Adult Hooded Sweatshirt  <span class="attribute-type">gildan_hooded_sweatshirt</span> | The Gildan HeavyBlend Adult Hoodie features a double lined hood with matching drawstring, pouch pocket, and twin needle stitching. Fabric: 50% Cotton, 50% Polyester
+Gildan Heavyblend Adult Crew Neck Sweatshirt  <span class="attribute-type">gildan_heavy_blend_sweatshirt</span> | The Gildan HeavyBlend Adult Crew Neck Sweatshirt is manufactured with an Air Jet yarn which gives a much softer feel and no pilling even after extended use. Constructed with double needle stitching, 1x1 athletic rib with Spandex & Quarter turned to eliminate centre crease. Fabric: 50% Cotton, 50% Polyester
+Gildan Soft Style Tank Top  <span class="attribute-type">gildan_tank_top</span> | Gildan Soft Style Tank Top has deluxe 30's Softstyle yarns, wide straps and a rib knit trim applied to neckline and armholes. Twin needle bottom hem. Quarter-turned to eliminate centre crease. Fabric: 100% Cotton
 
 ### Required Options Arguments
 
           | |
 --------- | -----------
 garment_size<span class="required-argument">required</span> | The size of garment you want created. Must be one of the following: `S`, `M`, `L`, `XL`, `XXL` corresponding to small, medium, large, extra large & extra extra large respectively
-garment_color<span class="required-argument">required</span> | The base material/fabric colour of the garment you want created. See the [American Apparel color swatch](http://www.americanapparel.net/wholesaleresources/colors.asp) to review fabric colours. Must be one of the following:  `white`, `black`, `navy`, `heather grey`, `light blue`, `maroon`, `sports grey`, `dark heather`
+garment_color<span class="required-argument">required</span> | The base material/fabric colour of the garment you want created. See our [available garment colors table](#available-garment-colours) to review fabric colours.
 
-### Available Product Colours
+### Available Garment Colours
 
-<table class="apparel-colors">
+<table class="apparel-positions">
     <thead>
 		<tr>
 			<th>Color</th>
 			<th></th>
-			<th>Hex Color</th>
+			<th>Hexadecimal Code</th>
 		</tr>
 	</thead>
+	<tbody>
+	    <tr>
+			<td>Blue</td>
+			<td> <span style="background-color:#004EA8">&nbsp&nbsp&nbsp&nbsp</span></td>
+			<td>004EA8</td>
+		</tr>
+	    <tr>
+			<td>Light Blue</td>
+			<td> <span style="background-color:#A3B3CB">&nbsp&nbsp&nbsp&nbsp</span> </td>
+			<td>A3B3CB</td>
+		</tr>
+		<tr>
+			<td>Navy</td>
+			<td>  <span style="background-color:#263147">&nbsp&nbsp&nbsp&nbsp</span> </td>
+			<td>263147</td>
+		</tr>
+		<tr>
+			<td>Carolina Blue</td>
+			<td> <span style="background-color:#7BA4DB">&nbsp&nbsp&nbsp&nbsp</span></td>
+			<td>7BA4DB</td>
+		</tr>
+		<tr>
+			<td>Airforce Blue</td>
+			<td> <span style="background-color:#486682">&nbsp&nbsp&nbsp&nbsp</span></td>
+			<td>486682</td>
+		</tr>
+        <tr>
+			<td>Coral</td>
+			<td> <span style="background-color:#FF5A60">&nbsp&nbsp&nbsp&nbsp</span></td>
+			<td>FF5A60</td>
+		</tr>
+		<tr>
+			<td>Baby Pink</td>
+			<td><span style="background-color:#E8BCD1">&nbsp&nbsp&nbsp&nbsp</span>  </td>
+			<td>E8BCD1</td>
+		</tr>
+		<tr>
+			<td>Red</td>
+			<td> <span style="background-color:#D60024">&nbsp&nbsp&nbsp&nbsp</span> </td>
+			<td>D60024</td>
+		</tr>
+		<tr>
+			<td>Cherry Red</td>
+			<td> <span style="background-color:#AC2B37">&nbsp&nbsp&nbsp&nbsp</span> </td>
+			<td>AC2B37</td>
+		</tr>
+		<tr>
+			<td>Truffle</td>
+			<td> <span style="background-color:#6C333A">&nbsp&nbsp&nbsp&nbsp</span> </td>
+			<td>6C333A</td>
+		</tr>
+		<tr>
+			<td>Brick Red</td>
+			<td><span style="background-color:#560B14">&nbsp&nbsp&nbsp&nbsp</span>  </td>
+			<td>560B14</td>
+		</tr>
+		<tr>
+			<td>Maroon</td>
+			<td><span style="background-color:#5B2B42">&nbsp&nbsp&nbsp&nbsp</span>  </td>
+			<td>5B2B42</td>
+		</tr>
+		<tr>
+			<td>Sunshine</td>
+			<td> <span style="background-color:#FBDE4A">&nbsp&nbsp&nbsp&nbsp</span> </td>
+			<td>FBDE4A</td>
+		</tr>
+        <tr>
+			<td>Gold</td>
+			<td><span style="background-color:#EEAD1A">&nbsp&nbsp&nbsp&nbsp</span>  </td>
+			<td>EEAD1A</td>
+		</tr>
+		<tr>
+			<td>Dark Heather</td>
+			<td> <span style="background-color:#3F4444">&nbsp&nbsp&nbsp&nbsp</span> </td>
+			<td>3F4444</td>
+		</tr>
+		<tr>
+			<td>Green</td>
+			<td><span style="background-color:#1C704D">&nbsp&nbsp&nbsp&nbsp</span>  </td>
+			<td>1C704D</td>
+		</tr>
+		<tr>
+			<td>Kelly Green</td>
+			<td> <span style="background-color:#00805E">&nbsp&nbsp&nbsp&nbsp</span> </td>
+			<td>00805E</td>
+		</tr>
+		<tr>
+			<td>Grass</td>
+			<td><span style="background-color:#5AAD52">&nbsp&nbsp&nbsp&nbsp</span>  </td>
+			<td>5AAD52</td>
+		</tr>
+		<tr>
+			<td>Peppermint</td>
+			<td><span style="background-color:#8CD2BF">&nbsp&nbsp&nbsp&nbsp</span>  </td>
+			<td>8CD2BF</td>
+		</tr>
+		<tr>
+			<td>Ash</td>
+			<td> <span style="background-color:#D4D3D9">&nbsp&nbsp&nbsp&nbsp</span> </td>
+			<td>D4D3D9</td>
+		</tr>
+		<tr>
+			<td>Heather Grey</td>
+			<td><span style="background-color:#ADBDBF">&nbsp&nbsp&nbsp&nbsp</span>  </td>
+			<td>ADBDBF</td>
+		</tr>
+		<tr>
+			<td>Charcoal</td>
+			<td><span style="background-color:#66676C">&nbsp&nbsp&nbsp&nbsp</span>  </td>
+			<td>66676C</td>
+		</tr>
+		<tr>
+			<td>Grey</td>
+			<td><span style="background-color:#B0B0B2">&nbsp&nbsp&nbsp&nbsp</span>  </td>
+			<td>B0B0B2</td>
+		</tr>
+		<tr>
+			<td>Asphalt</td>
+			<td><span style="background-color:#353146">&nbsp&nbsp&nbsp&nbsp</span>  </td>
+			<td>353146</td>
+		</tr>
+		<tr>
+			<td>Jet Black</td>
+			<td><span style="background-color:#1A2424">&nbsp&nbsp&nbsp&nbsp</span>  </td>
+			<td>1A2424</td>
+		</tr>
+		<tr>
+			<td>Black</td>
+			<td><span style="background-color:#25282B">&nbsp&nbsp&nbsp&nbsp</span>  </td>
+			<td>25282B</td>
+		</tr>
+		<tr>
+			<td>White</td>
+			<td><span style="background-color:#FFFFFF">&nbsp&nbsp&nbsp&nbsp</span>  </td>
+			<td>FFFFFF</td>
+		</tr>
+	</tbody>
 </table>
 
 
 ### Available Print Areas
 
-<table class="apparel-printareas">
+<table class="apparel-positions">
     <thead>
 		<tr>
 			<th>Position</th>
@@ -1194,12 +1342,12 @@ garment_color<span class="required-argument">required</span> | The base material
 		<tr>
 			<td>right_chest<span class="optional-argument">optional</span></td>
 			<td class="img-tshirt"><img alt="T-Shirt Print API Right Chest" src="{% static "docs/images/right_chest.jpg" %}"></td>
-			<td>840 * 2400 px  (12x40cm) </td>
+			<td>840 x 2400 px  (12x40cm) </td>
 		</tr>
 		<tr>
 			<td>left_chest<span class="optional-argument">optional</span></td>
 			<td class="img-tshirt"><img alt="T-Shirt Print API Left Chest" src="{% static "docs/images/left_chest.jpg" %}"></td>
-			<td>840 * 2400 px  (12x40cm)</td>
+			<td>840 x 2400 px  (12x40cm)</td>
 		</tr>
 	</tbody>
 </table>
@@ -1207,15 +1355,15 @@ garment_color<span class="required-argument">required</span> | The base material
 
 ### Assets Position Arguments
 
-All assets should be provided at a size no larger than 2100 x 2400px which corresponds to a size of 30 x 40cm (150 DPI).
+All apparel orders must be made with options and sizes that correspond to the product ordered as detailed in the below table.
 
-<table class="apparel-products">
+<table class="apparel-positions">
 	<thead>
 		<tr>
-			<th>Product</th>
+			<th>Product Template</th>
 			<th>Applicable Positions </th>
-			<th></th>
 			<th>Available Colors</th>
+            <th>Available Sizes</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -1224,9 +1372,155 @@ All assets should be provided at a size no larger than 2100 x 2400px which corre
 		        <code class="prettyprint">aa_mens_tshirt</code>
             </td>
 			<td>center_chest</td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Chest" src="{% static "docs/images/centre_chest.jpg" %}"></td>
 			<td>
-			  green, black
+			  black, white, heather_grey
+			</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">aa_womens_tshirt</code>
+            </td>
+			<td>center_chest</td>
+			<td>
+			  black, white, heather_grey
+			</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">aa_zip_hoodie</code>
+            </td>
+			<td>center_chest</td>
+			<td>
+			  black, white
+			</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">aa_tank_top</code>
+            </td>
+			<td>center_chest</td>
+			<td>
+			  black, white, red, heather_grey, navy, coral, sunshine, grass
+			</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">aa_fleece_pullover_hoodie</code>
+            </td>
+			<td>center_chest</td>
+			<td>
+			  grey, navy, truffle, kelly_green, asphalt
+			</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">aa_fine_zip_hoodie</code>
+            </td>
+			<td>center_chest</td>
+			<td>
+			  black, white
+			</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">gildan_adult_cotton_tshirt	</code>
+            </td>
+			<td>center_chest</td>
+			<td>
+			  black, white, grey
+			</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">gildan_tank_top</code>
+            </td>
+			<td>center_chest</td>
+			<td>
+			  red, white, heather_grey, navy, charcoal
+			</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">gildan_hooded_sweatshirt</code>
+            </td>
+			<td>center_chest</td>
+			<td>
+			  cherry_red, carolina_blue, black, gold, charcoal
+			</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">gildan_dry_blend_sweatshirt</code>
+            </td>
+			<td>center_chest</td>
+			<td>
+			  black, blue, green, grey, red
+			</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">gildan_heavy_blend_sweatshirt</code>
+            </td>
+			<td>center_chest</td>
+			<td>
+			  black, blue, green, grey, red
+			</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">gildan_zip_hooded_sweatshirt</code>
+            </td>
+			<td>center_chest</td>
+			<td>
+			  black, dark_heather, maroon, navy, carolina_blue, ash
+			</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">awd_hooded_sweatshirt</code>
+            </td>
+			<td>center_chest</td>
+			<td>
+			  heather_grey, ash, gold, airforce_blue, baby_pink, peppermint, jet_black, brick_red
+			</td>
+			<td>
+			    s,m,l,xl
 			</td>
 		</tr>
 	</tbody>
