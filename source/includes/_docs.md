@@ -971,6 +971,8 @@ iPhone 4/4S Tough Case<span class="attribute-type">i4_tough_case</span><span cla
 iPad Mini Case<span class="attribute-type">ipad_mini_case</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/mask_IPADMI-CS.png">Case Mask</a></span> | iPad Mini snap case constructed to the highest quality design, material & coating
 iPad Air Case<span class="attribute-type">ipad_air_case</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/mask_IPAD-A-CS.png">Case Mask</a></span> | iPad Air snap case constructed to the highest quality design, material & coating
 iPad 2,3,4 Case<span class="attribute-type">ipad_case</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/phone_masks/ipad_cases/IPAD2-CS/IPAD2-CS_mask.png">Case Mask</a></span> | iPad 2,3,4 snap case constructed to the highest quality design, material & coating
+Samsung Galaxy S7 Edge Case<span class="attribute-type">samsung_s7e_case</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/phone_masks/phone_cases/SGS7E-CS/SGS7E-CS_mask.png">Case Mask</a></span> | Samsung Galaxy S6 Edge snap case constructed to the highest quality design, material & coating
+Samsung Galaxy S7 Case<span class="attribute-type">samsung_s7_case</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/phone_masks/phone_cases/SGS7-CS/SGS7-CS_mask.png">Case Mask</a></span> | Samsung Galaxy S6 Edge snap case constructed to the highest quality design, material & coating
 Samsung Galaxy S6 Edge Case<span class="attribute-type">samsung_s6e_case</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/phone_masks/phone_cases/SGS6E-CS/SGS6E-CS_mask.png">Case Mask</a></span> | Samsung Galaxy S6 Edge snap case constructed to the highest quality design, material & coating
 Samsung Galaxy S6 Case<span class="attribute-type">samsung_s6_case</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/phone_masks/phone_cases/SGS6-CS/SGS6-CS_mask.png">Case Mask</a></span> | Samsung Galaxy S6 snap case constructed to the highest quality design, material & coating
 Samsung Galaxy S5 Case<span class="attribute-type">samsung_s5_case</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/mask_SGS5-CS.png">Case Mask</a></span> | Samsung Galaxy S5 snap case constructed to the highest quality design, material & coating
@@ -992,7 +994,7 @@ Nexus 5 Case<span class="attribute-type">nexus_5_case</span><span class=attribut
 
           | |
 --------- | -----------
-case_style<span class="optional-argument">optional</span> | Either `matte` or `gloss`. Defaults to `gloss` if not present. `matte` style only valid for `i4_case`, `i5_case`, `i5c_case`, `i6_case`, `i6plus_case`, `samsung_s4_case`, `samsung_s5_case` and `samsung_s5_mini_case`.
+case_style<span class="optional-argument">optional</span> | Either `matte` or `gloss`. Defaults to `gloss` if not present. `matte` style only valid for `i4_case`, `i5_case`, `i5c_case`, `i6_case`, `i6s_case`, `i6plus_case`, `i6splus_case`, `samsung_s4_case`, `samsung_s5_case`, `samsung_s6_case` , `samsung_s6e_case`, `samsung_s7_case` and `samsung_s7e_case`.
 
 ## Ordering apparel
 
