@@ -1156,6 +1156,8 @@ American Apparel Fleece Pullover Hoodie<span class="attribute-type">aa_fleece_pu
 American Apparel Fine Jersey Zip Hoodie <span class="attribute-type">aa_fine_zip_hoodie</span> | A lightweight fine jersey hoody with a matching nylon zipper closure and a matching finished polyester drawcord. Kangaroo pockets. Fabric : 100% Cotton
 American Apparel Tank Top  <span class="attribute-type">aa_tank_top</span> |  A bright and fashionable jersey tank, which suits customers old and young. It is soft and comfortable to wear. It is sleeveless and hangs loosely; it has contrasting piping round the neck and arm openings. Fabric: 100% Cotton
 AWD Hooded Sweatshirt  <span class="attribute-type">awd_hooded_sweatshirt</span> |  The AWDis College Hoodie boasts twin needle stitching detailing, a double fabric hood, and self coloured cords. Also with a ribbed cuff and hem and a kangaroo pouch pocket containing an opening for earphone cord feed. Fabric: 80% Cotton / 20% Polyester (280gsm).
+AWD Ladies Tank Top  <span class="attribute-type">awd_ladies_tank_top</span> |  The Girlie Cool Vest from AWD is tailor made to fit the contours of the female form and comes a range of fantastic colours. There is a curved back hem for extra comfort  and AWDis's own Neoteric textured fabric has great wicking properties.  Fabric: 100% Polyester.
+AWD Men's Muscle Vest <span class="attribute-type">awd_mens_muscle_vest</span> | Gym fit. Thin shoulder straps, for ease of movement. AWDis's own NeotericTM textured fabric with inherent wickability. Straight front and back hem. Fabric: 100% Polyester.
 Gildan Adult Cotton T-Shirt  <span class="attribute-type">gildan_adult_cotton_tshirt</span> |  High quality Gildan t-shirt which keeps it's shape wash after wash. Taped neck and shoulders with a quarter turn to eliminate centre crease. Fabric 100% Cotton
 Gildan Adult Dryblend Crew Neck Sweatshirt  <span class="attribute-type">gildan_dry_blend_sweatshirt</span> | Air Jet yarn, softer feel and no pilling. DryBlend wicking performance. Heat transfer label. Twin needle stitching. 1x1 athletic rib with Spandex. Quarter turned to eliminate centre crease.
 Gildan Adult Full Zip Hooded Sweatshirt  <span class="attribute-type">gildan_zip_hooded_sweatshirt</span> | The Gildan HeavyBlend Adult Full Zip Hoodie features an unlined hood with matching drawstring, double-needle stitching, and set-in sleeves. Fabric: 50% Cotton, 50% Polyester
@@ -1240,6 +1242,16 @@ garment_color<span class="required-argument">required</span> | The base material
 			<td>Maroon</td>
 			<td><span style="background-color:#5B2B42">&nbsp&nbsp&nbsp&nbsp</span>  </td>
 			<td>5B2B42</td>
+		</tr>
+		<tr>
+			<td>Purple</td>
+			<td><span style="background-color:#5B2B42">&nbsp&nbsp&nbsp&nbsp</span>  </td>
+			<td>531D8A</td>
+		</tr>
+		<tr>
+			<td>Yellow</td>
+			<td> <span style="background-color:#FBDE4A">&nbsp&nbsp&nbsp&nbsp</span> </td>
+			<td>EDD35E</td>
 		</tr>
 		<tr>
 			<td>Sunshine</td>
@@ -1520,6 +1532,30 @@ All apparel orders must be made with options and sizes that correspond to the pr
 			<td>center_chest</td>
 			<td>
 			  heather_grey, ash, gold, airforce_blue, baby_pink, peppermint, jet_black, brick_red
+			</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">awd_ladies_tank_top</code>
+            </td>
+			<td>center_chest</td>
+			<td>
+			  white, yellow, purple, sapphire_blue
+			</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">awd_mens_muscle_vest</code>
+            </td>
+			<td>center_chest</td>
+			<td>
+			  black
 			</td>
 			<td>
 			    s,m,l,xl
