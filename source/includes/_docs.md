@@ -1568,13 +1568,13 @@ All apparel orders must be made with options and sizes that correspond to the pr
 
 ## Ordering photobooks
 
-> Example Order Request
+> Example Order Request (JSON route)
 
 ```shell
 curl "[[api_endpoint]]/v2.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
-    "shipping_address": {
+   "shipping_address": {
       "recipient_name": "Deon Botha",
       "address_line_1": "Eastcastle House",
       "address_line_2": "27-28 Eastcastle Street",
@@ -1582,18 +1582,103 @@ curl "[[api_endpoint]]/v2.0/print/" \
       "county_state": "Greater London",
       "postcode": "W1W 8DH",
       "country_code": "GBR"
-    },
-    "customer_email": "[[user_email]]",
-    "customer_phone": "+44 (0)784297 1234",
-    "customer_payment": {
+   },
+   "customer_email": "deon@kite.ly",
+   "customer_phone": "+44 (0)784297 1234",
+   "customer_payment": {
       "amount": 29.99,
       "currency": "USD"
-    },
-    "jobs": [{
-      "pdf": "https://s3.amazonaws.com/sdk-static/portrait_photobook.pdf",
-      "template_id": "rpi_wrap_280x210_sm"
-    }]
-  }'
+   },
+   "jobs": [{
+      "template_id": "rpi_wrap_280x210_sm",
+      "assets": {
+      	 "front_cover": "https://s3.amazonaws.com/sdk-static/TestImages/front.png",
+      	 "back_cover": "https://s3.amazonaws.com/sdk-static/TestImages/back.png",      	
+         "pages": [
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/1.png"
+            }, 
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/2.png"
+            },
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/3.png"
+            },
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/4.png"
+            },         
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/5.png"
+            },         
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/6.png"
+            },         
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/7.png"
+            },                                                         
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/8.png"
+            },   
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/9.png"
+            },   
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/10.png"
+            },   
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/11.png"
+            }, 
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/12.png"
+            },
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/13.png"
+            },
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/14.png"
+            },         
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/15.png"
+            },         
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/16.png"
+            },         
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/17.png"
+            },                                                         
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/18.png"
+            },   
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/19.png"
+            },   
+            {
+               "layout": "single_centered",
+               "asset": "https://s3.amazonaws.com/sdk-static/TestImages/20.png"
+            }
+         ]
+      }
+   }]
+}'
 ```
 
 ```objective_c
@@ -1702,7 +1787,76 @@ card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard
 
 If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders. 
 
-The example request on the right would result in a hardcover landscape photobook being created and shipped to the specified address.
+There are two options for ordering photobooks: (1) via our JSON representation or (2) using pre-constructed PDFs.
+
+### Photobook JSON representation 
+
+The easiest approach for placing photo book orders is to describe the book using our JSON interface. 
+In this way, you can define the layouts and photos for each page without actually creating the PDF yourself.
+ 
+The first example request on the right would result in a hardcover landscape photobook being created and shipped to the specified address.
+
+### assets object
+          | |
+--------- | -----------
+front_cover | An image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. This image will be used as the front cover.
+back_cover | An image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. This image will be used as the back cover.
+pages<span class="required-argument">required</span> | An array of page objects. You must submit at least 20 pages. Thereafter, you may increment the count in multiples of 4.
+
+### page object
+          | |
+--------- | -----------
+layout<span class="required-argument">required</span> | String name of one of the supported layouts.
+asset<span class="required-argument">required</span> | An image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite.
+
+### Supported layouts
+          | |
+--------- | -----------
+single_centered | A single image taking up the entire page.
+
+*More layouts coming soon!*
+
+### Photobook PDF route
+
+> Example Order Request (PDF route)
+
+```shell
+curl "[[api_endpoint]]/v2.0/print/" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
+  --data '{
+   "shipping_address": {
+      "recipient_name": "Deon Botha",
+      "address_line_1": "Eastcastle House",
+      "address_line_2": "27-28 Eastcastle Street",
+      "city": "London",
+      "county_state": "Greater London",
+      "postcode": "W1W 8DH",
+      "country_code": "GBR"
+   },
+   "customer_email": "deon@kite.ly",
+   "customer_phone": "+44 (0)784297 1234",
+   "customer_payment": {
+      "amount": 29.99,
+      "currency": "USD"
+   },
+   "jobs": [{
+      "template_id": "rpi_wrap_280x210_sm",
+      "assets": {
+      	 "inside_pdf": "https://s3.amazonaws.com/sdk-static/TestImages/inside.pdf",
+      	 "cover_pdf": "https://s3.amazonaws.com/sdk-static/TestImages/cover.pdf"   	
+      }
+   }]
+}'
+```
+
+You may want more flexibility in designing your book, in which case you can send through a pre-made PDF.
+You will need to send through two PDFs, one for the inner block of pages and one for the front/back cover spread.
+It is important that your PDFs match the sizes in the below specs exactly:
+
+[Book Specifications](https://s3-eu-west-1.amazonaws.com/co.oceanlabs.ps/kite_book_specs.pdf)
+
+[Cover Example](https://s3-eu-west-1.amazonaws.com/co.oceanlabs.ps/kite_cover_example.pdf)
+
 
 ### products & template_ids
 
@@ -1714,11 +1868,11 @@ Small Square Hardcover<span class="attribute-type">rpi_wrap_140x140_sm</span> | 
 Medium Square Hardcover<span class="attribute-type">rpi_wrap_210x210_sm</span> | 21cm x 21cm hardcover square photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
 Large Square Hardcover<span class="attribute-type">rpi_wrap_300x300_sm</span> | 30cm x 30cm hardcover square photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
 
-### Job Arguments
-
+### assets object
           | |
 --------- | -----------
-pdf<span class="required-argument">required</span> | A PDF URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. The PDF itself should contain 24 pages. Each PDF page must have dimensions matching those specified by the chosen photobook template. The first and last pages of the PDF form the front and back covers for the photobook respectively.
+inside_pdf | An image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. This image will be used as the inside block.
+cover_pdf | An image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. This image will be used as the front / back cover spread.
 
 
 ## Ordering postcards
