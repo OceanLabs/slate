@@ -2121,6 +2121,80 @@ back_image<span class="optional-argument">optional</span> | A image URL accessib
 inside_left_image<span class="optional-argument">optional</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. Specifying an `inside_left_image` gives you total control of the inside of the greetings card.
 inside_right_image<span class="optional-argument">optional</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. Specifying a `inside_right_image` gives you total control of the inside of the greetings card.
 
+## Ordering invitations
+
+> Example Order Request
+
+```shell
+curl "[[api_endpoint]]/v2.0/print/" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
+  --data '{
+    "shipping_address": {
+      "recipient_name": "Deon Botha",
+      "address_line_1": "Eastcastle House",
+      "address_line_2": "27-28 Eastcastle Street",
+      "city": "London",
+      "county_state": "Greater London",
+      "postcode": "W1W 8DH",
+      "country_code": "GBR"
+    },
+    "customer_email": "[[user_email]]",
+    "customer_phone": "+44 (0)784297 1234",
+    "customer_payment": {
+      "amount": 3.99,
+      "currency": "USD"
+    },
+    "jobs": [{
+      "assets": {
+        "front_image": "https://s3.amazonaws.com/kite-samples/invitation/front.png",
+        "back_image": "https://s3.amazonaws.com/kite-samples/invitation/back.png"
+      },
+      "template_id": "square_invitations_15x15cm"
+    }]
+  }'
+```
+
+```objective_c
+// See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
+// See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
+
+```
+
+```java
+// See https://github.com/OceanLabs/Android-Print-SDK#custom-checkout for full step by step instructions
+
+```
+
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.<br /><br />
+
+> Example Response
+
+```shell
+{
+  "print_order_id": "PS96-996634811"
+}
+```
+
+
+If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders.
+
+The example request on the right would result in a greetings card being created and shipped to the specified address.
+
+### products & template_ids
+
+          | |
+--------- | -----------
+Square Invitation <span class="attribute-type">square_invitations_15x15cm</span> | Double sided square invitation printed on 350gsm quality gloss card. Shipped within an addressed envelope and dispatched worldwide.
+Square Invitation 10 pack <span class="attribute-type">square_invitations_15x15cm_10pack</span> | Pack of 10 double sided square invitation printed on 350gsm quality gloss card. Shipped within an addressed envelope and dispatched worldwide.
+
+### Assets Arguments
+
+          | |
+--------- | -----------
+front_image<span class="required-argument">required</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. It will form the front of the invitation.
+back_image<span class="required-argument">required</span> | A image URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite. It will form the front of the invitation.
+
+
 ## Dimension Reference
 
 The tables below detail the optimal asset pixel dimensions for products in our range. Whilst assets you provide to Kite can be
