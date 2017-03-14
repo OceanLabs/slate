@@ -2720,7 +2720,7 @@ An order object detailing the order
 
 Within versions of the Kite API v4.0 and upwards, it is possible to place orders with particular expedited and tracked shipping methods.
 
-Each product has a 'Standard' shipping class which is most cases will be Economy delivery. Tracked and expedited delivery for a product can be retrieved from Kite and placed within the print order request to enable alternative shipping methods.
+Each product has a 'Standard' shipping class which in most cases will be an untracked delivery. Tracked and expedited delivery for a product can be retrieved from Kite and placed within the print order request to enable alternative shipping methods.
 
 ## Getting shipping options for a product
 
@@ -2869,20 +2869,13 @@ In the example on the right, a delivery to the United States ("USA") would fall 
 
 ## Retrieving available shipping methods
 
-The available shipping methods to that country can then be looked up within the `shipping_classes` of the shipping response.
+The available shipping methods to that country can then be looked up within the `shipping_classes` field of the shipping response.
 
 The available shipping methods for a delivery to the United States (which is in the "ROW" shipping region) is shown on the right.
 
 In this case there are two available options, International Tracked and Standard shipping.
 
 ### Shipping response fields
-
-> Example Shipping Methods Response
-
-```shell
-curl "[[api_endpoint]]/v4.0/shipping_methods/a3_poster" \
-  -H "Authorization: ApiKey [[public_key]]:"
-```
 
 > Example Shipping Classes available for a delivery to the United States
 
@@ -2983,7 +2976,7 @@ By default, orders placed for products will default to it's `Standard` shipping 
 
 For example the request on the right would result in an A3 Poster being created and shipped to the United States using the `International Tracked` shipping method.
 
-If an incorrect shipping_class is specified that does not correspond to any available methods for the destination country, the job will fall back to the Standard shipping method without raising an error.
+If an incorrect shipping_class is included within the order request that does not correspond to any available methods for the destination country, the job will fall back to the Standard shipping method without raising an error.
 
 The job object is covered in more detail within the [job objects](#the-job-object) of the documentation.
 
