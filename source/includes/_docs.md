@@ -2972,7 +2972,7 @@ curl "[[api_endpoint]]/v4.0/print/" \
   }'
 ```
 
-By default, orders placed for products will default to it's `Standard` shipping method. However you can specify an alternate shipping method if it exists for delivery to your destination country.
+Orders placed for products will default to it's `Standard` shipping method. However you can specify an alternate shipping method (if it exists) for delivery to your destination country.
 
 For example the request on the right would result in an A3 Poster being created and shipped to the United States using the `International Tracked` shipping method.
 
