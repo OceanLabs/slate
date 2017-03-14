@@ -2863,7 +2863,7 @@ Returns a list of shipping options for the product. The shipping methods availab
 
 ### Determining your shipping region
 
-The shipping region of your destination country can be found by looking up it's 3 letter ISO code delivery country within the `shipping_regions` dictionary in the response.
+The shipping region of your destination country can be found by looking up it's 3 letter ISO country code within the `shipping_regions` dictionary of the response.
 
 In the example on the right, a delivery to the United States ("USA") would fall within the "ROW" shipping region while a delivery to the United Kingdom ("GBR") would fall in the "GB" shipping region.
 
@@ -2946,7 +2946,7 @@ costs | A dictionary of the associated postage cost of placing a order with that
 display_name| The name of the mail carrier. Example carriers include Royal Mail, USPS or FedEx.
 tracked| Whether the delivery method includes order tracking. Tracking details can be retrieved once the order is dispatched from the Orders endpoint.
 min_delivery_time| The estimated earliest delivery time (in working days) once the order has been dispatched.
-max_delivery_time| The latest delivery time (in working days) once the order has been dispatched.
+max_delivery_time| The estimated latest delivery time (in working days) once the order has been dispatched.
 
 ## Placing an order with a specified shipping method
 
@@ -2991,7 +2991,7 @@ The job object is covered in more detail within the [job objects](#the-job-objec
 
           | |
 --------- | -----------
-id <span class="optional-argument">optional </span> | The unique identified of the shipping method that you would like to use for your ordered product
+id <span class="optional-argument">optional </span> | The unique identifier of the shipping method that you would like to use for your ordered product
 
 
 # Customers
