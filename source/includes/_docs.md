@@ -2976,9 +2976,9 @@ By default, orders placed for products will default to it's `Standard` shipping 
 
 For example the request on the right would result in an A3 Poster being created and shipped to the United States using the `International Tracked` shipping method.
 
-If an incorrect shipping_class is included within the order request that does not correspond to any available methods for the destination country, the job will fall back to the Standard shipping method without raising an error.
+If an incorrect shipping_class is included within the order request that does not correspond to any available methods for that product, the job will fall back to the default `Standard` shipping method without raising an error.
 
-The job object is covered in more detail within the [job objects](#the-job-object) of the documentation.
+The job object is covered in more detail within the [job objects](#the-job-object) section of the documentation.
 
 ### Specifying the shipping method with the job object
 
