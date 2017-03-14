@@ -27,7 +27,7 @@ Some of our SDKs are also bundled with optional checkout experiences proven to c
 > Example Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/address/search/?country_code=USA&search_term=1+Infinite+Loop" \
+curl "[[api_endpoint]]/v4.0/address/search/?country_code=USA&search_term=1+Infinite+Loop" \
   -H "Authorization: ApiKey [[public_key]]:"
 ```
 
@@ -62,7 +62,7 @@ This is the easiest approach to using the Kite platform as it means you don't ne
 > Example Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/address/search/?country_code=USA&search_term=1+Infinite+Loop" \
+curl "[[api_endpoint]]/v4.0/address/search/?country_code=USA&search_term=1+Infinite+Loop" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>"
 ```
 
@@ -160,7 +160,7 @@ Where possible an error response will include an `error` object that provides fu
 > Example Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/order/?offset=30&limit=5" \
+curl "[[api_endpoint]]/v4.0/order/?offset=30&limit=5" \
   -H "Authorization: ApiKey [[public_key]]:[[secret_key]]"
 ```
 
@@ -251,7 +251,7 @@ url<span class="attribute-type">string</span> | The URL from which the asset can
 > Managed Asset Registration Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/asset/sign/?mime_types=image/jpeg&client_asset=true" \
+curl "[[api_endpoint]]/v4.0/asset/sign/?mime_types=image/jpeg&client_asset=true" \
   -H "Authorization: ApiKey [[public_key]]:"
 ```
 
@@ -344,7 +344,7 @@ Registering and uploading a managed asset is a two step process. First you make 
 
 ### HTTP Request
 
-`GET [[api_endpoint]]/v2.0/asset/sign/`
+`GET [[api_endpoint]]/v4.0/asset/sign/`
 
 ### Arguments
 
@@ -403,6 +403,7 @@ A job encapsulates the details to create a single personalised product. For exam
 template_id<span class="attribute-type">string</span> | The identifier for the product you want created. A full list of template identifiers for products can be found below in the relevant product ordering sections
 assets<span class="attribute-type">list</span> | A list of image URLs accessible to the Kite servers or a list of [asset object](#the-asset-object) identifiers that you have received by [uploading an asset](#uploading-an-asset) to Kite. These assets will be used in the creation of the personalised product indicated by `template_id`
 options<span class="attribute-type">object</span> | *Optional* object only applicable for certain products. It contains product specific modifiers; for example for [t-shirts](#ordering-apparel) you can specify the color and size amongst other things in here, for [phone cases](#ordering-phone-cases) you can specify gloss or matte finish, etc.
+shipping_class<span class="attribute-type">integer</span> | *Optional* field to specify a non standard delivery method. See our [Shipping methods](#shipping-methods) section for more information.
 pdf<span class="attribute-type">string</span> | *Optional* object only applicable for certain products such as [photobooks](#ordering-photobooks). A PDF URL accessible to the Kite servers or an [asset object](#the-asset-object) identifier that you have received by [uploading an asset](#uploading-an-asset) to Kite.
 
 ## The order object
@@ -459,7 +460,7 @@ jobs<span class="attribute-type">list</span> | A list of one or more [job object
 > Example Order Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/print/" \
+curl "[[api_endpoint]]/v4.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -620,7 +621,7 @@ Product identifiers and product specific request arguments (if any) are document
 
 ### HTTP Request
 
-`POST [[api_endpoint]]/v2.0/print/`
+`POST [[api_endpoint]]/v4.0/print/`
 
 ### Arguments
 
@@ -643,7 +644,7 @@ Returns a dictionary containing the order id
 > Example Order Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/print/" \
+curl "[[api_endpoint]]/v4.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -807,7 +808,7 @@ A3 Poster<span class="attribute-type">a3_poster</span> | Our large format poster
 > Example Order Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/print/" \
+curl "[[api_endpoint]]/v4.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -996,12 +997,12 @@ Nexus 5 Case<span class="attribute-type">nexus_5_case</span><span class=attribut
 --------- | -----------
 case_style<span class="optional-argument">optional</span> | Either `matte` or `gloss`. Defaults to `gloss` if not present. `matte` style only valid for `i4_case`, `i5_case`, `i5c_case`, `i6_case`, `i6s_case`, `i6plus_case`, `i6splus_case`, `samsung_s4_case`, `samsung_s5_case`, `samsung_s6_case` , `samsung_s6e_case`, `samsung_s7_case` and `samsung_s7e_case`.
 
-## Ordering apparel
+## Ordering DTG apparel
 
 > Example Order Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/print/" \
+curl "[[api_endpoint]]/v4.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -1353,16 +1354,6 @@ garment_color<span class="required-argument">required</span> | The base material
 			<td class="img-tshirt"><img alt="T-Shirt Print API Centre Back" src="{% static "docs/images/centre_back.jpg" %}"></td>
 			<td>2100 x 2400 px (30x40cm)</td>
 		</tr>
-		<tr>
-			<td>right_chest<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Right Chest" src="{% static "docs/images/right_chest.jpg" %}"></td>
-			<td>840 x 2400 px  (12x40cm) </td>
-		</tr>
-		<tr>
-			<td>left_chest<span class="optional-argument">optional</span></td>
-			<td class="img-tshirt"><img alt="T-Shirt Print API Left Chest" src="{% static "docs/images/left_chest.jpg" %}"></td>
-			<td>840 x 2400 px  (12x40cm)</td>
-		</tr>
 	</tbody>
 </table>
 
@@ -1385,7 +1376,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 		    <td>
 		        <code class="prettyprint">aa_mens_tshirt</code>
             </td>
-			<td>center_chest</td>
+			<td>center_chest, center_back</td>
 			<td>
 			  black, white, heather_grey
 			</td>
@@ -1397,7 +1388,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 		    <td>
 		        <code class="prettyprint">aa_womens_tshirt</code>
             </td>
-			<td>center_chest</td>
+			<td>center_chest, center_back</td>
 			<td>
 			  black, white, heather_grey
 			</td>
@@ -1409,7 +1400,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 		    <td>
 		        <code class="prettyprint">aa_zip_hoodie</code>
             </td>
-			<td>center_chest</td>
+			<td>center_chest, center_back</td>
 			<td>
 			  black, white
 			</td>
@@ -1421,7 +1412,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 		    <td>
 		        <code class="prettyprint">aa_tank_top</code>
             </td>
-			<td>center_chest</td>
+			<td>center_chest, center_back</td>
 			<td>
 			  black, white, red, heather_grey, navy, coral, sunshine, grass
 			</td>
@@ -1433,7 +1424,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 		    <td>
 		        <code class="prettyprint">aa_fleece_pullover_hoodie</code>
             </td>
-			<td>center_chest</td>
+			<td>center_chest, center_back</td>
 			<td>
 			  grey, navy, truffle, kelly_green, asphalt
 			</td>
@@ -1445,7 +1436,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 		    <td>
 		        <code class="prettyprint">aa_fine_zip_hoodie</code>
             </td>
-			<td>center_chest</td>
+			<td>center_chest, center_back</td>
 			<td>
 			  black, white
 			</td>
@@ -1457,7 +1448,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 		    <td>
 		        <code class="prettyprint">gildan_adult_cotton_tshirt	</code>
             </td>
-			<td>center_chest</td>
+			<td>center_chest, center_back</td>
 			<td>
 			  black, white, grey
 			</td>
@@ -1469,7 +1460,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 		    <td>
 		        <code class="prettyprint">gildan_tank_top</code>
             </td>
-			<td>center_chest</td>
+			<td>center_chest, center_back</td>
 			<td>
 			  red, white, heather_grey, navy, charcoal
 			</td>
@@ -1481,7 +1472,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 		    <td>
 		        <code class="prettyprint">gildan_hooded_sweatshirt</code>
             </td>
-			<td>center_chest</td>
+			<td>center_chest, center_back</td>
 			<td>
 			  cherry_red, carolina_blue, black, gold, charcoal
 			</td>
@@ -1493,7 +1484,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 		    <td>
 		        <code class="prettyprint">gildan_dry_blend_sweatshirt</code>
             </td>
-			<td>center_chest</td>
+			<td>center_chest, center_back</td>
 			<td>
 			  black, blue, green, grey, red
 			</td>
@@ -1505,7 +1496,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 		    <td>
 		        <code class="prettyprint">gildan_heavy_blend_sweatshirt</code>
             </td>
-			<td>center_chest</td>
+			<td>center_chest, center_back</td>
 			<td>
 			  black, blue, green, grey, red
 			</td>
@@ -1517,7 +1508,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 		    <td>
 		        <code class="prettyprint">gildan_zip_hooded_sweatshirt</code>
             </td>
-			<td>center_chest</td>
+			<td>center_chest, center_back</td>
 			<td>
 			  black, dark_heather, maroon, navy, carolina_blue, ash
 			</td>
@@ -1529,7 +1520,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 		    <td>
 		        <code class="prettyprint">awd_hooded_sweatshirt</code>
             </td>
-			<td>center_chest</td>
+			<td>center_chest, center_back</td>
 			<td>
 			  heather_grey, ash, gold, airforce_blue, baby_pink, peppermint, jet_black, brick_red
 			</td>
@@ -1541,7 +1532,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 		    <td>
 		        <code class="prettyprint">awd_ladies_tank_top</code>
             </td>
-			<td>center_chest</td>
+			<td>center_chest, center_back</td>
 			<td>
 			  white, yellow, purple, sapphire_blue
 			</td>
@@ -1553,7 +1544,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 		    <td>
 		        <code class="prettyprint">awd_mens_muscle_vest</code>
             </td>
-			<td>center_chest</td>
+			<td>center_chest, center_back</td>
 			<td>
 			  black
 			</td>
@@ -1565,13 +1556,265 @@ All apparel orders must be made with options and sizes that correspond to the pr
 </table>
 
 
+## Ordering sublimation apparel
+
+> Example Order Request
+
+```shell
+curl "[[api_endpoint]]/v4.0/print/" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
+  --data '{
+    "shipping_address": {
+      "recipient_name": "Deon Botha",
+      "address_line_1": "Eastcastle House",
+      "address_line_2": "27-28 Eastcastle Street",
+      "city": "London",
+      "county_state": "Greater London",
+      "postcode": "W1W 8DH",
+      "country_code": "GBR"
+    },
+    "customer_email": "[[user_email]]",
+    "customer_phone": "+44 (0)784297 1234",
+    "customer_payment": {
+      "amount": 29.99,
+      "currency": "USD"
+    },
+    "jobs": [{
+      "options": {
+        "garment_size": "M"
+      },
+      "assets": {
+        "front_image": "http://psps.s3.amazonaws.com/sdk_static/1.jpg",
+        "back_image": "http://psps.s3.amazonaws.com/sdk_static/2.jpg"
+      },
+      "template_id": "awd_sublimation_tshirt"
+    }]
+  }'
+```
+
+```objective_c
+// See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
+#import <Kite-Print-SDK/OLKitePrintSDK.h>
+
+NSArray *assets = @{
+    @"front_image": [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]]
+};
+
+id<OLPrintJob> tshirt = [OLPrintJob printJobWithTemplateId:@"awd_sublimation_tshirt" OLAssets:assets];
+[tshirt setValue:@"M" forOption:@"garment_size"];
+
+OLPrintOrder *order = [[OLPrintOrder alloc] init];
+[order addPrintJob:tshirt];
+
+OLAddress *a    = [[OLAddress alloc] init];
+a.recipientName = @"Deon Botha";
+a.line1         = @"27-28 Eastcastle House";
+a.line2         = @"Eastcastle Street";
+a.city          = @"London";
+a.stateOrCounty = @"Greater London";
+a.zipOrPostcode = @"W1W 8DH";
+a.country       = [OLCountry countryForCode:@"GBR"];
+
+order.shippingAddress = a;
+
+OLPayPalCard *card = [[OLPayPalCard alloc] init];
+card.type = kOLPayPalCardTypeVisa;
+card.number = @"4121212121212127";
+card.expireMonth = 12;
+card.expireYear = 2020;
+card.cvv2 = @"123";
+
+[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+  order.proofOfPayment = proofOfPayment;
+  [self.printOrder submitForPrintingWithProgressHandler:nil
+                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+    // If there is no error then you can display a success outcome to the user
+  }];
+}];
+
+```
+
+```java
+// See https://github.com/OceanLabs/Android-Print-SDK#custom-checkout for full step by step instructions
+
+import ly.kite.address.Address;
+import ly.kite.payment.PayPalCard;
+import ly.kite.print.Asset;
+import ly.kite.print.PrintJob;
+import ly.kite.print.PrintOrder;
+
+Map<String, Asset> assets = new HashMap<String, Asset>();
+assets.put("front_image", new Asset(new URL("http://psps.s3.amazonaws.com/sdk_static/1.jpg"))));
+
+PrintJob tshirt = PrintJob.createPrintJob(assets, "awd_sublimation_tshirt");
+tshirt.setOption("garment_size", "M");
+
+PrintOrder order = new PrintOrder();
+order.addPrintJob(tshirt);
+
+Address a = new Address();
+a.setRecipientName("Deon Botha");
+a.setLine1("Eastcastle House");
+a.setLine2("27-28 Eastcastle Street");
+a.setCity("London");
+a.setStateOrCounty("London");
+a.setZipOrPostalCode("W1W 8DH");
+a.setCountry(Country.getInstance("GBR"));
+
+order.setShippingAddress(a);
+
+PayPalCard card = new PayPalCard();
+card.setNumber("4121212121212127");
+card.setExpireMonth(12);
+card.setExpireYear(2012);
+card.setCvv2("123");
+
+card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard.Currency.GBP, "A Kite order!", new PayPalCardChargeListener() {
+    @Override
+    public void onChargeSuccess(PayPalCard card, String proofOfPayment) {
+        // set the PrintOrder proofOfPayment to the one provided and submit the order
+    }
+
+    @Override
+    public void onError(PayPalCard card, Exception ex) {
+        // handle gracefully
+        order.setProofOfPayment(proofOfPayment);
+        printOrder.submitForPrinting(getApplicationContext(), /*PrintOrderSubmissionListener:*/this);
+    }
+});
+
+```
+
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.<br /><br />
+
+> Example Response
+
+```shell
+{
+  "print_order_id": "PS96-996634811"
+}
+```
+
+
+If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders.
+
+Sublimation printing allows for an image asset to be printed anywhere on the entire garment and is well suited to printing of patterned designs. All t-shirts are printed on a white t-shirts and are made of 100% Polyester which ensures the best colour transfer to the garment during the printing process.
+
+The example request on the right would result in a sublimation t-shirt being created (with a front and back image) and shipped to the specified address.
+
+Many more products and brands available in the very near future.
+
+### products & template_ids
+
+          | |
+--------- | -----------
+AWD Sublimation T-Shirt<span class="attribute-type">awd_sublimation_tshirt</span> | Just Sub shirts are made from 175 gsm 100% Polyester Jersey fabric durable enough to do justice to a permanent printing process. They retain all of the advantages of quick drying, easy care polyester, but when Sublimation printed at 190-200 degrees Centigrade exhibit minimal and very acceptable levels of marking which all but disappear in steaming or washing,
+AWD Kids Sublimation T-Shirt<span class="attribute-type">awd_kids_sublimation_tshirt</span> | Just Sub shirts are made from 175 gsm 100% Polyester Jersey fabric durable enough to do justice to a permanent printing process. They retain all of the advantages of quick drying, easy care polyester, but when Sublimation printed at 190-200 degrees Centigrade exhibit minimal and very acceptable levels of marking which all but disappear in steaming or washing,
+Subli Sublimation T-Shirt<span class="attribute-type">roly_sublimation_tshirt</span> | Short sleeve t-shirt with ribbed round collar in the same fabric and side seams. Made of polyester fabric with cotton touch. 100% polyester, cotton touch, 140 gsm.
+American Apparel Sublimation T-shirt<span class="attribute-type">aa_sublimation_tshirt</span> | A comfortable and lightweight 100% Polyester T-shirt with Durable rib neckband. Made of a fine count yarn giving superior sublimation results
+American Apparel Sublimation Vest<span class="attribute-type">aa_sublimation_vest</span> | Our American Apparel Unisex sublimation tanks are 100% polyester jersey tanks designed especially for sublimation. Ultra-soft to touch and are sleeveless with a scooped neck.
+
+### Required Options Arguments
+
+          | |
+--------- | -----------
+garment_size<span class="required-argument">required</span> | The size of garment you want created. Must be one of the following for adult apparel: `S`, `M`, `L`, `XL`, `XXL` corresponding to small, medium, large, extra large & extra extra large respectively. Alternate sizing options are detailed for childrens apparel below.
+
+
+### Available Print Areas
+
+<table class="apparel-positions">
+    <thead>
+		<tr>
+			<th>Position</th>
+			<th></th>
+			<th>Dimensions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>front_image<span class="optional-argument">optional</span></td>
+			<td></td>
+			<td>4500 x 3985 px (76x67cm) </td>
+		</tr>
+		<tr>
+			<td>back_image<span class="optional-argument">optional</span></td>
+            <td></td>
+			<td>4500 x 3985 px (76x67cm) </td>
+		</tr>
+	</tbody>
+</table>
+
+
+### Assets Position Arguments
+
+All apparel orders must be made with options and sizes that correspond to the product ordered as detailed in the below table.
+
+<table class="apparel-positions">
+	<thead>
+		<tr>
+			<th>Product Template</th>
+			<th>Applicable Positions </th>
+            <th>Available Sizes</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+		    <td>
+		        <code class="prettyprint">awd_sublimation_tshirt</code>
+            </td>
+			<td>front_image, back_image</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">awd_kids_sublimation_tshirt</code>
+            </td>
+			<td>front_image, back_image</td>
+			<td>
+			    3to4, 5to6, 7to8, 9to10, 12to13
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">roly_sublimation_tshirt</code>
+            </td>
+			<td>front_image, back_image</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">aa_sublimation_tshirt</code>
+            </td>
+			<td>front_image, back_image</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+		<tr>
+		    <td>
+		        <code class="prettyprint">aa_sublimation_vest</code>
+            </td>
+			<td>front_image, back_image</td>
+			<td>
+			    s,m,l,xl
+			</td>
+		</tr>
+	</tbody>
+</table>
+
 
 ## Ordering photobooks
 
 > Example Order Request (JSON route)
 
 ```shell
-curl "[[api_endpoint]]/v2.0/print/" \
+curl "[[api_endpoint]]/v4.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
    "shipping_address": {
@@ -1821,7 +2064,7 @@ single_centered | A single image taking up the entire page.
 > Example Order Request (PDF route)
 
 ```shell
-curl "[[api_endpoint]]/v2.0/print/" \
+curl "[[api_endpoint]]/v4.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
    "shipping_address": {
@@ -1880,7 +2123,7 @@ cover_pdf | An image URL accessible to the Kite servers or an [asset object](#th
 > Example Order Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/print/" \
+curl "[[api_endpoint]]/v4.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -2021,7 +2264,7 @@ back_image<span class="optional-argument">optional</span> | A image URL accessib
 > Example Order Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/print/" \
+curl "[[api_endpoint]]/v4.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -2126,7 +2369,7 @@ inside_right_image<span class="optional-argument">optional</span> | A image URL 
 > Example Order Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/print/" \
+curl "[[api_endpoint]]/v4.0/print/" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
   --data '{
     "shipping_address": {
@@ -2364,7 +2607,7 @@ It's easy to fetch the list of orders and associated order details that you or y
 > Example Order List Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/order/?order_by=-time_submitted&test_order=false&error_exclude=true" \
+curl "[[api_endpoint]]/v4.0/order/?order_by=-time_submitted&test_order=false&error_exclude=true" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>"
 ```
 
@@ -2376,7 +2619,7 @@ curl "[[api_endpoint]]/v2.0/order/?order_by=-time_submitted&test_order=false&err
 {
   "meta": {
     "limit": 20,
-    "next": "/v2.0/order/?offset=20&limit=20",
+    "next": "/v4.0/order/?offset=20&limit=20",
     "offset": 0,
     "previous": null,
     "total_count": 960914
@@ -2391,12 +2634,12 @@ curl "[[api_endpoint]]/v2.0/order/?order_by=-time_submitted&test_order=false&err
         "formatted": "£25.59"
       },
       "jobs": [
-        "/v2.0/job/36819/"
+        "/v4.0/job/36819/"
       ],
       "order_id": "PS243-825654811",
       "person_id": 71283,
       "refund_request": null,
-      "resource_uri": "/v2.0/order/PS243-825654811/",
+      "resource_uri": "/v4.0/order/PS243-825654811/",
       "status": "Processed",
       "test_order": false,
       "time_processed": "2015-08-31T13:09:01.670462",
@@ -2409,7 +2652,7 @@ curl "[[api_endpoint]]/v2.0/order/?order_by=-time_submitted&test_order=false&err
 
 ### HTTP Request
 
-`GET [[api_endpoint]]/v2.0/order/`
+`GET [[api_endpoint]]/v4.0/order/`
 
 ### Arguments
 
@@ -2431,7 +2674,7 @@ Returns a list of optionally filtered orders
 > Example Order Detail Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/order/PS320-236374811" \
+curl "[[api_endpoint]]/v4.0/order/PS320-236374811" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>"
 ```
 
@@ -2462,7 +2705,7 @@ curl "[[api_endpoint]]/v2.0/order/PS320-236374811" \
 
 ### HTTP Request
 
-`GET [[api_endpoint]]/v2.0/order/<order_id>`
+`GET [[api_endpoint]]/v4.0/order/<order_id>`
 
 ### Arguments
 
@@ -2472,6 +2715,284 @@ order_id<span class="required-argument">required</span> | The kite order id rece
 
 ### Returns
 An order object detailing the order
+
+# Shipping Methods
+
+Within versions of the Kite API v4.0 and upwards, it is possible to place orders with particular expedited and tracked shipping methods.
+
+Each product has a 'Standard' shipping class which is most cases will be Economy delivery. Tracked and expedited delivery for a product can be retrieved from Kite and placed within the print order request to enable alternative shipping methods.
+
+## Getting shipping options for a product
+
+> Example Product response
+
+```shell
+curl "[[api_endpoint]]/v4.0/shipping_methods/a3_poster" \
+  -H "Authorization: ApiKey [[public_key]]:"
+```
+
+> Example Shipping Response
+
+```shell
+{
+  "shipping_classes": {
+    "ROW": [
+      {
+        "class_name": "International Tracked",
+        "costs": [
+          {
+            "amount": 6.35,
+            "currency": "USD"
+          },
+          {
+            "amount": 5.96,
+            "currency": "EUR"
+          },
+          {
+            "amount": 5.22,
+            "currency": "GBP"
+          }
+        ],
+        "display_name": "Royal Mail",
+        "id": 2,
+        "max_delivery_time": 10,
+        "min_delivery_time": 3,
+        "tracked": true
+      },
+      {
+        "class_name": "Standard",
+        "costs": [
+          {
+            "amount": 2.91,
+            "currency": "USD"
+          },
+          {
+            "amount": 2.73,
+            "currency": "EUR"
+          },
+          {
+            "amount": 2.39,
+            "currency": "GBP"
+          }
+        ],
+        "display_name": "Guernsey Post",
+        "id": 1,
+        "max_delivery_time": 10,
+        "min_delivery_time": 3,
+        "tracked": false
+      }
+    ],
+    "UK": [
+      {
+        "class_name": "UK Signed",
+        "costs": [
+          {
+            "amount": 6.35,
+            "currency": "USD"
+          },
+          {
+            "amount": 5.96,
+            "currency": "EUR"
+          },
+          {
+            "amount": 5.22,
+            "currency": "GBP"
+          }
+        ],
+        "display_name": "Royal Mail",
+        "id": 3,
+        "max_delivery_time": 2,
+        "min_delivery_time": 1,
+        "tracked": true
+      },
+      {
+        "class_name": "Standard",
+        "costs": [
+          {
+            "amount": 2.91,
+            "currency": "USD"
+          },
+          {
+            "amount": 2.73,
+            "currency": "EUR"
+          },
+          {
+            "amount": 2.39,
+            "currency": "GBP"
+          }
+        ],
+        "display_name": "Guernsey Post",
+        "id": 1,
+        "max_delivery_time": 3,
+        "min_delivery_time": 1,
+        "tracked": false
+      }
+    ]
+  },
+  "shipping_regions": {
+    "ABW": "ROW",
+    "FLK": "ROW",
+    "FRA": "ROW",
+    "FRO": "ROW",
+    "FSM": "ROW",
+    "GAB": "ROW",
+    "GBR": "UK",
+    "GEO": "ROW",
+    "GGY": "ROW",
+    "GHA": "ROW",
+    "GIB": "ROW",
+    "GIN": "ROW",
+    "GLP": "ROW",
+    "GMB": "ROW",
+    "USA": "ROW",
+  },
+  "template_id": "a3_poster",
+}
+```
+
+### HTTP List Request
+
+`GET [[api_endpoint]]/v4.0/shipping_methods/`
+
+### HTTP Detail Request
+
+`GET [[api_endpoint]]/v4.0/shipping_methods/<template_id>`
+
+### Returns
+Returns a list of shipping options for the product. The shipping methods available are dependent on the destination country that you want to send the order too.
+
+### Determining your shipping region
+
+Lookup the available shipping methods by looking up the 3 letter ISO code delivery country within the `shipping_regions` dictionary of the response.
+
+In the example on the right, a delivery to the United States ("USA") would fall within the "ROW" shipping region while a delivery to United Kingdom ("GBR") in the "GB" shipping region.
+
+## Retrieving available shipping methods
+
+The available shipping methods to that country can then be found within the `shipping_classes` of the shipping response
+
+The available shipping methods for a delivery to the United States is shown on the right.
+
+In this case there are two available options, International Tracked and Standard shipping.
+
+### Shipping response variables
+
+
+> Example Shipping Methods Response
+
+```shell
+curl "[[api_endpoint]]/v4.0/shipping_methods/a3_poster" \
+  -H "Authorization: ApiKey [[public_key]]:"
+```
+
+> Example Shipping Classes available for a delivery to the United States
+
+```shell
+{
+  "shipping_classes": {
+    "ROW": [
+      {
+        "class_name": "International Tracked",
+        "costs": [
+          {
+            "amount": 6.35,
+            "currency": "USD"
+          },
+          {
+            "amount": 5.96,
+            "currency": "EUR"
+          },
+          {
+            "amount": 5.22,
+            "currency": "GBP"
+          }
+        ],
+        "display_name": "Royal Mail",
+        "id": 2,
+        "max_delivery_time": 10,
+        "min_delivery_time": 3,
+        "tracked": true
+      },
+      {
+        "class_name": "Standard",
+        "costs": [
+          {
+            "amount": 2.91,
+            "currency": "USD"
+          },
+          {
+            "amount": 2.73,
+            "currency": "EUR"
+          },
+          {
+            "amount": 2.39,
+            "currency": "GBP"
+          }
+        ],
+        "display_name": "Guernsey Post",
+        "id": 1,
+        "max_delivery_time": 10,
+        "min_delivery_time": 3,
+        "tracked": false
+      }
+    ],
+  },
+}
+```
+
+          | |
+--------- | -----------
+id | The unique id of that shipping method and what is placed within the job order payload when placing orders with Kite
+costs | A dictionary of the associated cost of placing a order with that shipping method.
+display_name| The name of the mail carrier. Example carriers include Royal Mail, USPS or FedEx.
+tracked| Whether the delivery method includes order tracking. Tracking details can be retrieved once the order is dispatched from the Orders endpoint.
+min_delivery_time| The estimated earliest delivery time (in working days) once the order has been dispatched.
+max_delivery_time| The latest earliest delivery time (in working days) once the order has been dispatched.
+
+## Placing an order with a shipping method
+
+> Example Order Request
+
+```shell
+curl "[[api_endpoint]]/v4.0/print/" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
+  --data '{
+    "shipping_address": {
+    "recipient_name": "Deon Botha",
+    "address_line_1": "The White House",
+    "address_line_2": "1600 Pennsylvania Ave NW",
+    "city": "Washington",
+    "county_state": "Washington D.C",
+    "postcode": "20500",
+    "country_code": "USA"
+    },
+    "customer_email": "[[user_email]]",
+    "customer_phone": "+44 (0)784297 1234",
+    "customer_payment": {
+      "amount": 29.99,
+      "currency": "USD"
+    },
+    "jobs": [{
+      "assets": ["http://psps.s3.amazonaws.com/sdk_static/2.jpg"],
+      "shipping_class": 2,
+      "template_id": "a3_poster"
+    }]
+  }'
+```
+
+By default, orders placed for products will default to it's `Standard` shipping method. However you can specify an alternate shipping method if it exists for delivery to your destination country.
+
+For example the request on the right would result in an A3 Poster being created and shipped to the United States using the `International Tracked` shipping method.
+
+If an incorrect shipping_class is specified that does not correspond to any available methods for the destination country, the job will fall back to the Standard shipping method without raising an error.
+
+The job object is covered in more detail within the [job objects](#the-job-object) of the documentation.
+
+### Specifying the shipping method with the job object
+
+          | |
+--------- | -----------
+id <span class="optional-argument">optional </span> | The id of the shipping method that you would like to use for your ordered product
 
 
 # Customers
@@ -2484,7 +3005,7 @@ Rich customer profiles are built automatically for you when you or your users pl
 > Example Customer List Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/person/?customer=true" \
+curl "[[api_endpoint]]/v4.0/person/?customer=true" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>"
 ```
 
@@ -2496,7 +3017,7 @@ curl "[[api_endpoint]]/v2.0/person/?customer=true" \
 {
   "meta": {
     "limit": 20,
-    "next": "/v2.0/person/?customer=true&limit=20&offset=20",
+    "next": "/v4.0/person/?customer=true&limit=20&offset=20",
     "offset": 0,
     "previous": null,
     "total_count": 44737
@@ -2553,7 +3074,7 @@ curl "[[api_endpoint]]/v2.0/person/?customer=true" \
 
 ### HTTP Request
 
-`GET [[api_endpoint]]/v2.0/person/`
+`GET [[api_endpoint]]/v4.0/person/`
 
 ### Arguments
 
@@ -2579,7 +3100,7 @@ Returns a list of optionally filtered people
 > Example Person Detail Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/person/?id=196" \
+curl "[[api_endpoint]]/v4.0/person/?id=196" \
   -H "Authorization: ApiKey [[public_key]]:<your_secret_key>"
 ```
 
@@ -2652,7 +3173,7 @@ curl "[[api_endpoint]]/v2.0/person/?id=196" \
 
 ### HTTP Request
 
-`GET [[api_endpoint]]/v2.0/person/?id=<person_id>`
+`GET [[api_endpoint]]/v4.0/person/?id=<person_id>`
 
 ### Arguments
 
@@ -2729,7 +3250,7 @@ display_address<span class="attribute-type">string</span> | A partial textual re
 > Example Address Search Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/address/search/?country_code=GBR&search_term=10+Downing+Street,London" \
+curl "[[api_endpoint]]/v4.0/address/search/?country_code=GBR&search_term=10+Downing+Street,London" \
   -H "Authorization: ApiKey [[public_key]]:"
 ```
 
@@ -2803,7 +3324,7 @@ public void onError(AddressSearchRequest req, Exception error) {
 > Example Address Search Request
 
 ```shell
-curl "[[api_endpoint]]/v2.0/address/search/?country_code=GBR&address_id=GBR|PR|23747771|0|0|0||Retrieve" \
+curl "[[api_endpoint]]/v4.0/address/search/?country_code=GBR&address_id=GBR|PR|23747771|0|0|0||Retrieve" \
   -H "Authorization: ApiKey [[public_key]]:"
 ```
 
@@ -2852,7 +3373,7 @@ You can perform a search on any part of the address not just the ZIP/Postal code
 
 ### HTTP Request
 
-`GET [[api_endpoint]]/v2.0/address/search/`
+`GET [[api_endpoint]]/v4.0/address/search/`
 
 ### Arguments
 
