@@ -786,6 +786,10 @@ If you haven't already, see [Placing orders](#placing-orders) for a general over
 
 The example request on the right would result in a square prints being created and shipped to the specified address.
 
+The maximum number of print assets that can be supplied for a print product can be found on the products page of your personal [dashboard]([[website_endpoint]]/dashboard/products). For products such as phone cases, cushions, canvas's etc this number will be 1.
+
+Jobs which are submitted with more assets than the stated maximum units per pack, will be automatically split into a separate job.
+
 ### print products & template_ids
           | |
 --------- | -----------
@@ -996,6 +1000,167 @@ Nexus 5 Case<span class="attribute-type">nexus_5_case</span><span class=attribut
           | |
 --------- | -----------
 case_style<span class="optional-argument">optional</span> | Either `matte` or `gloss`. Defaults to `gloss` if not present. `matte` style only valid for `i4_case`, `i5_case`, `i5c_case`, `i6_case`, `i6s_case`, `i6plus_case`, `i6splus_case`, `samsung_s4_case`, `samsung_s5_case`, `samsung_s6_case` , `samsung_s6e_case`, `samsung_s7_case` and `samsung_s7e_case`.
+
+
+## Ordering homeware
+
+> Example Order Request
+
+```shell
+curl "[[api_endpoint]]/v4.0/print/" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
+  --data '{
+    "shipping_address": {
+      "recipient_name": "Deon Botha",
+      "address_line_1": "Eastcastle House",
+      "address_line_2": "27-28 Eastcastle Street",
+      "city": "London",
+      "county_state": "Greater London",
+      "postcode": "W1W 8DH",
+      "country_code": "GBR"
+    },
+    "customer_email": "[[user_email]]",
+    "customer_phone": "+44 (0)784297 1234",
+    "customer_payment": {
+      "amount": 29.99,
+      "currency": "USD"
+    },
+    "jobs": [{
+      "assets": ["http://psps.s3.amazonaws.com/sdk_static/1.jpg"],
+      "template_id": "suede_12x12_cushion"
+    }, {
+      "assets": ["http://psps.s3.amazonaws.com/sdk_static/2.jpg"],
+      "template_id": "towel_75x145"
+    }]
+  }'
+```
+
+```objective_c
+// See https://github.com/OceanLabs/iOS-Print-SDK#custom-user-experience for full step by step instructions
+#import <Kite-Print-SDK/OLKitePrintSDK.h>
+
+NSArray *assets = @[
+    [OLAsset assetWithURL:[NSURL URLWithString:@"http://psps.s3.amazonaws.com/sdk_static/1.jpg"]]
+];
+
+id<OLPrintJob> suedeCushion = [OLPrintJob printJobWithTemplateId:@"suede_12x12_cushion" OLAssets:assets];
+id<OLPrintJob> towel = [OLPrintJob printJobWithTemplateId:@"towel_75x145" OLAssets:assets];
+
+OLPrintOrder *order = [[OLPrintOrder alloc] init];
+[order addPrintJob:suedeCushion];
+[order addPrintJob:towel];
+
+OLAddress *a    = [[OLAddress alloc] init];
+a.recipientName = @"Deon Botha";
+a.line1         = @"27-28 Eastcastle House";
+a.line2         = @"Eastcastle Street";
+a.city          = @"London";
+a.stateOrCounty = @"Greater London";
+a.zipOrPostcode = @"W1W 8DH";
+a.country       = [OLCountry countryForCode:@"GBR"];
+
+order.shippingAddress = a;
+
+OLPayPalCard *card = [[OLPayPalCard alloc] init];
+card.type = kOLPayPalCardTypeVisa;
+card.number = @"4121212121212127";
+card.expireMonth = 12;
+card.expireYear = 2020;
+card.cvv2 = @"123";
+
+[card chargeCard:printOrder.cost currencyCode:printOrder.currencyCode description:@"A Kite order!" completionHandler:^(NSString *proofOfPayment, NSError *error) {
+  // if no error occured set the OLPrintOrder proofOfPayment to the one provided and submit the order
+  order.proofOfPayment = proofOfPayment;
+  [self.printOrder submitForPrintingWithProgressHandler:nil
+                   completionHandler:^(NSString *orderIdReceipt, NSError *error) {
+    // If there is no error then you can display a success outcome to the user
+  }];
+}];
+
+```
+
+```java
+// See https://github.com/OceanLabs/Android-Print-SDK#custom-checkout for full step by step instructions
+
+import ly.kite.address.Address;
+import ly.kite.payment.PayPalCard;
+import ly.kite.print.Asset;
+import ly.kite.print.PrintJob;
+import ly.kite.print.PrintOrder;
+
+ArrayList<Asset> assets = new ArrayList<Asset>();
+assets.add(new Asset(new URL("http://psps.s3.amazonaws.com/sdk_static/1.jpg"))));
+
+PrintJob suedeCushion = PrintJob.createPrintJob(assets, "suede_12x12_cushion");
+PrintJob towel = PrintJob.createPrintJob(assets, "towel_75x145");
+
+PrintOrder order = new PrintOrder();
+order.addPrintJob(suedeCushion);
+order.addPrintJob(towel);
+
+Address a = new Address();
+a.setRecipientName("Deon Botha");
+a.setLine1("Eastcastle House");
+a.setLine2("27-28 Eastcastle Street");
+a.setCity("London");
+a.setStateOrCounty("London");
+a.setZipOrPostalCode("W1W 8DH");
+a.setCountry(Country.getInstance("GBR"));
+
+order.setShippingAddress(a);
+
+PayPalCard card = new PayPalCard();
+card.setNumber("4121212121212127");
+card.setExpireMonth(12);
+card.setExpireYear(2012);
+card.setCvv2("123");
+
+card.chargeCard(PayPalCard.Environment.SANDBOX, printOrder.getCost(), PayPalCard.Currency.GBP, "A Kite order!", new PayPalCardChargeListener() {
+    @Override
+    public void onChargeSuccess(PayPalCard card, String proofOfPayment) {
+        // set the PrintOrder proofOfPayment to the one provided and submit the order
+    }
+
+    @Override
+    public void onError(PayPalCard card, Exception ex) {
+        // handle gracefully
+        order.setProofOfPayment(proofOfPayment);
+        printOrder.submitForPrinting(getApplicationContext(), /*PrintOrderSubmissionListener:*/this);
+    }
+});
+
+```
+
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.<br /><br />
+
+> Example Response
+
+```shell
+{
+  "print_order_id": "PS96-996634811"
+}
+```
+
+If you haven't already, see [Placing orders](#placing-orders) for a general overview of the order request & response which is applicable to all product orders.
+
+The example request on the right would result in a suede 12" x 12" cushion and medium towel being created and shipped to the specified address.
+
+### Homeware product range
+
+          | |
+--------- | -----------
+Suede 12" Cushion<span class="attribute-type">suede_12x12_cushion</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/design_masks/cushions/Cushions_12x12.tif">Design Mask</a></span> | Square faux suede cushion, with a beautiful finish. Stone coloured back with a completely personalisable front printed in high definition full colour.
+Suede 18" Cushion<span class="attribute-type">suede_18x18_cushion</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/design_masks/cushions/Cushions_18x18.tif">Design Mask</a></span> | Square faux suede cushion, with a beautiful finish. Stone coloured back with a completely personalisable front printed in high definition full colour.
+Canvas 12" Cushion<span class="attribute-type">canvas_12x12_cushion</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/design_masks/cushions/Cushions_12x12.tif">Design Mask</a></span> | Square canvas cushion, with a beautiful finish. Stone coloured back with a completely personalisable front printed in high definition full colour.
+Canvas 18" Cushion<span class="attribute-type">canvas_18x18_cushion</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/design_masks/cushions/Cushions_18x18.tif">Design Mask</a></span> | Square canvas cushion, with a beautiful finish. Stone coloured back with a completely personalisable front printed in high definition full colour.
+Linen 12" Cushion<span class="attribute-type">linen_12x12_cushion</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/design_masks/cushions/Cushions_12x12.tif">Design Mask</a></span> | Square linen cushion, with a beautiful finish. Stone coloured back with a completely personalisable front printed in high definition full colour.
+Linen 18" Cushion<span class="attribute-type">linen_18x18_cushion</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/design_masks/cushions/Cushions_18x18.tif">Design Mask</a></span> | Square linen cushion, with a beautiful finish. Stone coloured back with a completely personalisable front printed in high definition full colour.
+Small Towel Cushion<span class="attribute-type">towel_55x105</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/design_masks/towels/towel_100_50.tif">Design Mask</a></span> | Small microfibre 55 x 105cm beach towel with terry towelling loop with permanent print all over one side. Soaks well, dries fast and is light and easy to pack.
+Medium Towel Cushion<span class="attribute-type">towel_75x145</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/design_masks/towels/towel_140_70.tif">Design Mask</a></span> | Medium microfibre 75 x 145cm beach towel with terry towelling loop with permanent print all over one side. Soaks well, dries fast and is light and easy to pack.
+Large Towel Cushion<span class="attribute-type">towel_85x165</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/design_masks/towels/towel_160_80.tif">Design Mask</a></span> | Large microfibre 85 x 165cm beach towel with terry towelling loop with permanent print all over one side. Soaks well, dries fast and is light and easy to pack.
+White 11oz Mug Cushion<span class="attribute-type">mug_11oz</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/design_masks/mugs/11oz_mug.tif">Design Mask</a></span> | Our top quality sublimation blank 11oz mugs are dishwasher safe and are pure white Orca coated. A fantastic personalised product for your store
+Square Tote Bag <span class="attribute-type">tote_bag_43x43cm</span><span class=attribute-secondary><a href="https://s3.amazonaws.com/sdk-static/design_masks/tote_bags/tote_bag_43cm.tif">Design Mask</a></span> | High Quality 46x46cm double sided print tote bag. Carry all your essentials and complement any outfit with a beautiful personalised Totebag
+Magnet Frame 10x10cm  Cushion<span class="attribute-type">magnet_frame_10x10</span> | Re-useable square magnet frame.
 
 ## Ordering DTG apparel
 
@@ -2735,101 +2900,107 @@ curl "[[api_endpoint]]/v4.0/shipping_methods/a3_poster" \
 
 ```shell
 {
-  "shipping_classes": {
-    "ROW": [
-      {
-        "class_name": "International Tracked",
-        "costs": [
-          {
-            "amount": 6.35,
-            "currency": "USD"
-          },
-          {
-            "amount": 5.96,
-            "currency": "EUR"
-          },
-          {
-            "amount": 5.22,
-            "currency": "GBP"
-          }
-        ],
-        "display_name": "Royal Mail",
-        "id": 2,
-        "max_delivery_time": 10,
-        "min_delivery_time": 3,
-        "tracked": true
-      },
-      {
-        "class_name": "Standard",
-        "costs": [
-          {
-            "amount": 2.91,
-            "currency": "USD"
-          },
-          {
-            "amount": 2.73,
-            "currency": "EUR"
-          },
-          {
-            "amount": 2.39,
-            "currency": "GBP"
-          }
-        ],
-        "display_name": "Guernsey Post",
-        "id": 1,
-        "max_delivery_time": 10,
-        "min_delivery_time": 3,
-        "tracked": false
-      }
-    ],
-    "UK": [
-      {
-        "class_name": "UK Signed",
-        "costs": [
-          {
-            "amount": 6.35,
-            "currency": "USD"
-          },
-          {
-            "amount": 5.96,
-            "currency": "EUR"
-          },
-          {
-            "amount": 5.22,
-            "currency": "GBP"
-          }
-        ],
-        "display_name": "Royal Mail",
-        "id": 3,
-        "max_delivery_time": 2,
-        "min_delivery_time": 1,
-        "tracked": true
-      },
-      {
-        "class_name": "Standard",
-        "costs": [
-          {
-            "amount": 2.91,
-            "currency": "USD"
-          },
-          {
-            "amount": 2.73,
-            "currency": "EUR"
-          },
-          {
-            "amount": 2.39,
-            "currency": "GBP"
-          }
-        ],
-        "display_name": "Guernsey Post",
-        "id": 1,
-        "max_delivery_time": 3,
-        "min_delivery_time": 1,
-        "tracked": false
-      }
-    ]
-  },
   "shipping_regions": {
+    "ROW": {
+      "name": "Rest of world",
+      "shipping_classes": [
+        {
+          "class_name": "International Tracked",
+          "costs": [
+            {
+              "amount": 6.35,
+              "currency": "USD"
+            },
+            {
+              "amount": 5.96,
+              "currency": "EUR"
+            },
+            {
+              "amount": 5.22,
+              "currency": "GBP"
+            }
+          ],
+          "display_name": "Royal Mail",
+          "id": 2,
+          "max_delivery_time": 10,
+          "min_delivery_time": 3,
+          "tracked": true
+        },
+        {
+          "class_name": "Standard",
+          "costs": [
+            {
+              "amount": 2.91,
+              "currency": "USD"
+            },
+            {
+              "amount": 2.73,
+              "currency": "EUR"
+            },
+            {
+              "amount": 2.39,
+              "currency": "GBP"
+            }
+          ],
+          "display_name": "Guernsey Post",
+          "id": 1,
+          "max_delivery_time": 10,
+          "min_delivery_time": 3,
+          "tracked": false
+        }
+      ]
+    },
+    "UK": {
+      "name": "UK",
+      "shipping_classes": [
+        {
+          "class_name": "UK Signed",
+          "costs": [
+            {
+              "amount": 6.35,
+              "currency": "USD"
+            },
+            {
+              "amount": 5.96,
+              "currency": "EUR"
+            },
+            {
+              "amount": 5.22,
+              "currency": "GBP"
+            }
+          ],
+          "display_name": "Royal Mail",
+          "id": 3,
+          "max_delivery_time": 2,
+          "min_delivery_time": 1,
+          "tracked": true
+        },
+        {
+          "class_name": "Standard",
+          "costs": [
+            {
+              "amount": 2.91,
+              "currency": "USD"
+            },
+            {
+              "amount": 2.73,
+              "currency": "EUR"
+            },
+            {
+              "amount": 2.39,
+              "currency": "GBP"
+            }
+          ],
+          "display_name": "Guernsey Post",
+          "id": 1,
+          "max_delivery_time": 3,
+          "min_delivery_time": 1,
+          "tracked": false
+        }
+      ]
+    }
+  },
+  "country_to_region_mapping": {
     "ABW": "ROW",
     "FLK": "ROW",
     "FRA": "ROW",
@@ -2881,53 +3052,56 @@ In this case there are two available options, International Tracked and Standard
 
 ```shell
 {
-  "shipping_classes": {
-    "ROW": [
-      {
-        "class_name": "International Tracked",
-        "costs": [
-          {
-            "amount": 6.35,
-            "currency": "USD"
-          },
-          {
-            "amount": 5.96,
-            "currency": "EUR"
-          },
-          {
-            "amount": 5.22,
-            "currency": "GBP"
-          }
-        ],
-        "display_name": "Royal Mail",
-        "id": 2,
-        "max_delivery_time": 10,
-        "min_delivery_time": 3,
-        "tracked": true
-      },
-      {
-        "class_name": "Standard",
-        "costs": [
-          {
-            "amount": 2.91,
-            "currency": "USD"
-          },
-          {
-            "amount": 2.73,
-            "currency": "EUR"
-          },
-          {
-            "amount": 2.39,
-            "currency": "GBP"
-          }
-        ],
-        "display_name": "Guernsey Post",
-        "id": 1,
-        "max_delivery_time": 10,
-        "min_delivery_time": 3,
-        "tracked": false
-      }
-    ],
+  "shipping_regions": {
+    "ROW": {
+      "name": "Rest of world",
+      "shipping_classes": [
+        {
+          "class_name": "International Tracked",
+          "costs": [
+            {
+              "amount": 6.35,
+              "currency": "USD"
+            },
+            {
+              "amount": 5.96,
+              "currency": "EUR"
+            },
+            {
+              "amount": 5.22,
+              "currency": "GBP"
+            }
+          ],
+          "display_name": "Royal Mail",
+          "id": 2,
+          "max_delivery_time": 10,
+          "min_delivery_time": 3,
+          "tracked": true
+        },
+        {
+          "class_name": "Standard",
+          "costs": [
+            {
+              "amount": 2.91,
+              "currency": "USD"
+            },
+            {
+              "amount": 2.73,
+              "currency": "EUR"
+            },
+            {
+              "amount": 2.39,
+              "currency": "GBP"
+            }
+          ],
+          "display_name": "Guernsey Post",
+          "id": 1,
+          "max_delivery_time": 10,
+          "min_delivery_time": 3,
+          "tracked": false
+        }
+      ]
+    }
   },
 }
 ```
