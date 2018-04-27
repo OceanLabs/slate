@@ -1998,7 +1998,7 @@ curl "[[api_endpoint]]/v4.0/print/" \
       "currency": "USD"
    },
    "jobs": [{
-      "template_id": "rpi_wrap_280x210_sm",
+      "template_id": "photobook_wrap_280x210_sm",
       "assets": {
       	 "front_cover": "https://s3.amazonaws.com/sdk-static/TestImages/front.png",
       	 "back_cover": "https://s3.amazonaws.com/sdk-static/TestImages/back.png",      	
@@ -2097,7 +2097,7 @@ NSArray *assets = @[
     [OLAsset assetWithURL:[NSURL URLWithString:@"https://s3.amazonaws.com/sdk-static/portrait_photobook.pdf"]]
 ];
 
-id<OLPrintJob> photobook = [OLPrintJob printJobWithTemplateId:@"rpi_wrap_280x210_sm" OLAssets:assets];
+id<OLPrintJob> photobook = [OLPrintJob printJobWithTemplateId:@"photobook_wrap_280x210_sm" OLAssets:assets];
 
 OLPrintOrder *order = [[OLPrintOrder alloc] init];
 [order addPrintJob:photobook];
@@ -2143,7 +2143,7 @@ import ly.kite.print.PrintOrder;
 ArrayList<Asset> assets = new ArrayList<Asset>();
 assets.add(new Asset(new URL("https://s3.amazonaws.com/sdk-static/portrait_photobook.pdf"))));
 
-PrintJob photobook = PrintJob.createPrintJob(assets, "rpi_wrap_280x210_sm");
+PrintJob photobook = PrintJob.createPrintJob(assets, "photobook_wrap_280x210_sm");
 
 PrintOrder order = new PrintOrder();
 order.addPrintJob(ipadAirCase);
@@ -2248,7 +2248,7 @@ curl "[[api_endpoint]]/v4.0/print/" \
       "currency": "USD"
    },
    "jobs": [{
-      "template_id": "rpi_wrap_280x210_sm",
+      "template_id": "photobook_wrap_280x210_sm",
       "assets": {
       	 "inside_pdf": "https://s3.amazonaws.com/sdk-static/TestImages/inside.pdf",
       	 "cover_pdf": "https://s3.amazonaws.com/sdk-static/TestImages/cover.pdf"   	
@@ -2270,11 +2270,11 @@ It is important that your PDFs match the sizes in the below specs exactly:
 
           | |
 --------- | -----------
-Landscape Hardcover<span class="attribute-type">rpi_wrap_280x210_sm</span> | 28cm x 21cm hardcover landscape photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
-Portrait Hardcover<span class="attribute-type">rpi_wrap_210x280_sm</span> | 21cm x 28cm hardcover portrait photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
-Small Square Hardcover<span class="attribute-type">rpi_wrap_140x140_sm</span> | 14cm x 14cm hardcover square photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
-Medium Square Hardcover<span class="attribute-type">rpi_wrap_210x210_sm</span> | 21cm x 21cm hardcover square photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
-Large Square Hardcover<span class="attribute-type">rpi_wrap_300x300_sm</span> | 30cm x 30cm hardcover square photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
+Landscape Hardcover<span class="attribute-type">photobook_wrap_280x210_sm</span> | 28cm x 21cm hardcover landscape photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
+Portrait Hardcover<span class="attribute-type">photobook_wrap_210x280_sm</span> | 21cm x 28cm hardcover portrait photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
+Small Square Hardcover<span class="attribute-type">photobook_wrap_140x140_sm</span> | 14cm x 14cm hardcover square photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
+Medium Square Hardcover<span class="attribute-type">photobook_wrap_210x210_sm</span> | 21cm x 21cm hardcover square photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
+Large Square Hardcover<span class="attribute-type">photobook_wrap_300x300_sm</span> | 30cm x 30cm hardcover square photobook. Our books are perfectly bound with images printed on glossy 200gsm paper
 
 ### assets object
           | |
@@ -2685,12 +2685,12 @@ smaller than this, it's recommended you try get as close to these dimensions as 
 
 ### OPTIMAL PHOTOBOOK ASSET DIMENSIONS
 <table class="apparel-positions"><thead><tr><th>product</th><th>pixels</th><th>cm</th><th>inches</th></tr></thead><tbody>
-<tr><td>Large Landscape Hardcover<span class="optional-argument">rpi_wrap_321x270_sm</span></td><td><code class="prettyprint">3792&times;3190</code></td><td><code class="prettyprint">32.1&times;27</code></td><td><code class="prettyprint">12.6&times;10.6</code></td></tr>
-<tr><td>Portrait Hardcover<span class="optional-argument">rpi_wrap_210x280_sm</span></td><td><code class="prettyprint">2481&times;3306</code></td><td><code class="prettyprint">21&times;28</code></td><td><code class="prettyprint">8.3&times;11</code></td></tr>
-<tr><td>Landscape Hardcover<span class="optional-argument">rpi_wrap_280x210_sm</span></td><td><code class="prettyprint">3308&times;2481</code></td><td><code class="prettyprint">28&times;21</code></td><td><code class="prettyprint">11&times;8.3</code></td></tr>
-<tr><td>Large Square Hardcover<span class="optional-argument">rpi_wrap_300x300_sm</span></td><td><code class="prettyprint">3544&times;3544</code></td><td><code class="prettyprint">30&times;30</code></td><td><code class="prettyprint">11.8&times;11.8</code></td></tr>
-<tr><td>Medium Square Hardcover<span class="optional-argument">rpi_wrap_210x210_sm</span></td><td><code class="prettyprint">2481&times;2481</code></td><td><code class="prettyprint">21&times;21</code></td><td><code class="prettyprint">8.3&times;8.3</code></td></tr>
-<tr><td>Small Square Hardcover<span class="optional-argument">rpi_wrap_140x140_sm</span></td><td><code class="prettyprint">1654&times;1654</code></td><td><code class="prettyprint">14&times;14</code></td><td><code class="prettyprint">5.5&times;5.5</code></td></tr>
+<tr><td>Large Landscape Hardcover<span class="optional-argument">photobook_wrap_321x270_sm</span></td><td><code class="prettyprint">3792&times;3190</code></td><td><code class="prettyprint">32.1&times;27</code></td><td><code class="prettyprint">12.6&times;10.6</code></td></tr>
+<tr><td>Portrait Hardcover<span class="optional-argument">photobook_wrap_210x280_sm</span></td><td><code class="prettyprint">2481&times;3306</code></td><td><code class="prettyprint">21&times;28</code></td><td><code class="prettyprint">8.3&times;11</code></td></tr>
+<tr><td>Landscape Hardcover<span class="optional-argument">photobook_wrap_280x210_sm</span></td><td><code class="prettyprint">3308&times;2481</code></td><td><code class="prettyprint">28&times;21</code></td><td><code class="prettyprint">11&times;8.3</code></td></tr>
+<tr><td>Large Square Hardcover<span class="optional-argument">photobook_wrap_300x300_sm</span></td><td><code class="prettyprint">3544&times;3544</code></td><td><code class="prettyprint">30&times;30</code></td><td><code class="prettyprint">11.8&times;11.8</code></td></tr>
+<tr><td>Medium Square Hardcover<span class="optional-argument">photobook_wrap_210x210_sm</span></td><td><code class="prettyprint">2481&times;2481</code></td><td><code class="prettyprint">21&times;21</code></td><td><code class="prettyprint">8.3&times;8.3</code></td></tr>
+<tr><td>Small Square Hardcover<span class="optional-argument">photobook_wrap_140x140_sm</span></td><td><code class="prettyprint">1654&times;1654</code></td><td><code class="prettyprint">14&times;14</code></td><td><code class="prettyprint">5.5&times;5.5</code></td></tr>
 </tbody></table>
 
 <div class="optional-asset-dimensions" ng-show="isPhotoboxUser">
