@@ -45,7 +45,7 @@ under the License.
     if (hash) {
       hash = hash.replace(/^#+/, '');
     }
-    history.pushState({}, '', '?' + language + '#' + hash);
+    history.pushState({}, '', window.location.href.replace(/[#?].*/, "") + '?' + language + '#' + hash);
 
     // save language as next default
     localStorage.setItem("language", language);

@@ -1723,7 +1723,7 @@ All apparel orders must be made with options and sizes that correspond to the pr
 
 ## Ordering sublimation apparel
 
-> Example Order Request
+> Example Order Request with prepared PDF
 
 ```shell
 curl "[[api_endpoint]]/v4.0/print/" \
@@ -1882,9 +1882,244 @@ American Apparel Sublimation Vest<span class="attribute-type">aa_sublimation_ves
 
 ### Required Options Arguments
 
+If you want to submit an already prepared PDF file:
+
           | |
 --------- | -----------
 garment_size<span class="required-argument">required</span> | The size of garment you want created. Must be one of the following for adult apparel: `S`, `M`, `L`, `XL`, `XXL` corresponding to small, medium, large, extra large & extra extra large respectively. Alternate sizing options are detailed for childrens apparel below.
+
+> Example Order Request with generated PDF
+
+```shell
+curl "[[api_endpoint]]/v2.0/print/" \
+  -H "Authorization: ApiKey [[public_key]]:<your_secret_key>" \
+  --data '{
+    "shipping_address": {
+      "recipient_name": "Deon Botha",
+      "address_line_1": "Eastcastle House",
+      "address_line_2": "27-28 Eastcastle Street",
+      "city": "London",
+      "county_state": "Greater London",
+      "postcode": "W1W 8DH",
+      "country_code": "GBR"
+    },
+    "customer_email": "[[user_email]]",
+    "customer_phone": "+44 (0)784297 1234",
+    "customer_payment": {
+      "amount": 29.99,
+      "currency": "USD"
+    },
+    "jobs": [
+      {
+        "template_id":"rpi_wrap_210x210_sm",
+        "options":{
+          "spine_color":"#FFFFFF"
+        },
+        "layouts":{
+          "cols-with-text":{
+            "layout":"grid",
+            "cols":1,
+            "rows":3,
+            "cell_space_vert":5
+          }
+        },
+        "fonts":{
+          "hh":"http://www.commonvision.org/files/fonts/harabara_hand.ttf"
+        },
+        "text-styles":{
+          "cs1":{
+            "size":51,
+            "dim":17,
+            "font":"hh"
+          }
+        },
+        "assets":{
+          "back_cover":null,
+          "inside_pdf":null,
+          "cover_pdf":null,
+          "front_cover":"",
+          "pages":[
+            {
+              "layout":"2x3",
+              "asset":[[list of six asset objects]],
+              "captions":["Capt 1", "", null, "Capt 4", "Lorem ipsum\ndolor sit amet,..."],
+              "title":"Tis but a title"
+            },
+            {
+              "layout":{
+                "layout":"cols-with-text",
+                "padding":7,
+                "captions":[{
+                  "position": "left",
+                  "dim": 40
+                },{
+                  "position": "right",
+                  "dim": 60,
+                  "valign": "top"
+                }]
+              },
+              "asset":[[list of three asset objects]],
+              "captions":[[list of at most three strings]]
+            },
+            {
+              "layout":{
+                "layout":"circle",
+                "width": "pw/5",
+                "height": "ph/5",
+                "r": "cwh/3",
+                "title":"cs1"
+              },
+              "asset":[[list of some asset objects]],
+              "title":"Title over circle"
+            },
+            {
+              "asset":[[a singe asset object]]
+            }
+          ]
+        }
+      }
+    ]
+  }'
+```
+
+> Replace `<your_secret_key>` with the one found in the [credentials]([[website_endpoint]]/settings/credentials) section of the dashboard.<br /><br />
+
+> Example Response
+
+```shell
+{
+  "print_order_id": "PS96-996634811"
+}
+```
+
+If you want to make your own photobook from scratch:
+
+          | |
+--------- | -----------
+assets<span class="required-argument">required</span> | A dictionary describing the structure and the contents of the photobook.
+fonts | A `"name":"url"` dictionary of fonts used in title's and captions' styles. The fonts' URLs must point to publicly available TrueType fonts (TTF).
+layouts | A `"name":layout_definition` dictionary describing user-defined layouts that can be used to format individual pages. Each `layout_definition` is a dictionary, with fields described below.
+text-styles | A `"name":style_definition` dictionary describing user-defined text styles that can be used to format text, captions, and titles. Each `style_definition` is a dictionary, with fields described below.
+
+While `layouts` and `text-styles` can significantly simplify photobook's creation, they are merely helpers. Layouts and text styles can also be defined directly for each asset of each page, without using these shortcuts, albeit usually with lots of redundancy.
+
+The photobook is defined via `pages` field in `assets`, which we show in more detail in the remainder of this section.
+
+#### `assets["pages"]`
+
+          | |
+--------- | -----------
+asset<span class="required-argument">required</span> | either an [asset object](#the-asset-object) or a list of [asset objects](#the-asset-object).
+captions | A string or a list of strings with photos' captions, formatted as described in `layout.captions`. The captions must be provided in the same order as the photos in the `assets` list.<br />If `captions` is a list shorter than `assets`, the remaining photos won't be captioned. If any of the captions are `null`, the corresponding photos will remain uncaptioned.
+layout | A string keyword identifying a predefined layout, or a dictionary defining a new one.
+title | A string containing the page title, formatted as described in `layout.title`.
+
+#### Common layout properties
+
+          | |
+--------- | -----------
+captions | The style(s) used for captions. It can either be a single stye, or a list of them. If it is a list with less styles than there are actual captions on the page, the last of the styles is used for the remaining captions.
+padding | Page padding, in millimetres, defined in a [manner similar to CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/padding): it can be a number (used for all four sides), or a list with up to 4 real numbers. There are no `padding-side` properties for individual sides.
+title | A single style used for the page title.
+
+Depending on the type layout, we can set different additional properties.
+
+#### Grid
+
+Grid layouts are "grid" and "cxr", the latter being a shortcut for a grid with `c` columns and `r` rows (for example, "2x3" is a grid with 2 columns and 3 rows). The default grid has 1 column and 1 row, unless changed via properties.
+
+The photos are added to the page in rows, from bottom to top, and from left to right in each row.
+
+The properties of grids are:
+
+          | |
+--------- | -----------
+cell_height | The height of each individual cell in the grid, in millimetres. If unset, this is computed automatically.
+cell_space_horz | Horizontal space in millimetres between each two cells.
+cell_space_vert | Vertical space in millimetres between each two cells.
+cell_width | The width of each individual cell in the grid, in millimetres. If unset, this is computed automatically.
+cols | The number of columns in the grid
+rows | The number of rows in the grid
+
+The grids are very convenient for photobooks with photos accompanied with text. These are easily created by setting only 1 column, and adding the captions either on the left or on the right (or even alternating!), usually with text's `dim` set around 50 (more if there is plenty of text, less if there is not much).
+
+#### Spiral
+
+Spiral layouts arrange the photos in a spiral manner, going either from the center of the spiral outwards, or from the edge of the spiral inwards. The rotation can be clockwise or counter-clockwise.
+
+The photos are set in order in which they were giving, meaning that - in case there is overlap - the later photos will be covering those before them.
+
+The spiral radius and photos' widths and heights change uniformly from their starting values to the ending ones.
+
+          | |
+--------- | -----------
+clockwise | A Boolean value determining the direction of the rotation. Used only if `delta_phi` is not defined
+delta_phi | The change in angle between each two consecutive photos. If not defined, it will be computed to achieve the given number of revolutions (by default, one).
+end_height | The height of the last photo's box.
+end_r | Ending radius of the spiral.
+end_width | The width of the last photo's box.
+revolutions | A float number defining the number of revolutions  of the spiral default: 1). Used only if `delta_phi` is not defined
+start_height | The height of the first photo's box.
+start_phi | Starting angle (the default is 0, which is the right hand side of the spiral).
+start_r | Starting radius of the spiral.
+start_width | The width of the first photo's box.
+
+#### Circular
+
+Circular layouts can be considered shortcuts for spirals that arrange photos in circular fashion, thus eliminating changes in radius and sizes of the photos' boxes. Their properties are:
+
+          | |
+--------- | -----------
+height | The common height for all photo boxes.
+r | The circle's radius.
+width | The common width for all photo boxes.
+
+#### Text styles
+
+Text styles are used to describe the formatting of text objects on the page (captions and titles).
+
+Text objects do not wrap automatically. Instead, if falling outside of their reserved space, they get shrunk. Manual line breaks can be inserted as new-line characters (`\n`).
+
+The following properties can be set for text styles:
+
+          | |
+--------- | -----------
+align | Horizontal alignment of text. The valid values are: "left", "right", "center", and "auto". If set to "auto" (which is the default for captions), the alignment will be "center" for "top" and "bottom" positions, "left" for the "right" position, and "right" for the "left" position. The default value for titles is "center".
+border | Border colour. The valid values are colour names, RGB definitions "(r,g,b)", and CMYK definitions "(c,m,y,k)".
+color | Text colour. The valid values are colour names, RGB definitions "(r,g,b)", and CMYK definitions "(c,m,y,k)".
+dim | The percentage of total width/height that is reserved for the text. For example, if `position` is set to "left" and `dim` to 30, then 30% of the box' width will be used for caption and the rest for the photo. Similarly, if `position` is set to "top", then 30% of the box' height will be used for caption and the rest for the photo. The default value is 10.
+fill | Fill colour for the box around the title/caption. The valid values are colour names, RGB definitions "(r,g,b)", CMYK definitions "(c,m,y,k)", and "None" for transparent boxes.
+font | Font name. It can either be "Helvetica" or any name defined by the user in the `fonts` dictionary.
+position | Position of the title/caption, relative to the page (for titles) or photo (for captions). The valid values are "top", "bottom", "left", "right". The default value is "top" for titles and "bottom" for captions.
+size | Font size. The default value is 11 for captions and 51 for titles.
+valign | Vertical alignment of the text inside its reserved space. The valid values are: "top", "bottom", "middle", and "auto". If set to "auto" (which is the default for captions), the alignment will be "middle" for "left" and "right" positions, "bottom" for the "top" position, and "top" for the "bottom" position. The default value for titles is "top".
+
+### Special values for measurements
+
+While the default measurement for dimensions, radii, etc. are millimeters, one can instead use a string with some other values and basic arithmetics
+
+The allowed values are:
+
+          | |
+--------- | -----------
+ch |  Canvas height, i.e., the height of the page without padding and title (if set to top or bottom).
+cnt | The number of photos on the page.
+cw | Canvas width, i.e., the width of the page without padding and title (if set to left or right).
+cwh | Canvas width or height, whichever is smaller.
+cWH | Canvas width or height, whichever is bigger.
+len | Alias for `cnt`.
+page | The current page number (starts from 1).
+pageidx | The current page index (starts from zero).
+pages | Total number of pages in the photobook.
+ph | Page height.
+pi | [Pi](https://en.wikipedia.org/wiki/Pi).
+pw | Page width.
+pwh | Page width or height, whichever is smaller.
+pWH | Page width or height, whichever is smaller.
+
+Apart from these values, one can use parentheses "(" and ")", as well as operators "+", "-", "*", and "/".
+
+For example, `"(cwh-11*pi)/2.0"` means "one half of (the minimum between canvas width and height, minus 11 Pi)".
 
 
 ### Available Print Areas
